@@ -50,7 +50,7 @@
       min-height: 100vh;
     }
 
-    button, input, select {
+    button, input, select, textarea {
       font: inherit;
     }
 
@@ -270,7 +270,7 @@
       line-height: 1.45;
     }
 
-    .edit-input {
+    .edit-input, .edit-textarea {
       width: 100%;
       border: 1px solid var(--slate-200);
       border-radius: 14px;
@@ -281,9 +281,16 @@
       outline: none;
     }
 
+    .edit-textarea {
+      resize: vertical;
+      min-height: 80px;
+      font-family: inherit;
+    }
+
     .edit-input:focus,
     .add-input:focus,
-    .add-select:focus {
+    .add-select:focus,
+    .edit-textarea:focus {
       border-color: rgba(14, 116, 144, 0.35);
       box-shadow: 0 0 0 4px rgba(103, 232, 249, 0.35);
     }
@@ -352,6 +359,42 @@
       gap: 12px;
     }
 
+    .budget-item {
+      border-radius: 18px;
+      background: var(--slate-50);
+      padding: 16px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      border: 2px solid transparent;
+    }
+
+    .budget-item:hover {
+      background: white;
+      border-color: var(--cyan-700);
+    }
+
+    .budget-item.editing {
+      background: white;
+      border-color: var(--cyan-700);
+    }
+
+    .budget-input {
+      width: 100%;
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      background: white;
+      padding: 8px 10px;
+      margin-top: 8px;
+      color: var(--slate-900);
+      outline: none;
+      font-size: 13px;
+    }
+
+    .budget-input:focus {
+      border-color: var(--cyan-700);
+      box-shadow: 0 0 0 3px rgba(103, 232, 249, 0.35);
+    }
+
     .filter-row {
       display: flex;
       flex-wrap: nowrap;
@@ -386,7 +429,7 @@
 
     .add-row {
       display: grid;
-      grid-template-columns: 1fr 230px auto;
+      grid-template-columns: 1fr 150px 150px auto;
       gap: 12px;
       border: 1px dashed rgba(14, 116, 144, 0.25);
       border-radius: var(--radius-xl);
@@ -553,6 +596,53 @@
       text-decoration: line-through;
     }
 
+    .item-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .priority-selector {
+      display: flex;
+      gap: 4px;
+    }
+
+    .priority-btn {
+      width: 28px;
+      height: 28px;
+      border: 2px solid var(--slate-200);
+      border-radius: 6px;
+      background: white;
+      padding: 0;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.15s ease;
+    }
+
+    .priority-btn.high {
+      background: var(--rose-50);
+      color: var(--rose-700);
+      border-color: var(--rose-700);
+    }
+
+    .priority-btn.medium {
+      background: var(--amber-50);
+      color: var(--amber-700);
+      border-color: var(--amber-700);
+    }
+
+    .priority-btn.low {
+      background: var(--slate-100);
+      color: var(--slate-500);
+      border-color: var(--slate-400);
+    }
+
+    .priority-btn.active {
+      border-color: currentColor;
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+
     .priority {
       border-radius: 999px;
       padding: 6px 9px;
@@ -593,6 +683,104 @@
       color: var(--rose-700);
     }
 
+    .tools-section {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .tool-card {
+      border: 1px solid var(--slate-100);
+      border-radius: var(--radius-xl);
+      background: white;
+      box-shadow: var(--shadow-soft);
+      padding: 20px;
+    }
+
+    .tool-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .tool-title {
+      font-size: 19px;
+      font-weight: 950;
+      color: var(--slate-900);
+    }
+
+    .tool-content {
+      color: var(--slate-600);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .weight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .weight-input {
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      background: white;
+      padding: 8px 10px;
+      color: var(--slate-900);
+      outline: none;
+      font-size: 13px;
+    }
+
+    .weight-input:focus {
+      border-color: var(--cyan-700);
+      box-shadow: 0 0 0 3px rgba(103, 232, 249, 0.35);
+    }
+
+    .weight-label {
+      font-size: 11px;
+      color: var(--slate-500);
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .packing-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .packing-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      background: var(--slate-50);
+      border-radius: 12px;
+      font-size: 13px;
+    }
+
+    .packing-check {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--slate-300);
+      border-radius: 4px;
+      background: white;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      color: var(--emerald-600);
+    }
+
+    .packing-item.packed .packing-check {
+      background: var(--emerald-600);
+      border-color: var(--emerald-600);
+      color: white;
+    }
+
     .footer-note {
       margin-top: 24px;
       color: var(--slate-500);
@@ -600,11 +788,75 @@
       line-height: 1.55;
     }
 
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      place-items: center;
+    }
+
+    .modal.active {
+      display: grid;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: var(--shadow);
+    }
+
+    .modal-head {
+      font-size: 24px;
+      font-weight: 950;
+      margin-bottom: 16px;
+      color: var(--slate-900);
+    }
+
+    .modal-body {
+      margin-bottom: 24px;
+    }
+
+    .modal-input {
+      width: 100%;
+      border: 1px solid var(--slate-200);
+      border-radius: 14px;
+      background: white;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      color: var(--slate-900);
+      outline: none;
+      font-size: 14px;
+    }
+
+    .modal-input:focus {
+      border-color: var(--cyan-700);
+      box-shadow: 0 0 0 4px rgba(103, 232, 249, 0.35);
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
     @media (max-width: 950px) {
       .hero-grid,
       .main-grid,
       .checklist-grid,
       .budget-grid,
+      .add-row,
+      .tools-section {
+        grid-template-columns: 1fr;
+      }
+
       .add-row {
         grid-template-columns: 1fr;
       }
@@ -629,7 +881,8 @@
       .hero,
       .card,
       .budget,
-      .section-card {
+      .section-card,
+      .tool-card {
         border-radius: 22px;
       }
 
@@ -649,6 +902,14 @@
       .priority {
         display: none;
       }
+
+      .budget-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .weight-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media print {
@@ -664,7 +925,10 @@
       .filter-row,
       .delete-btn,
       .dark-btn,
-      .soft-btn {
+      .soft-btn,
+      .tools-section,
+      .priority-selector,
+      .priority-btn {
         display: none !important;
       }
     }
@@ -713,33 +977,80 @@
             <span class="icon-box">💶</span>
             <div>
               <h2>Budget & Ausgaben vor Ort</h2>
-              <p class="muted">Sinnvoll für Mietwagen, Ausflüge, Essen/Trinken, Trinkgeld und spontane Aktivitäten.</p>
+              <p class="muted">Klicke auf einen Punkt um ihn zu bearbeiten.</p>
             </div>
           </div>
-          <div class="budget-grid">
-            <div class="mini">
-              <div class="tiny-label">Mietwagen</div>
-              <div class="mini-value">Buchung + Kaution ergänzen</div>
+          <div class="budget-grid" id="budgetGrid"></div>
+        </section>
+
+        <section class="tool-card">
+          <div class="tool-head">
+            <span class="icon-box">⚖️</span>
+            <div class="tool-title">Gepäck-Kalkulator</div>
+          </div>
+          <div class="tool-content">
+            <p>Berechne dein Gepäckgewicht. Maximal 23 kg Aufgabegepäck pro Person!</p>
+            <div class="weight-grid">
+              <div>
+                <div class="weight-label">Kleidung (kg)</div>
+                <input type="number" id="weightClothing" class="weight-input" value="4" min="0" />
+              </div>
+              <div>
+                <div class="weight-label">Schuhe (kg)</div>
+                <input type="number" id="weightShoes" class="weight-input" value="2" min="0" />
+              </div>
+              <div>
+                <div class="weight-label">Elektronik (kg)</div>
+                <input type="number" id="weightElectronics" class="weight-input" value="2" min="0" />
+              </div>
             </div>
-            <div class="mini">
-              <div class="tiny-label">Ausflüge</div>
-              <div class="mini-value">Katamaran, Chamarel, Le Morne</div>
+            <div style="margin-top: 12px; padding: 12px; background: var(--slate-50); border-radius: 12px; text-align: center;">
+              <div style="font-size: 12px; color: var(--slate-500); margin-bottom: 4px;">GESAMTGEWICHT</div>
+              <div id="totalWeight" style="font-size: 24px; font-weight: 950; color: var(--slate-900);">8 kg</div>
+              <div id="weightStatus" style="font-size: 12px; color: var(--emerald-600); margin-top: 4px;">✓ Im Limit</div>
             </div>
-            <div class="mini">
-              <div class="tiny-label">Essen & Getränke</div>
-              <div class="mini-value">Trotz Halbpension einplanen</div>
-            </div>
-            <div class="mini">
-              <div class="tiny-label">Reserve</div>
-              <div class="mini-value">Notfall-/Pufferbudget</div>
-            </div>
+          </div>
+        </section>
+
+        <section class="tool-card">
+          <div class="tool-head">
+            <span class="icon-box">🌡️</span>
+            <div class="tool-title">Wetter & Temperatur</div>
+          </div>
+          <div class="tool-content">
+            <p><strong>September auf Mauritius:</strong></p>
+            <p style="margin-top: 8px;">🌞 Temperatur: 23-28°C<br/>💧 Luftfeuchtigkeit: 75-80%<br/>🌊 Wasser: ~24°C<br/>☀️ UV-Index: Sehr hoch (SPF 50+)</p>
+            <p style="margin-top: 12px; padding: 10px; background: var(--amber-50); border-radius: 12px; color: var(--amber-900); font-size: 13px;">⚠️ <strong>Trockenzeit:</strong> Beste Jahreszeit mit weniger Regen. Kurze Schauer möglich. Windiger als andere Jahreszeiten.</p>
+          </div>
+        </section>
+
+        <section class="tool-card">
+          <div class="tool-head">
+            <span class="icon-box">🧥</span>
+            <div class="tool-title">Packlisten-Assistent</div>
+          </div>
+          <div class="tool-content">
+            <p>Wichtigste Items für Mauritius:</p>
+            <div class="packing-list" id="packingList"></div>
+          </div>
+        </section>
+
+        <section class="tool-card">
+          <div class="tool-head">
+            <span class="icon-box">💱</span>
+            <div class="tool-title">Währungs-Tipp</div>
+          </div>
+          <div class="tool-content">
+            <p><strong>Mauritius-Rupie (MUR)</strong></p>
+            <p style="margin-top: 8px; font-size: 13px;">1 EUR ≈ 45-47 MUR (ungefähr)</p>
+            <p style="margin-top: 12px; padding: 10px; background: var(--emerald-50); border-radius: 12px; color: var(--emerald-700); font-size: 13px;">💡 <strong>Tipp:</strong> Geldautomaten sind weit verbreitet. Kreditkarten werden überall akzeptiert. Etwas Bargeld zum Wechseln mitbringen!</p>
           </div>
         </section>
 
         <div class="section-title-row">
           <div>
             <h2>Interaktive Checklisten</h2>
-            <p class="muted">Aufgaben abhaken, eigene Punkte ergänzen oder nicht relevante Punkte löschen.</p>
+            <p class="muted">Aufgaben abhaken, Priorität ändern, eigene Punkte ergänzen oder löschen.</p>
           </div>
           <button class="soft-btn" id="resetBtn">↩️ Standardliste wiederherstellen</button>
         </div>
@@ -749,6 +1060,11 @@
         <div class="add-row">
           <input id="newTaskInput" class="add-input" placeholder="Neue Aufgabe hinzufügen, z. B. Mietwagen-Buchung bestätigen" />
           <select id="newTaskSection" class="add-select"></select>
+          <select id="newTaskPriority" class="add-select">
+            <option value="hoch">🔴 Hoch</option>
+            <option value="mittel" selected>🟡 Mittel</option>
+            <option value="niedrig">🟢 Niedrig</option>
+          </select>
           <button class="primary-btn" id="addTaskBtn">＋ Hinzufügen</button>
         </div>
 
@@ -761,9 +1077,24 @@
     </div>
   </main>
 
+  <div class="modal" id="budgetModal">
+    <div class="modal-content">
+      <div class="modal-head" id="budgetModalTitle">Budget bearbeiten</div>
+      <div class="modal-body">
+        <input type="text" id="budgetModalLabel" class="modal-input" placeholder="z.B. Mietwagen" />
+        <input type="text" id="budgetModalValue" class="modal-input" placeholder="z.B. Buchung + Kaution ergänzen" />
+      </div>
+      <div class="modal-buttons">
+        <button class="soft-btn" id="budgetModalCancel">Abbrechen</button>
+        <button class="primary-btn" id="budgetModalSave">Speichern</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     const STORAGE_KEY = "mauritius-trip-checklist-html-v1";
     const TRIP_STORAGE_KEY = "mauritius-trip-data-html-v1";
+    const BUDGET_STORAGE_KEY = "mauritius-budget-html-v1";
 
     const initialTrip = {
       period: "11.09.2026 – 21.09.2026",
@@ -777,6 +1108,13 @@
       hotelContact: "La Pirogue, Wolmar / Flic en Flac, Mauritius · Tel. +230 403 3900",
       note: "Gemeinsame Reise-Checkliste für Michael & Valerie. Vor Abflug offizielle Seiten und Reiseunterlagen nochmals prüfen."
     };
+
+    const initialBudget = [
+      { label: "Mietwagen", value: "Buchung + Kaution ergänzen" },
+      { label: "Ausflüge", value: "Katamaran, Chamarel, Le Morne" },
+      { label: "Essen & Getränke", value: "Trotz Halbpension einplanen" },
+      { label: "Reserve", value: "Notfall-/Pufferbudget" }
+    ];
 
     const flights = [
       {
@@ -831,7 +1169,7 @@
         title: "Packliste",
         icon: "🧳",
         items: [
-          { id: "pack-1", text: "Badebekleidung, Strandtücher, Flip-Flops/Badeschuhe", done: false, priority: "mittel" },
+          { id: "pack-1", text: "Badebekleidung, Strandtücher, Flip-Flops/Badeschuhe", done: false, priority: "hoch" },
           { id: "pack-2", text: "Leichte Sommerkleidung + etwas Schickeres fürs Abendessen", done: false, priority: "mittel" },
           { id: "pack-3", text: "Regenjacke / dünne Jacke für Wind und kurze Schauer", done: false, priority: "niedrig" },
           { id: "pack-4", text: "Sonnenbrille, Kappe/Hut, After-Sun", done: false, priority: "hoch" },
@@ -891,10 +1229,23 @@
       }
     ];
 
+    const packingItems = [
+      { icon: "☀️", text: "Sonnencreme SPF 50+" },
+      { icon: "👕", text: "Leichte Sommerkleidung" },
+      { icon: "🩱", text: "Badebekleidung (2-3x)" },
+      { icon: "🕶️", text: "Sonnenbrille" },
+      { icon: "🧢", text: "Kappe / Hut" },
+      { icon: "🧴", text: "Mückenschutz" },
+      { icon: "💊", text: "Reiseapotheke" },
+      { icon: "📱", text: "Ladegeräte & Powerbank" }
+    ];
+
     let sections = loadSections();
     let trip = loadTrip();
+    let budget = loadBudget();
     let activeFilter = "all";
     let editingTrip = false;
+    let editingBudgetIndex = -1;
 
     function clone(value) {
       return JSON.parse(JSON.stringify(value));
@@ -920,9 +1271,20 @@
       }
     }
 
+    function loadBudget() {
+      try {
+        const raw = localStorage.getItem(BUDGET_STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : null;
+        return Array.isArray(parsed) && parsed.length ? parsed : clone(initialBudget);
+      } catch {
+        return clone(initialBudget);
+      }
+    }
+
     function saveState() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(sections));
       localStorage.setItem(TRIP_STORAGE_KEY, JSON.stringify(trip));
+      localStorage.setItem(BUDGET_STORAGE_KEY, JSON.stringify(budget));
     }
 
     function daysUntil(dateString, now = new Date()) {
@@ -958,6 +1320,12 @@
       return "low";
     }
 
+    function priorityEmoji(priority) {
+      if (priority === "hoch") return "🔴";
+      if (priority === "mittel") return "🟡";
+      return "🟢";
+    }
+
     function renderTripInfo() {
       const root = document.getElementById("tripInfo");
       const fields = [
@@ -974,7 +1342,7 @@
       root.innerHTML = fields.map(field => {
         const value = escapeHtml(field.value);
         const input = editingTrip && field.editable
-          ? `<input class="edit-input" data-trip-key="${field.key}" value="${value}" />${field.helper ? `<p class="muted">${escapeHtml(field.helper)}</p>` : ""}`
+          ? `<textarea class="edit-textarea" data-trip-key="${field.key}">${value}</textarea>${field.helper ? `<p class="muted">${escapeHtml(field.helper)}</p>` : ""}`
           : `<div class="info-value">${value}</div>`;
 
         return `
@@ -1019,6 +1387,46 @@
       `).join("");
     }
 
+    function renderBudget() {
+      const root = document.getElementById("budgetGrid");
+      root.innerHTML = budget.map((item, idx) => `
+        <div class="budget-item" data-budget-index="${idx}">
+          <div class="tiny-label">${escapeHtml(item.label)}</div>
+          <div class="mini-value">${escapeHtml(item.value)}</div>
+        </div>
+      `).join("");
+
+      root.querySelectorAll(".budget-item").forEach(item => {
+        item.addEventListener("click", () => {
+          const idx = parseInt(item.getAttribute("data-budget-index"));
+          openBudgetEditor(idx);
+        });
+      });
+    }
+
+    function openBudgetEditor(idx) {
+      editingBudgetIndex = idx;
+      document.getElementById("budgetModalLabel").value = budget[idx].label;
+      document.getElementById("budgetModalValue").value = budget[idx].value;
+      document.getElementById("budgetModal").classList.add("active");
+      document.getElementById("budgetModalLabel").focus();
+    }
+
+    function closeBudgetEditor() {
+      editingBudgetIndex = -1;
+      document.getElementById("budgetModal").classList.remove("active");
+    }
+
+    function saveBudgetEdit() {
+      if (editingBudgetIndex >= 0) {
+        budget[editingBudgetIndex].label = document.getElementById("budgetModalLabel").value.trim();
+        budget[editingBudgetIndex].value = document.getElementById("budgetModalValue").value.trim();
+        saveState();
+        renderBudget();
+        closeBudgetEditor();
+      }
+    }
+
     function renderFilters() {
       const root = document.getElementById("filters");
       const buttons = [
@@ -1049,6 +1457,43 @@
       select.value = sections.some(section => section.id === currentValue) ? currentValue : "documents";
     }
 
+    function renderPackingList() {
+      const root = document.getElementById("packingList");
+      root.innerHTML = packingItems.map((item, idx) => `
+        <div class="packing-item" data-packing-idx="${idx}">
+          <div class="packing-check" data-packing-idx="${idx}">✓</div>
+          <span>${escapeHtml(item.text)}</span>
+        </div>
+      `).join("");
+
+      root.querySelectorAll(".packing-check").forEach(check => {
+        check.addEventListener("click", () => {
+          const parent = check.closest(".packing-item");
+          parent.classList.toggle("packed");
+        });
+      });
+    }
+
+    function updateWeightCalculator() {
+      const clothing = parseFloat(document.getElementById("weightClothing").value) || 0;
+      const shoes = parseFloat(document.getElementById("weightShoes").value) || 0;
+      const electronics = parseFloat(document.getElementById("weightElectronics").value) || 0;
+      const total = clothing + shoes + electronics;
+
+      document.getElementById("totalWeight").textContent = total.toFixed(1) + " kg";
+      const status = document.getElementById("weightStatus");
+      if (total > 23) {
+        status.textContent = "⚠️ Zu schwer! Max. 23 kg";
+        status.style.color = "var(--rose-700)";
+      } else if (total > 20) {
+        status.textContent = "⚡ Nah am Limit";
+        status.style.color = "var(--amber-700)";
+      } else {
+        status.textContent = "✓ Im Limit";
+        status.style.color = "var(--emerald-600)";
+      }
+    }
+
     function renderStats() {
       const stats = calculateStats(sections);
       const countdown = Math.max(0, daysUntil("2026-09-11"));
@@ -1071,8 +1516,14 @@
               ${item.done ? "✓" : "○"}
             </button>
             <div class="item-text">${escapeHtml(item.text)}</div>
-            <span class="priority ${priorityClass(item.priority)}">${escapeHtml(item.priority)}</span>
-            <button class="delete-btn" data-action="delete" data-section="${section.id}" data-item="${item.id}" aria-label="Aufgabe löschen">×</button>
+            <div class="item-controls">
+              <div class="priority-selector">
+                <button class="priority-btn ${item.priority === "hoch" ? "high active" : "high"}" data-action="setPriority" data-section="${section.id}" data-item="${item.id}" data-priority="hoch" title="Hoch">🔴</button>
+                <button class="priority-btn ${item.priority === "mittel" ? "medium active" : "medium"}" data-action="setPriority" data-section="${section.id}" data-item="${item.id}" data-priority="mittel" title="Mittel">🟡</button>
+                <button class="priority-btn ${item.priority === "niedrig" ? "low active" : "low"}" data-action="setPriority" data-section="${section.id}" data-item="${item.id}" data-priority="niedrig" title="Niedrig">🟢</button>
+              </div>
+              <button class="delete-btn" data-action="delete" data-section="${section.id}" data-item="${item.id}" aria-label="Aufgabe löschen">×</button>
+            </div>
           </div>
         `).join("");
 
@@ -1109,6 +1560,12 @@
           deleteItem(button.dataset.section, button.dataset.item);
         });
       });
+
+      root.querySelectorAll("[data-action='setPriority']").forEach(button => {
+        button.addEventListener("click", () => {
+          setPriority(button.dataset.section, button.dataset.item, button.dataset.priority);
+        });
+      });
     }
 
     function toggleItem(sectionId, itemId) {
@@ -1117,6 +1574,18 @@
         return {
           ...section,
           items: section.items.map(item => item.id === itemId ? { ...item, done: !item.done } : item)
+        };
+      });
+      saveState();
+      render();
+    }
+
+    function setPriority(sectionId, itemId, priority) {
+      sections = sections.map(section => {
+        if (section.id !== sectionId) return section;
+        return {
+          ...section,
+          items: section.items.map(item => item.id === itemId ? { ...item, priority } : item)
         };
       });
       saveState();
@@ -1135,6 +1604,7 @@
     function addItem() {
       const input = document.getElementById("newTaskInput");
       const select = document.getElementById("newTaskSection");
+      const priority = document.getElementById("newTaskPriority").value;
       const text = input.value.trim();
       if (!text) return;
 
@@ -1144,7 +1614,7 @@
           ...section,
           items: [
             ...section.items,
-            { id: `${section.id}-${Date.now()}`, text, done: false, priority: "mittel" }
+            { id: `${section.id}-${Date.now()}`, text, done: false, priority }
           ]
         };
       });
@@ -1168,8 +1638,10 @@
       renderStats();
       renderTripInfo();
       renderFlights();
+      renderBudget();
       renderFilters();
       renderAddSectionOptions();
+      renderPackingList();
       renderChecklists();
     }
 
@@ -1185,6 +1657,18 @@
       if (event.key === "Enter") addItem();
     });
     document.getElementById("resetBtn").addEventListener("click", resetChecklist);
+
+    document.getElementById("budgetModalSave").addEventListener("click", saveBudgetEdit);
+    document.getElementById("budgetModalCancel").addEventListener("click", closeBudgetEditor);
+    document.getElementById("budgetModal").addEventListener("click", event => {
+      if (event.target === document.getElementById("budgetModal")) {
+        closeBudgetEditor();
+      }
+    });
+
+    document.getElementById("weightClothing").addEventListener("input", updateWeightCalculator);
+    document.getElementById("weightShoes").addEventListener("input", updateWeightCalculator);
+    document.getElementById("weightElectronics").addEventListener("input", updateWeightCalculator);
 
     function runSmokeTests() {
       const testSections = [
