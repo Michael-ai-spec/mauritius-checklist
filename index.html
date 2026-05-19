@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mauritius Reise-Checkliste 2026</title>
+  <style>
+    :root {
+      --cyan-900: #164e63;
+      --cyan-800: #155e75;
+      --cyan-700: #0e7490;
+      --teal-600: #0d9488;
+      --emerald-600: #059669;
+      --emerald-500: #10b981;
+      --emerald-50: #ecfdf5;
+      --cyan-50: #ecfeff;
+      --slate-950: #020617;
+      --slate-900: #0f172a;
+      --slate-800: #1e293b;
+      --slate-600: #475569;
+      --slate-500: #64748b;
+      --slate-400: #94a3b8;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f8fafc;
+      --rose-50: #fff1f2;
+      --rose-700: #be123c;
+      --amber-50: #fffbeb;
+      --amber-900: #78350f;
+      --amber-700: #b45309;
+      --white: #ffffff;
+      --shadow: 0 24px 70px rgba(8, 145, 178, 0.18);
+      --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius-xl: 24px;
+      --radius-2xl: 32px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--slate-900);
+      background:
+        radial-gradient(circle at top left, rgba(34, 211, 238, 0.25), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.22), transparent 35%),
+        linear-gradient(135deg, #ecfeff 0%, #ffffff 45%, #ecfdf5 100%);
+      min-height: 100vh;
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1220px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 28px 0;
+    }
+
+    .app-shell {
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: var(--radius-2xl);
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: white;
+      padding: 38px;
+      background: linear-gradient(115deg, var(--cyan-800), var(--teal-600), var(--emerald-500));
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.13);
+    }
+
+    .hero::before {
+      width: 230px;
+      height: 230px;
+      top: -90px;
+      right: -70px;
+    }
+
+    .hero::after {
+      width: 120px;
+      height: 120px;
+      right: 220px;
+      bottom: -45px;
+      background: rgba(254, 240, 138, 0.20);
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 28px;
+      align-items: end;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 15px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      font-size: 14px;
+      font-weight: 700;
+      backdrop-filter: blur(12px);
+    }
+
+    h1 {
+      margin: 20px 0 12px;
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 0.95;
+      letter-spacing: -0.055em;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0;
+      color: #ecfeff;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .countdown-card {
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+    }
+
+    .label-small {
+      color: rgba(255, 255, 255, 0.78);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .countdown-number {
+      margin-top: 8px;
+      font-size: 58px;
+      line-height: 1;
+      font-weight: 950;
+    }
+
+    .progress-track {
+      height: 12px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.22);
+      margin-top: 20px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: white;
+      transition: width 0.25s ease;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      padding: 24px;
+    }
+
+    .card {
+      border: 1px solid var(--slate-100);
+      border-radius: var(--radius-xl);
+      background: white;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card-pad {
+      padding: 24px;
+    }
+
+    .section-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 27px;
+      letter-spacing: -0.035em;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 23px;
+      letter-spacing: -0.03em;
+    }
+
+    .muted {
+      color: var(--slate-500);
+      font-size: 14px;
+      margin: 4px 0 0;
+      line-height: 1.5;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .info-card, .mini {
+      border-radius: 18px;
+      background: var(--slate-50);
+      padding: 16px;
+    }
+
+    .info-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+    }
+
+    .icon-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: white;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+      color: var(--cyan-700);
+      font-size: 22px;
+    }
+
+    .tiny-label {
+      color: var(--slate-400);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 11px;
+      font-weight: 950;
+    }
+
+    .info-value, .mini-value {
+      margin-top: 5px;
+      color: var(--slate-800);
+      font-size: 14px;
+      font-weight: 750;
+      line-height: 1.45;
+    }
+
+    .edit-input {
+      width: 100%;
+      border: 1px solid var(--slate-200);
+      border-radius: 14px;
+      background: white;
+      padding: 10px 12px;
+      margin-top: 8px;
+      color: var(--slate-900);
+      outline: none;
+    }
+
+    .edit-input:focus,
+    .add-input:focus,
+    .add-select:focus {
+      border-color: rgba(14, 116, 144, 0.35);
+      box-shadow: 0 0 0 4px rgba(103, 232, 249, 0.35);
+    }
+
+    .flight-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .flight-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .flight-label {
+      color: var(--cyan-700);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 12px;
+      font-weight: 950;
+      margin-bottom: 4px;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .baggage-note {
+      margin-top: 14px;
+      border-radius: 18px;
+      background: var(--amber-50);
+      color: var(--amber-900);
+      padding: 14px;
+      font-size: 14px;
+      font-weight: 750;
+      line-height: 1.5;
+    }
+
+    .checklist-area {
+      border-top: 1px solid var(--slate-100);
+      padding: 24px;
+    }
+
+    .budget {
+      margin-bottom: 24px;
+      border: 1px solid rgba(16, 185, 129, 0.18);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(115deg, #ecfdf5, #ecfeff);
+      padding: 22px;
+    }
+
+    .budget-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .budget-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 9px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      margin-bottom: 22px;
+    }
+
+    .filter-button {
+      flex: 0 0 auto;
+      border: 1px solid var(--slate-200);
+      border-radius: 999px;
+      background: white;
+      color: var(--slate-600);
+      padding: 9px 15px;
+      font-size: 14px;
+      font-weight: 850;
+      transition: 0.18s ease;
+    }
+
+    .filter-button:hover {
+      background: var(--slate-50);
+    }
+
+    .filter-button.active {
+      border-color: var(--slate-900);
+      background: var(--slate-900);
+      color: white;
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.16);
+    }
+
+    .add-row {
+      display: grid;
+      grid-template-columns: 1fr 230px auto;
+      gap: 12px;
+      border: 1px dashed rgba(14, 116, 144, 0.25);
+      border-radius: var(--radius-xl);
+      background: rgba(236, 254, 255, 0.68);
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+
+    .add-input,
+    .add-select {
+      min-width: 0;
+      border: 1px solid rgba(103, 232, 249, 0.45);
+      border-radius: 16px;
+      background: white;
+      padding: 13px 14px;
+      outline: none;
+    }
+
+    .primary-btn,
+    .dark-btn,
+    .soft-btn {
+      border: none;
+      border-radius: 999px;
+      font-weight: 900;
+      transition: 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .primary-btn {
+      border-radius: 16px;
+      background: var(--cyan-700);
+      color: white;
+      padding: 13px 18px;
+    }
+
+    .primary-btn:hover {
+      background: var(--cyan-800);
+    }
+
+    .dark-btn {
+      background: var(--slate-900);
+      color: white;
+      padding: 10px 16px;
+      font-size: 14px;
+    }
+
+    .dark-btn:hover {
+      background: var(--slate-800);
+    }
+
+    .soft-btn {
+      border: 1px solid var(--slate-200);
+      background: white;
+      color: var(--slate-800);
+      padding: 10px 16px;
+      font-size: 14px;
+    }
+
+    .soft-btn:hover {
+      background: var(--slate-50);
+    }
+
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .section-card {
+      border: 1px solid var(--slate-100);
+      border-radius: var(--radius-xl);
+      background: white;
+      box-shadow: var(--shadow-soft);
+      padding: 20px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .section-name {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-name .icon-box {
+      background: var(--emerald-50);
+      color: var(--emerald-600);
+    }
+
+    .section-percent {
+      color: var(--emerald-600);
+      font-size: 19px;
+      font-weight: 950;
+    }
+
+    .section-progress .progress-track {
+      height: 9px;
+      background: var(--slate-100);
+      margin: 0 0 14px;
+    }
+
+    .section-progress .progress-bar {
+      background: var(--emerald-500);
+    }
+
+    .item-list {
+      display: grid;
+      gap: 9px;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      border: 1px solid var(--slate-100);
+      border-radius: 18px;
+      background: rgba(248, 250, 252, 0.75);
+      padding: 12px;
+      transition: 0.18s ease;
+    }
+
+    .item:hover {
+      background: white;
+    }
+
+    .item.done {
+      border-color: rgba(16, 185, 129, 0.18);
+      background: rgba(236, 253, 245, 0.76);
+    }
+
+    .check-btn {
+      flex: 0 0 auto;
+      width: 26px;
+      height: 26px;
+      border: none;
+      background: transparent;
+      color: var(--emerald-600);
+      padding: 0;
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .item-text {
+      flex: 1 1 auto;
+      color: var(--slate-800);
+      font-size: 14px;
+      line-height: 1.4;
+      font-weight: 700;
+    }
+
+    .item.done .item-text {
+      color: var(--slate-400);
+      text-decoration: line-through;
+    }
+
+    .priority {
+      border-radius: 999px;
+      padding: 6px 9px;
+      font-size: 11px;
+      font-weight: 950;
+      white-space: nowrap;
+    }
+
+    .priority.high {
+      background: var(--rose-50);
+      color: var(--rose-700);
+    }
+
+    .priority.medium {
+      background: var(--amber-50);
+      color: var(--amber-700);
+    }
+
+    .priority.low {
+      background: var(--slate-100);
+      color: var(--slate-500);
+    }
+
+    .delete-btn {
+      flex: 0 0 auto;
+      width: 31px;
+      height: 31px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--slate-400);
+      font-size: 17px;
+      transition: 0.18s ease;
+    }
+
+    .delete-btn:hover {
+      background: var(--rose-50);
+      color: var(--rose-700);
+    }
+
+    .footer-note {
+      margin-top: 24px;
+      color: var(--slate-500);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 950px) {
+      .hero-grid,
+      .main-grid,
+      .checklist-grid,
+      .budget-grid,
+      .add-row {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 28px;
+      }
+
+      .main-grid,
+      .checklist-area {
+        padding: 18px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: min(100% - 16px, 1220px);
+        padding: 8px 0;
+      }
+
+      .app-shell,
+      .hero,
+      .card,
+      .budget,
+      .section-card {
+        border-radius: 22px;
+      }
+
+      .section-title-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .mini-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .item {
+        align-items: flex-start;
+      }
+
+      .priority {
+        display: none;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .app-shell {
+        box-shadow: none;
+      }
+
+      .add-row,
+      .filter-row,
+      .delete-btn,
+      .dark-btn,
+      .soft-btn {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <div class="app-shell">
+      <section class="hero">
+        <div class="hero-grid">
+          <div>
+            <div class="badge">🌴 Mauritius Reiseplaner 2026</div>
+            <h1>Reise-Checkliste Mauritius</h1>
+            <p>Alles Wichtige an einem Ort: Flüge, Hotel, Mietwagen, Dokumente, Gesundheit, Packliste, Budget, Ausflüge und Notfallkontakte.</p>
+          </div>
+          <aside class="countdown-card">
+            <div class="label-small">Countdown</div>
+            <div class="countdown-number" id="countdown">–</div>
+            <div>Tage bis zum Hinflug</div>
+            <div class="progress-track">
+              <div class="progress-bar" id="overallProgress"></div>
+            </div>
+            <div style="margin-top: 9px; color: #ecfeff; font-size: 14px;" id="overallText">0 von 0 Aufgaben erledigt · 0%</div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="main-grid">
+        <div class="card card-pad">
+          <div class="section-title-row">
+            <div>
+              <h2>Reisedaten</h2>
+              <p class="muted">Bearbeitbar, falls Hotelname oder Details ergänzt werden.</p>
+            </div>
+            <button class="dark-btn" id="editTripBtn">✏️ Bearbeiten</button>
+          </div>
+          <div class="info-list" id="tripInfo"></div>
+        </div>
+
+        <div class="flight-stack" id="flightCards"></div>
+      </section>
+
+      <section class="checklist-area">
+        <section class="budget">
+          <div class="budget-head">
+            <span class="icon-box">💶</span>
+            <div>
+              <h2>Budget & Ausgaben vor Ort</h2>
+              <p class="muted">Sinnvoll für Mietwagen, Ausflüge, Essen/Trinken, Trinkgeld und spontane Aktivitäten.</p>
+            </div>
+          </div>
+          <div class="budget-grid">
+            <div class="mini">
+              <div class="tiny-label">Mietwagen</div>
+              <div class="mini-value">Buchung + Kaution ergänzen</div>
+            </div>
+            <div class="mini">
+              <div class="tiny-label">Ausflüge</div>
+              <div class="mini-value">Katamaran, Chamarel, Le Morne</div>
+            </div>
+            <div class="mini">
+              <div class="tiny-label">Essen & Getränke</div>
+              <div class="mini-value">Trotz Halbpension einplanen</div>
+            </div>
+            <div class="mini">
+              <div class="tiny-label">Reserve</div>
+              <div class="mini-value">Notfall-/Pufferbudget</div>
+            </div>
+          </div>
+        </section>
+
+        <div class="section-title-row">
+          <div>
+            <h2>Interaktive Checklisten</h2>
+            <p class="muted">Aufgaben abhaken, eigene Punkte ergänzen oder nicht relevante Punkte löschen.</p>
+          </div>
+          <button class="soft-btn" id="resetBtn">↩️ Standardliste wiederherstellen</button>
+        </div>
+
+        <div class="filter-row" id="filters"></div>
+
+        <div class="add-row">
+          <input id="newTaskInput" class="add-input" placeholder="Neue Aufgabe hinzufügen, z. B. Mietwagen-Buchung bestätigen" />
+          <select id="newTaskSection" class="add-select"></select>
+          <button class="primary-btn" id="addTaskBtn">＋ Hinzufügen</button>
+        </div>
+
+        <div class="checklist-grid" id="checklists"></div>
+
+        <p class="footer-note">
+          Hinweis: Diese private Reise-Checkliste ersetzt keine offizielle Reiseberatung. Prüfe kurz vor Abflug nochmals BMEIA, Airline, DERTOUR, Hotel, Mietwagenanbieter und Versicherung.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const STORAGE_KEY = "mauritius-trip-checklist-html-v1";
+    const TRIP_STORAGE_KEY = "mauritius-trip-data-html-v1";
+
+    const initialTrip = {
+      period: "11.09.2026 – 21.09.2026",
+      hotel: "La Pirogue, Flic en Flac",
+      accommodation: "Premium Garden Bungalow",
+      board: "Halbpension",
+      travelers: "Michael Gurtner (28.08.2000) · Valerie Gruber-Wutzl (23.05.1999)",
+      organizer: "DERTOUR",
+      insurance: "ERGO Reiseversicherung – RundumSorglos-Jahresschutz-Spezial mit Selbstbeteiligung (209,00 €)",
+      carRental: "Mietwagen am Flughafen Mauritius geplant – Anbieter, Buchungsnummer und Führerschein/Kreditkarte noch ergänzen.",
+      hotelContact: "La Pirogue, Wolmar / Flic en Flac, Mauritius · Tel. +230 403 3900",
+      note: "Gemeinsame Reise-Checkliste für Michael & Valerie. Vor Abflug offizielle Seiten und Reiseunterlagen nochmals prüfen."
+    };
+
+    const flights = [
+      {
+        type: "Hinflug",
+        date: "Fr, 11.09.2026 → Sa, 12.09.2026",
+        route: "Wien → Istanbul International → Mauritius",
+        time: "10:50 – 06:05 +1",
+        airline: "Turkish Airlines",
+        flightNos: "TK1884, TK1176",
+        baggage: "23 kg Aufgabegepäck p. P. + 8 kg Handgepäck (max. 40 × 55 × 23 cm)"
+      },
+      {
+        type: "Rückflug",
+        date: "So, 20.09.2026 → Mo, 21.09.2026",
+        route: "Mauritius → Istanbul International → Wien",
+        time: "20:15 – 09:10 +1",
+        airline: "Turkish Airlines",
+        flightNos: "TK177, TK1883",
+        baggage: "23 kg Aufgabegepäck p. P. + 8 kg Handgepäck (max. 40 × 55 × 23 cm)"
+      }
+    ];
+
+    const defaultSections = [
+      {
+        id: "documents",
+        title: "Dokumente & Einreise",
+        icon: "🛂",
+        items: [
+          { id: "doc-1", text: "Reisepässe prüfen: länger gültig als Aufenthaltsdauer", done: false, priority: "hoch" },
+          { id: "doc-2", text: "Reiseregistrierung / Mauritius All-in-One Travel Form kurz vor Abreise ausfüllen", done: false, priority: "hoch" },
+          { id: "doc-3", text: "Reiseunterlagen DERTOUR offline speichern und ausdrucken", done: false, priority: "hoch" },
+          { id: "doc-4", text: "Hotelvoucher / Buchungsbestätigung speichern", done: false, priority: "hoch" },
+          { id: "doc-5", text: "Rückflug-/Weiterreise-Nachweis griffbereit halten", done: false, priority: "mittel" },
+          { id: "doc-6", text: "Kopie von Reisepass, Versicherung und Tickets in Cloud ablegen", done: false, priority: "mittel" }
+        ]
+      },
+      {
+        id: "health",
+        title: "Gesundheit & Impfungen",
+        icon: "💉",
+        items: [
+          { id: "health-1", text: "Impfpass prüfen: Tetanus/Diphtherie/Pertussis, Polio, MMR aktuell?", done: false, priority: "hoch" },
+          { id: "health-2", text: "Hepatitis-A-Impfung mit Arzt/Reisemedizin besprechen", done: false, priority: "hoch" },
+          { id: "health-3", text: "Typhus-Impfung je nach Reise-/Essverhalten besprechen", done: false, priority: "mittel" },
+          { id: "health-4", text: "Gelbfieber nur relevant bei Einreise/Transit aus Risikogebiet prüfen", done: false, priority: "mittel" },
+          { id: "health-5", text: "Reiseapotheke packen: Schmerzmittel, Durchfallmittel, Elektrolyte, Pflaster, Desinfektion", done: false, priority: "mittel" },
+          { id: "health-6", text: "Mückenschutz, After-Bite und Sonnencreme SPF 50 einpacken", done: false, priority: "hoch" }
+        ]
+      },
+      {
+        id: "packing",
+        title: "Packliste",
+        icon: "🧳",
+        items: [
+          { id: "pack-1", text: "Badebekleidung, Strandtücher, Flip-Flops/Badeschuhe", done: false, priority: "mittel" },
+          { id: "pack-2", text: "Leichte Sommerkleidung + etwas Schickeres fürs Abendessen", done: false, priority: "mittel" },
+          { id: "pack-3", text: "Regenjacke / dünne Jacke für Wind und kurze Schauer", done: false, priority: "niedrig" },
+          { id: "pack-4", text: "Sonnenbrille, Kappe/Hut, After-Sun", done: false, priority: "hoch" },
+          { id: "pack-5", text: "Ladegeräte, Powerbank, Reiseadapter Typ C/G prüfen", done: false, priority: "mittel" },
+          { id: "pack-6", text: "Schnorchel-/Strandausrüstung falls gewünscht", done: false, priority: "niedrig" }
+        ]
+      },
+      {
+        id: "money",
+        title: "Geld, Versicherung & Technik",
+        icon: "🛡️",
+        items: [
+          { id: "money-1", text: "Kreditkartenlimit und Auslandseinsatz prüfen", done: false, priority: "mittel" },
+          { id: "money-2", text: "Etwas Bargeld / Mauritius-Rupien oder Wechselmöglichkeit planen", done: false, priority: "niedrig" },
+          { id: "money-3", text: "ERGO Versicherungsnummer und Notfallkontakt speichern", done: false, priority: "hoch" },
+          { id: "money-4", text: "Roaming/eSIM für Mauritius prüfen", done: false, priority: "mittel" },
+          { id: "money-5", text: "Offline-Karten und Übersetzungs-App herunterladen", done: false, priority: "niedrig" }
+        ]
+      },
+      {
+        id: "before",
+        title: "Kurz vor Abreise",
+        icon: "📅",
+        items: [
+          { id: "before-1", text: "Online Check-in prüfen, sobald verfügbar", done: false, priority: "hoch" },
+          { id: "before-2", text: "Gepäck wiegen: max. 23 kg Aufgabegepäck, 8 kg Handgepäck", done: false, priority: "hoch" },
+          { id: "before-3", text: "Mietwagen am Flughafen final buchen oder Buchung bestätigen", done: false, priority: "hoch" },
+          { id: "before-4", text: "Führerschein, Kreditkarte und Mietwagen-Kaution prüfen", done: false, priority: "hoch" },
+          { id: "before-5", text: "Wettervorhersage prüfen und Packliste finalisieren", done: false, priority: "mittel" },
+          { id: "before-6", text: "Wohnung: Pflanzen, Müll, Kühlschrank, Post, Schlüssel klären", done: false, priority: "mittel" }
+        ]
+      },
+      {
+        id: "excursions",
+        title: "Ausflüge & Erlebnisse",
+        icon: "📍",
+        items: [
+          { id: "trip-1", text: "Le Morne Brabant / Aussichtspunkt planen", done: false, priority: "mittel" },
+          { id: "trip-2", text: "Chamarel: Seven Coloured Earths & Wasserfall einplanen", done: false, priority: "mittel" },
+          { id: "trip-3", text: "Katamaran- oder Bootstour prüfen", done: false, priority: "mittel" },
+          { id: "trip-4", text: "Schnorchelspot / Delfin- oder Lagunentour recherchieren", done: false, priority: "niedrig" },
+          { id: "trip-5", text: "Port Louis / Central Market als Tagesausflug überlegen", done: false, priority: "niedrig" },
+          { id: "trip-6", text: "Black River Gorges National Park für Natur/Wandern prüfen", done: false, priority: "niedrig" }
+        ]
+      },
+      {
+        id: "emergency",
+        title: "Notfallkontakte",
+        icon: "☎️",
+        items: [
+          { id: "em-1", text: "Hotelkontakt speichern: La Pirogue +230 403 3900", done: false, priority: "hoch" },
+          { id: "em-2", text: "ERGO Notfallnummer / Polizzennummer in Handy und Wallet speichern", done: false, priority: "hoch" },
+          { id: "em-3", text: "DERTOUR Buchungsnummer und Servicekontakt speichern", done: false, priority: "hoch" },
+          { id: "em-4", text: "Mauritius Notruf speichern: Polizei 999/112, Ambulanz 114, Feuerwehr 115", done: false, priority: "hoch" },
+          { id: "em-5", text: "Österreichische Konsularhilfe: Honorarkonsulat Port Louis / Botschaft Pretoria und BMEIA Notfallkontakt speichern", done: false, priority: "mittel" }
+        ]
+      }
+    ];
+
+    let sections = loadSections();
+    let trip = loadTrip();
+    let activeFilter = "all";
+    let editingTrip = false;
+
+    function clone(value) {
+      return JSON.parse(JSON.stringify(value));
+    }
+
+    function loadSections() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : null;
+        return Array.isArray(parsed) && parsed.length ? parsed : clone(defaultSections);
+      } catch {
+        return clone(defaultSections);
+      }
+    }
+
+    function loadTrip() {
+      try {
+        const raw = localStorage.getItem(TRIP_STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : null;
+        return parsed && typeof parsed === "object" ? { ...initialTrip, ...parsed } : { ...initialTrip };
+      } catch {
+        return { ...initialTrip };
+      }
+    }
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(sections));
+      localStorage.setItem(TRIP_STORAGE_KEY, JSON.stringify(trip));
+    }
+
+    function daysUntil(dateString, now = new Date()) {
+      const target = new Date(dateString + "T00:00:00");
+      const today = new Date(now);
+      target.setHours(0, 0, 0, 0);
+      today.setHours(0, 0, 0, 0);
+      return Math.ceil((target - today) / (1000 * 60 * 60 * 24));
+    }
+
+    function calculateStats(list) {
+      const all = list.flatMap(section => section.items);
+      const done = all.filter(item => item.done).length;
+      return {
+        total: all.length,
+        done,
+        percent: all.length ? Math.round((done / all.length) * 100) : 0
+      };
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function priorityClass(priority) {
+      if (priority === "hoch") return "high";
+      if (priority === "mittel") return "medium";
+      return "low";
+    }
+
+    function renderTripInfo() {
+      const root = document.getElementById("tripInfo");
+      const fields = [
+        { key: "period", icon: "📅", label: "Zeitraum", value: trip.period, editable: true },
+        { key: "hotel", icon: "🏨", label: "Hotel / Unterkunft", value: `${trip.hotel} · ${trip.accommodation} · ${trip.board}`, editable: true, helper: "Im Bearbeitungsmodus hier nur den Hotelnamen eintragen." },
+        { key: "travelers", icon: "👥", label: "Reisende", value: trip.travelers, editable: false },
+        { key: "organizer", icon: "🧾", label: "Veranstalter", value: trip.organizer, editable: false },
+        { key: "insurance", icon: "🛡️", label: "Reiseschutz", value: trip.insurance, editable: false },
+        { key: "carRental", icon: "🚗", label: "Mietwagen", value: trip.carRental, editable: true },
+        { key: "hotelContact", icon: "☎️", label: "Hotelkontakt", value: trip.hotelContact, editable: false },
+        { key: "note", icon: "✨", label: "Hinweis", value: trip.note, editable: true }
+      ];
+
+      root.innerHTML = fields.map(field => {
+        const value = escapeHtml(field.value);
+        const input = editingTrip && field.editable
+          ? `<input class="edit-input" data-trip-key="${field.key}" value="${value}" />${field.helper ? `<p class="muted">${escapeHtml(field.helper)}</p>` : ""}`
+          : `<div class="info-value">${value}</div>`;
+
+        return `
+          <div class="info-card">
+            <span class="icon-box">${field.icon}</span>
+            <div style="min-width: 0; flex: 1;">
+              <div class="tiny-label">${escapeHtml(field.label)}</div>
+              ${input}
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      root.querySelectorAll("[data-trip-key]").forEach(input => {
+        input.addEventListener("input", event => {
+          const key = event.target.getAttribute("data-trip-key");
+          trip[key] = event.target.value;
+          saveState();
+        });
+      });
+    }
+
+    function renderFlights() {
+      const root = document.getElementById("flightCards");
+      root.innerHTML = flights.map(flight => `
+        <article class="card card-pad">
+          <div class="flight-head">
+            <span class="icon-box" style="background: var(--cyan-50);">✈️</span>
+            <div>
+              <div class="flight-label">${escapeHtml(flight.type)}</div>
+              <h3>${escapeHtml(flight.route)}</h3>
+            </div>
+          </div>
+          <div class="mini-grid">
+            <div class="mini"><div class="tiny-label">Datum</div><div class="mini-value">${escapeHtml(flight.date)}</div></div>
+            <div class="mini"><div class="tiny-label">Zeit</div><div class="mini-value">${escapeHtml(flight.time)}</div></div>
+            <div class="mini"><div class="tiny-label">Airline</div><div class="mini-value">${escapeHtml(flight.airline)}</div></div>
+            <div class="mini"><div class="tiny-label">Flüge</div><div class="mini-value">${escapeHtml(flight.flightNos)}</div></div>
+          </div>
+          <div class="baggage-note">🧳 ${escapeHtml(flight.baggage)}</div>
+        </article>
+      `).join("");
+    }
+
+    function renderFilters() {
+      const root = document.getElementById("filters");
+      const buttons = [
+        { id: "all", title: "Alle" },
+        ...sections.map(section => ({ id: section.id, title: section.title }))
+      ];
+
+      root.innerHTML = buttons.map(button => `
+        <button class="filter-button ${activeFilter === button.id ? "active" : ""}" data-filter="${button.id}">
+          ${escapeHtml(button.title)}
+        </button>
+      `).join("");
+
+      root.querySelectorAll("[data-filter]").forEach(button => {
+        button.addEventListener("click", () => {
+          activeFilter = button.getAttribute("data-filter");
+          render();
+        });
+      });
+    }
+
+    function renderAddSectionOptions() {
+      const select = document.getElementById("newTaskSection");
+      const currentValue = select.value || "documents";
+      select.innerHTML = sections.map(section => `
+        <option value="${section.id}">${escapeHtml(section.title)}</option>
+      `).join("");
+      select.value = sections.some(section => section.id === currentValue) ? currentValue : "documents";
+    }
+
+    function renderStats() {
+      const stats = calculateStats(sections);
+      const countdown = Math.max(0, daysUntil("2026-09-11"));
+      document.getElementById("countdown").textContent = countdown;
+      document.getElementById("overallProgress").style.width = stats.percent + "%";
+      document.getElementById("overallText").textContent = `${stats.done} von ${stats.total} Aufgaben erledigt · ${stats.percent}%`;
+    }
+
+    function renderChecklists() {
+      const root = document.getElementById("checklists");
+      const visibleSections = activeFilter === "all"
+        ? sections
+        : sections.filter(section => section.id === activeFilter);
+
+      root.innerHTML = visibleSections.map(section => {
+        const stats = calculateStats([section]);
+        const items = section.items.map(item => `
+          <div class="item ${item.done ? "done" : ""}">
+            <button class="check-btn" data-action="toggle" data-section="${section.id}" data-item="${item.id}" aria-label="Aufgabe abhaken">
+              ${item.done ? "✓" : "○"}
+            </button>
+            <div class="item-text">${escapeHtml(item.text)}</div>
+            <span class="priority ${priorityClass(item.priority)}">${escapeHtml(item.priority)}</span>
+            <button class="delete-btn" data-action="delete" data-section="${section.id}" data-item="${item.id}" aria-label="Aufgabe löschen">×</button>
+          </div>
+        `).join("");
+
+        return `
+          <article class="section-card">
+            <div class="section-head">
+              <div class="section-name">
+                <span class="icon-box">${section.icon}</span>
+                <div>
+                  <h3>${escapeHtml(section.title)}</h3>
+                  <p class="muted">${stats.done}/${stats.total} erledigt</p>
+                </div>
+              </div>
+              <div class="section-percent">${stats.percent}%</div>
+            </div>
+            <div class="section-progress">
+              <div class="progress-track">
+                <div class="progress-bar" style="width: ${stats.percent}%"></div>
+              </div>
+            </div>
+            <div class="item-list">${items}</div>
+          </article>
+        `;
+      }).join("");
+
+      root.querySelectorAll("[data-action='toggle']").forEach(button => {
+        button.addEventListener("click", () => {
+          toggleItem(button.dataset.section, button.dataset.item);
+        });
+      });
+
+      root.querySelectorAll("[data-action='delete']").forEach(button => {
+        button.addEventListener("click", () => {
+          deleteItem(button.dataset.section, button.dataset.item);
+        });
+      });
+    }
+
+    function toggleItem(sectionId, itemId) {
+      sections = sections.map(section => {
+        if (section.id !== sectionId) return section;
+        return {
+          ...section,
+          items: section.items.map(item => item.id === itemId ? { ...item, done: !item.done } : item)
+        };
+      });
+      saveState();
+      render();
+    }
+
+    function deleteItem(sectionId, itemId) {
+      sections = sections.map(section => {
+        if (section.id !== sectionId) return section;
+        return { ...section, items: section.items.filter(item => item.id !== itemId) };
+      });
+      saveState();
+      render();
+    }
+
+    function addItem() {
+      const input = document.getElementById("newTaskInput");
+      const select = document.getElementById("newTaskSection");
+      const text = input.value.trim();
+      if (!text) return;
+
+      sections = sections.map(section => {
+        if (section.id !== select.value) return section;
+        return {
+          ...section,
+          items: [
+            ...section.items,
+            { id: `${section.id}-${Date.now()}`, text, done: false, priority: "mittel" }
+          ]
+        };
+      });
+
+      input.value = "";
+      saveState();
+      render();
+    }
+
+    function resetChecklist() {
+      if (!confirm("Möchtest du die Checkliste wirklich auf die Standardliste zurücksetzen? Deine Änderungen an Aufgaben gehen verloren.")) {
+        return;
+      }
+      sections = clone(defaultSections);
+      activeFilter = "all";
+      saveState();
+      render();
+    }
+
+    function render() {
+      renderStats();
+      renderTripInfo();
+      renderFlights();
+      renderFilters();
+      renderAddSectionOptions();
+      renderChecklists();
+    }
+
+    document.getElementById("editTripBtn").addEventListener("click", () => {
+      editingTrip = !editingTrip;
+      document.getElementById("editTripBtn").textContent = editingTrip ? "💾 Speichern" : "✏️ Bearbeiten";
+      saveState();
+      renderTripInfo();
+    });
+
+    document.getElementById("addTaskBtn").addEventListener("click", addItem);
+    document.getElementById("newTaskInput").addEventListener("keydown", event => {
+      if (event.key === "Enter") addItem();
+    });
+    document.getElementById("resetBtn").addEventListener("click", resetChecklist);
+
+    function runSmokeTests() {
+      const testSections = [
+        { id: "x", title: "X", icon: "✓", items: [
+          { id: "a", text: "A", done: true, priority: "hoch" },
+          { id: "b", text: "B", done: false, priority: "mittel" }
+        ] }
+      ];
+      console.assert(daysUntil("2026-09-11", new Date("2026-09-10T12:00:00")) === 1, "daysUntil should count one day before departure");
+      console.assert(calculateStats(testSections).percent === 50, "calculateStats should return 50%");
+      console.assert(defaultSections.some(section => section.id === "documents"), "defaultSections should include documents");
+      console.assert(typeof escapeHtml("<x>") === "string" && escapeHtml("<x>").includes("&lt;"), "escapeHtml should escape HTML");
+    }
+
+    runSmokeTests();
+    render();
+  </script>
+</body>
+</html>
