@@ -392,6 +392,32 @@
       margin-bottom: 4px;
     }
 
+    .flight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .flight-item {
+      padding: 12px;
+      background: var(--slate-50);
+      border-radius: 12px;
+      font-size: 13px;
+      border: 1px solid var(--slate-100);
+    }
+
+    body.dark-mode .flight-item {
+      background: var(--slate-200);
+      border-color: var(--slate-200);
+    }
+
+    .flight-item strong {
+      display: block;
+      color: var(--cyan-700);
+      margin-bottom: 4px;
+    }
+
     .mini-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -461,6 +487,55 @@
 
     body.dark-mode .budget-item:hover {
       background: var(--slate-100);
+    }
+
+    .budget-item.editing {
+      background: white;
+      border-color: var(--cyan-700);
+    }
+
+    body.dark-mode .budget-item.editing {
+      background: var(--slate-100);
+    }
+
+    .budget-label {
+      display: block;
+      color: var(--slate-400);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 11px;
+      font-weight: 950;
+      margin-bottom: 8px;
+    }
+
+    .budget-value {
+      display: block;
+      color: var(--slate-800);
+      font-size: 14px;
+      font-weight: 750;
+      line-height: 1.45;
+    }
+
+    .budget-input {
+      width: 100%;
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      background: white;
+      padding: 8px 10px;
+      margin-top: 8px;
+      color: var(--slate-900);
+      outline: none;
+      font-size: 13px;
+    }
+
+    body.dark-mode .budget-input {
+      background: var(--slate-100);
+      border-color: var(--slate-200);
+    }
+
+    .budget-input:focus {
+      border-color: var(--cyan-700);
+      box-shadow: 0 0 0 3px rgba(103, 232, 249, 0.35);
     }
 
     .filter-row {
@@ -823,75 +898,62 @@
       line-height: 1.6;
     }
 
-    .days-grid {
-      display: grid;
-      grid-template-columns: repeat(7, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .day-card {
+    .weather-card {
       border: 1px solid var(--slate-100);
-      border-radius: 12px;
+      border-radius: var(--radius-xl);
       background: white;
-      padding: 14px;
-      cursor: pointer;
-      transition: 0.2s ease;
+      box-shadow: var(--shadow-soft);
+      padding: 20px;
+      transition: background 0.3s ease;
+      margin-bottom: 24px;
     }
 
-    body.dark-mode .day-card {
+    body.dark-mode .weather-card {
+      background: var(--slate-100);
+      border-color: var(--slate-200);
+    }
+
+    .weather-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .weather-day {
+      text-align: center;
+      padding: 12px;
+      border-radius: 12px;
+      background: var(--slate-50);
+      border: 1px solid var(--slate-100);
+      font-size: 12px;
+    }
+
+    body.dark-mode .weather-day {
       background: var(--slate-200);
       border-color: var(--slate-200);
     }
 
-    .day-card:hover, .day-card.editing {
-      background: var(--slate-50);
-      border-color: var(--cyan-700);
-    }
-
-    body.dark-mode .day-card:hover,
-    body.dark-mode .day-card.editing {
-      background: var(--slate-100);
-    }
-
-    .day-number {
-      font-weight: 900;
-      font-size: 18px;
-      color: var(--cyan-700);
-    }
-
-    .day-label {
-      font-size: 12px;
-      color: var(--slate-500);
-      margin-top: 4px;
-    }
-
-    .day-input {
-      width: 100%;
-      border: 1px solid var(--slate-200);
-      border-radius: 8px;
-      background: white;
-      padding: 8px;
-      margin-top: 8px;
-      font-size: 13px;
-      outline: none;
-    }
-
-    body.dark-mode .day-input {
-      background: var(--slate-100);
-      border-color: var(--slate-200);
-    }
-
-    .day-input:focus {
-      border-color: var(--cyan-700);
-      box-shadow: 0 0 0 3px rgba(103, 232, 249, 0.35);
-    }
-
-    .day-budget {
-      font-size: 11px;
-      color: var(--emerald-600);
-      margin-top: 6px;
+    .weather-day-name {
       font-weight: 700;
+      color: var(--cyan-700);
+      margin-bottom: 4px;
+    }
+
+    .weather-icon {
+      font-size: 24px;
+      margin: 6px 0;
+    }
+
+    .weather-temp {
+      color: var(--slate-800);
+      font-weight: 700;
+      margin: 4px 0;
+    }
+
+    .weather-desc {
+      color: var(--slate-500);
+      font-size: 11px;
     }
 
     .weight-grid {
@@ -929,129 +991,6 @@
       font-weight: 700;
     }
 
-    .weight-indicator {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 16px;
-      padding: 12px;
-      border-radius: 12px;
-      background: var(--slate-50);
-      transition: background 0.3s ease;
-    }
-
-    body.dark-mode .weight-indicator {
-      background: var(--slate-200);
-    }
-
-    .weight-bar {
-      flex: 1;
-      height: 8px;
-      background: var(--slate-100);
-      border-radius: 4px;
-      overflow: hidden;
-      transition: background 0.3s ease;
-    }
-
-    body.dark-mode .weight-bar {
-      background: var(--slate-200);
-    }
-
-    .weight-fill {
-      height: 100%;
-      background: #10b981;
-      border-radius: 4px;
-      transition: width 0.3s ease, background 0.3s ease;
-    }
-
-    .weight-fill.warning {
-      background: #f59e0b;
-    }
-
-    .weight-fill.danger {
-      background: #ef4444;
-    }
-
-    .weight-text {
-      font-weight: 700;
-      font-size: 13px;
-      min-width: 60px;
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 1000;
-      place-items: center;
-    }
-
-    .modal.active {
-      display: grid;
-    }
-
-    .modal-content {
-      background: white;
-      border-radius: var(--radius-xl);
-      padding: 32px;
-      max-width: 500px;
-      width: 90%;
-      box-shadow: var(--shadow);
-      transition: background 0.3s ease;
-      max-height: 80vh;
-      overflow-y: auto;
-    }
-
-    body.dark-mode .modal-content {
-      background: var(--slate-100);
-    }
-
-    .modal-head {
-      font-size: 24px;
-      font-weight: 950;
-      margin-bottom: 16px;
-      color: var(--slate-900);
-    }
-
-    .modal-body {
-      margin-bottom: 24px;
-    }
-
-    .modal-input, .modal-textarea {
-      width: 100%;
-      border: 1px solid var(--slate-200);
-      border-radius: 14px;
-      background: white;
-      padding: 12px 14px;
-      margin-bottom: 12px;
-      color: var(--slate-900);
-      outline: none;
-      font-size: 14px;
-      font-family: inherit;
-      transition: background 0.2s ease;
-    }
-
-    body.dark-mode .modal-input,
-    body.dark-mode .modal-textarea {
-      background: var(--slate-200);
-    }
-
-    .modal-input:focus,
-    .modal-textarea:focus {
-      border-color: var(--cyan-700);
-      box-shadow: 0 0 0 4px rgba(103, 232, 249, 0.35);
-    }
-
-    .modal-buttons {
-      display: flex;
-      gap: 12px;
-      justify-content: flex-end;
-    }
-
     .footer-note {
       margin-top: 24px;
       color: var(--slate-500);
@@ -1060,27 +999,27 @@
     }
 
     @media (max-width: 950px) {
-      .hero-grid, .main-grid, .checklist-grid, .budget-grid, .add-row, .days-grid {
+      .hero-grid,
+      .main-grid,
+      .checklist-grid,
+      .budget-grid,
+      .add-row,
+      .weather-grid {
         grid-template-columns: 1fr;
       }
 
       .hero {
-        padding: 28px;
         flex-direction: column;
-        gap: 20px;
+        padding: 28px;
       }
 
-      .main-grid, .checklist-area {
+      .main-grid,
+      .checklist-area {
         padding: 18px;
       }
 
-      .hero-controls {
-        width: 100%;
-        justify-content: flex-end;
-      }
-
-      .weight-grid {
-        grid-template-columns: 1fr;
+      .weather-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
 
@@ -1090,7 +1029,13 @@
         padding: 8px 0;
       }
 
-      .app-shell, .hero, .card, .budget, .section-card, .tool-card, .flight-card {
+      .app-shell,
+      .hero,
+      .card,
+      .budget,
+      .section-card,
+      .tool-card,
+      .weather-card {
         border-radius: 22px;
       }
 
@@ -1107,8 +1052,20 @@
         align-items: flex-start;
       }
 
-      .days-grid {
-        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+      .budget-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .weight-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .weather-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .flight-grid {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -1121,7 +1078,14 @@
         box-shadow: none;
       }
 
-      .add-row, .filter-row, .delete-btn, .dark-btn, .soft-btn, .hero-controls {
+      .add-row,
+      .filter-row,
+      .delete-btn,
+      .dark-btn,
+      .soft-btn,
+      .tool-card,
+      .weather-card,
+      .hero-controls {
         display: none !important;
       }
     }
@@ -1147,10 +1111,6 @@
             <div style="margin-top: 9px; color: #ecfeff; font-size: 14px;" id="overallText">0 von 0 Aufgaben erledigt · 0%</div>
           </aside>
         </div>
-        <div class="hero-controls">
-          <button class="hero-btn" id="darkModeToggle" title="Dark Mode">🌙</button>
-          <button class="hero-btn" id="printBtn" title="PDF exportieren">🖨️</button>
-        </div>
       </section>
 
       <section class="main-grid">
@@ -1174,96 +1134,27 @@
             <span class="icon-box">💶</span>
             <div>
               <h2>Budget & Ausgaben vor Ort</h2>
-              <p class="muted">Sinnvoll für Mietwagen, Ausflüge, Essen/Trinken, Trinkgeld und spontane Aktivitäten.</p>
+              <p class="muted">Klicke auf einen Punkt um ihn zu bearbeiten.</p>
             </div>
           </div>
           <div class="budget-grid" id="budgetGrid"></div>
         </section>
 
-        <div class="tool-card">
+        <div class="weather-card">
           <div class="tool-head">
-            <span class="icon-box">🌡️</span>
-            <div class="tool-title">Wetter & Temperatur</div>
+            <span class="icon-box">🌤️</span>
+            <div class="tool-title">Live Wetter Mauritius</div>
           </div>
           <div class="tool-content">
-            <p><strong>September auf Mauritius:</strong></p>
-            <p>😊 Temperatur: 23–28°C<br>
-            💧 Luftfeuchtigkeit: 75–80%<br>
-            🌊 Wasser: ~24°C<br>
-            ⭐ UV-Index: Sehr hoch (SPF 50+)</p>
-            <p><strong>⚠️ Trockenzeit:</strong> Beste Jahreszeit mit weniger Regen. Kurze Schauer möglich. Windiger als andere Jahreszeiten.</p>
-          </div>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-head">
-            <span class="icon-box">💱</span>
-            <div class="tool-title">Währungs-Tipp</div>
-          </div>
-          <div class="tool-content">
-            <p><strong>Mauritius-Rupie (MUR)</strong></p>
-            <p>1 EUR ≈ 45–47 MUR (ungefähr)</p>
-            <p>💡 <strong>Tipp:</strong> Geldautomaten sind weit verbreitet. Kreditkarten werden überall akzeptiert. Etwas Bargeld zum Wechseln mitbringen!</p>
-          </div>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-head">
-            <span class="icon-box">📅</span>
-            <div class="tool-title">Tagespläne</div>
-          </div>
-          <div class="tool-content">
-            <p>Verwalte dein Budget für jeden Tag. Klick auf einen Tag um Details & Budget einzugeben.</p>
-            <div class="days-grid" id="daysGrid"></div>
-          </div>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-head">
-            <span class="icon-box">⚖️</span>
-            <div class="tool-title">Gepäck-Kalkulator</div>
-          </div>
-          <div class="tool-content">
-            <p>Berechne dein Gepäckgewicht basierend auf Stückzahlen. Maximal 23 kg!</p>
-            <div class="weight-grid">
-              <div>
-                <div class="weight-label">T-Shirts</div>
-                <input type="number" id="shirtCount" class="weight-input" value="3" min="0" />
-              </div>
-              <div>
-                <div class="weight-label">Hosen</div>
-                <input type="number" id="pantsCount" class="weight-input" value="2" min="0" />
-              </div>
-              <div>
-                <div class="weight-label">Jacken</div>
-                <input type="number" id="jacketCount" class="weight-input" value="1" min="0" />
-              </div>
-              <div>
-                <div class="weight-label">Unterwäsche</div>
-                <input type="number" id="underwearCount" class="weight-input" value="7" min="0" />
-              </div>
-              <div>
-                <div class="weight-label">Socken</div>
-                <input type="number" id="socksCount" class="weight-input" value="7" min="0" />
-              </div>
-              <div>
-                <div class="weight-label">Schuhe</div>
-                <input type="number" id="shoeCount" class="weight-input" value="2" min="0" />
-              </div>
-            </div>
-            <div class="weight-indicator">
-              <div class="weight-bar">
-                <div class="weight-fill" id="weightFill" style="width: 30%"></div>
-              </div>
-              <div class="weight-text" id="weightText">0 / 23 kg</div>
-            </div>
+            <p id="weatherStatus">Lädt aktuelle Wetterdaten...</p>
+            <div class="weather-grid" id="weatherGrid"></div>
           </div>
         </div>
 
         <div class="section-title-row">
           <div>
             <h2>Interaktive Checklisten</h2>
-            <p class="muted">Aufgaben abhaken, Priorität ändern, eigene Punkte ergänzen oder löschen.</p>
+            <p class="muted">Aufgaben abhaken, eigene Punkte ergänzen oder nicht relevante Punkte löschen.</p>
           </div>
           <button class="soft-btn" id="resetBtn">↩️ Standardliste wiederherstellen</button>
         </div>
@@ -1279,46 +1170,17 @@
         <div class="checklist-grid" id="checklists"></div>
 
         <p class="footer-note">
-          Hinweis: Diese private Reise-Checkliste ersetzt keine offizielle Reiseberatung. Prüfe kurz vor Abflug nochmals offizielle Seiten und Reiseunterlagen.
+          Hinweis: Diese private Reise-Checkliste ersetzt keine offizielle Reiseberatung. Prüfe kurz vor Abflug nochmals BMEIA, Airline, DERTOUR, Hotel, Mietwagenanbieter und Versicherung.
         </p>
       </section>
     </div>
   </main>
 
-  <div id="tripModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-head">Reisedaten bearbeiten</div>
-      <div class="modal-body" id="tripModalBody"></div>
-      <div class="modal-buttons">
-        <button class="soft-btn" onclick="closeModal('tripModal')">Abbrechen</button>
-        <button class="primary-btn" onclick="saveTripData()">Speichern</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="dayModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-head">Tag bearbeiten</div>
-      <div class="modal-body">
-        <label style="display: block; margin-bottom: 12px;">
-          <div class="tiny-label">Aktivitäten & Notizen</div>
-          <textarea id="dayNotes" class="modal-textarea" placeholder="z.B. Chamer Waterfall, Hotel Breakfast..." style="min-height: 100px;"></textarea>
-        </label>
-        <label style="display: block;">
-          <div class="tiny-label">Budget für diesen Tag (EUR)</div>
-          <input type="number" id="dayBudgetInput" class="modal-input" placeholder="200" min="0" />
-        </label>
-      </div>
-      <div class="modal-buttons">
-        <button class="soft-btn" onclick="closeModal('dayModal')">Abbrechen</button>
-        <button class="primary-btn" onclick="saveDayData()">Speichern</button>
-      </div>
-    </div>
-  </div>
-
   <script>
-    const STORAGE_KEY = "mauritius-trip-v2";
-    
+    const STORAGE_KEY = "mauritius-trip-checklist-html-v1";
+    const TRIP_STORAGE_KEY = "mauritius-trip-data-html-v1";
+    const BUDGET_STORAGE_KEY = "mauritius-budget-data-html-v1";
+
     const initialTrip = {
       period: "11.09.2026 – 21.09.2026",
       hotel: "La Pirogue, Flic en Flac",
@@ -1329,9 +1191,14 @@
       insurance: "ERGO Reiseversicherung – RundumSorglos-Jahresschutz-Spezial mit Selbstbeteiligung (209,00 €)",
       carRental: "Mietwagen am Flughafen Mauritius geplant – Anbieter, Buchungsnummer und Führerschein/Kreditkarte noch ergänzen.",
       hotelContact: "La Pirogue, Wolmar / Flic en Flac, Mauritius · Tel. +230 403 3900",
-      note: "Gemeinsame Reise-Checkliste für Michael & Valerie. Vor Abflug offizielle Seiten und Reiseunterlagen nochmals prüfen.",
-      departDate: "2026-09-11",
-      returnDate: "2026-09-21"
+      note: "Gemeinsame Reise-Checkliste für Michael & Valerie. Vor Abflug offizielle Seiten und Reiseunterlagen nochmals prüfen."
+    };
+
+    const initialBudget = {
+      carRental: "Buchung + Kaution ergänzen",
+      excursions: "Katamaran, Chamarel, Le Morne",
+      foodDrinks: "Trotz Halbpension einplanen",
+      reserve: "Notfall-/Pufferbudget"
     };
 
     const flights = [
@@ -1342,7 +1209,8 @@
         time: "10:50 – 06:05 +1",
         airline: "Turkish Airlines",
         flightNos: "TK1884, TK1176",
-        baggage: "23 kg Aufgabegepäck p. P. + 8 kg Handgepäck (max. 40 × 55 × 23 cm)"
+        baggage: "23 kg Aufgabegepäck p. P. + 8 kg Handgepäck (max. 40 × 55 × 23 cm)",
+        seats: "Platzreservierung ausstehend"
       },
       {
         type: "Rückflug",
@@ -1351,15 +1219,9 @@
         time: "20:15 – 09:10 +1",
         airline: "Turkish Airlines",
         flightNos: "TK177, TK1883",
-        baggage: "23 kg Aufgabegepäck p. P. + 8 kg Handgepäck (max. 40 × 55 × 23 cm)"
+        baggage: "23 kg Aufgabegepäck p. P. + 8 kg Handgepäck (max. 40 × 55 × 23 cm)",
+        seats: "Platzreservierung ausstehend"
       }
-    ];
-
-    const defaultBudget = [
-      { name: "Mietwagen", value: "Buchung + Kaution ergänzen" },
-      { name: "Ausflüge", value: "Katamaran, Chamarel, Le Morne" },
-      { name: "Essen & Getränke", value: "Trotz Halbpension einplanen" },
-      { name: "Reserve", value: "Notfall-/Pufferbudget" }
     ];
 
     const defaultSections = [
@@ -1368,12 +1230,12 @@
         title: "Dokumente & Einreise",
         icon: "🛂",
         items: [
-          { text: "Reisepässe prüfen: länger gültig als Aufenthaltsdauer", priority: "hoch" },
-          { text: "Reiseregistrierung / Mauritius All-in-One Travel Form kurz vor Abreise ausfüllen", priority: "hoch" },
-          { text: "Reiseunterlagen DERTOUR offline speichern und ausdrucken", priority: "hoch" },
-          { text: "Hotelvoucher / Buchungsbestätigung speichern", priority: "hoch" },
-          { text: "Rückflug-/Weiterreise-Nachweis griffbereit halten", priority: "mittel" },
-          { text: "Kopie von Reisepass, Versicherung und Tickets in Cloud ablegen", priority: "mittel" }
+          { id: "doc-1", text: "Reisepässe prüfen: länger gültig als Aufenthaltsdauer", done: false, priority: "hoch" },
+          { id: "doc-2", text: "Reiseregistrierung / Mauritius All-in-One Travel Form kurz vor Abreise ausfüllen", done: false, priority: "hoch" },
+          { id: "doc-3", text: "Reiseunterlagen DERTOUR offline speichern und ausdrucken", done: false, priority: "hoch" },
+          { id: "doc-4", text: "Hotelvoucher / Buchungsbestätigung speichern", done: false, priority: "hoch" },
+          { id: "doc-5", text: "Rückflug-/Weiterreise-Nachweis griffbereit halten", done: false, priority: "mittel" },
+          { id: "doc-6", text: "Kopie von Reisepass, Versicherung und Tickets in Cloud ablegen", done: false, priority: "mittel" }
         ]
       },
       {
@@ -1381,12 +1243,12 @@
         title: "Gesundheit & Impfungen",
         icon: "💉",
         items: [
-          { text: "Impfpass prüfen: Tetanus/Diphtherie/Pertussis, Polio, MMR aktuell?", priority: "hoch" },
-          { text: "Hepatitis-A-Impfung mit Arzt/Reisemedizin besprechen", priority: "hoch" },
-          { text: "Typhus-Impfung je nach Reise-/Essverhalten besprechen", priority: "mittel" },
-          { text: "Gelbfieber nur relevant bei Einreise/Transit aus Risikogebiet prüfen", priority: "mittel" },
-          { text: "Reiseapotheke packen: Schmerzmittel, Durchfallmittel, Elektrolyte, Pflaster, Desinfektion", priority: "mittel" },
-          { text: "Mückenschutz, After-Bite und Sonnencreme SPF 50 einpacken", priority: "hoch" }
+          { id: "health-1", text: "Impfpass prüfen: Tetanus/Diphtherie/Pertussis, Polio, MMR aktuell?", done: false, priority: "hoch" },
+          { id: "health-2", text: "Hepatitis-A-Impfung mit Arzt/Reisemedizin besprechen", done: false, priority: "hoch" },
+          { id: "health-3", text: "Typhus-Impfung je nach Reise-/Essverhalten besprechen", done: false, priority: "mittel" },
+          { id: "health-4", text: "Gelbfieber nur relevant bei Einreise/Transit aus Risikogebiet prüfen", done: false, priority: "mittel" },
+          { id: "health-5", text: "Reiseapotheke packen: Schmerzmittel, Durchfallmittel, Elektrolyte, Pflaster, Desinfektion", done: false, priority: "mittel" },
+          { id: "health-6", text: "Mückenschutz, After-Bite und Sonnencreme SPF 50 einpacken", done: false, priority: "hoch" }
         ]
       },
       {
@@ -1394,12 +1256,12 @@
         title: "Packliste",
         icon: "🧳",
         items: [
-          { text: "Badebekleidung, Strandtücher, Flip-Flops/Badeschuhe", priority: "mittel" },
-          { text: "Leichte Sommerkleidung + etwas Schickeres fürs Abendessen", priority: "mittel" },
-          { text: "Regenjacke / dünne Jacke für Wind und kurze Schauer", priority: "niedrig" },
-          { text: "Sonnenbrille, Kappe/Hut, After-Sun", priority: "hoch" },
-          { text: "Ladegeräte, Powerbank, Reiseadapter Typ C/G prüfen", priority: "mittel" },
-          { text: "Schnorchel-/Strandausrüstung falls gewünscht", priority: "niedrig" }
+          { id: "pack-1", text: "Badebekleidung, Strandtücher, Flip-Flops/Badeschuhe", done: false, priority: "mittel" },
+          { id: "pack-2", text: "Leichte Sommerkleidung + etwas Schickeres fürs Abendessen", done: false, priority: "mittel" },
+          { id: "pack-3", text: "Regenjacke / dünne Jacke für Wind und kurze Schauer", done: false, priority: "niedrig" },
+          { id: "pack-4", text: "Sonnenbrille, Kappe/Hut, After-Sun", done: false, priority: "hoch" },
+          { id: "pack-5", text: "Ladegeräte, Powerbank, Reiseadapter Typ C/G prüfen", done: false, priority: "mittel" },
+          { id: "pack-6", text: "Schnorchel-/Strandausrüstung falls gewünscht", done: false, priority: "niedrig" }
         ]
       },
       {
@@ -1407,11 +1269,11 @@
         title: "Geld, Versicherung & Technik",
         icon: "🛡️",
         items: [
-          { text: "Kreditkartenlimit und Auslandseinsatz prüfen", priority: "mittel" },
-          { text: "Etwas Bargeld / Mauritius-Rupien oder Wechselmöglichkeit planen", priority: "niedrig" },
-          { text: "ERGO Versicherungsnummer und Notfallkontakt speichern", priority: "hoch" },
-          { text: "Roaming/eSIM für Mauritius prüfen", priority: "mittel" },
-          { text: "Offline-Karten und Übersetzungs-App herunterladen", priority: "niedrig" }
+          { id: "money-1", text: "Kreditkartenlimit und Auslandseinsatz prüfen", done: false, priority: "mittel" },
+          { id: "money-2", text: "Etwas Bargeld / Mauritius-Rupien oder Wechselmöglichkeit planen", done: false, priority: "niedrig" },
+          { id: "money-3", text: "ERGO Versicherungsnummer und Notfallkontakt speichern", done: false, priority: "hoch" },
+          { id: "money-4", text: "Roaming/eSIM für Mauritius prüfen", done: false, priority: "mittel" },
+          { id: "money-5", text: "Offline-Karten und Übersetzungs-App herunterladen", done: false, priority: "niedrig" }
         ]
       },
       {
@@ -1419,12 +1281,12 @@
         title: "Kurz vor Abreise",
         icon: "📅",
         items: [
-          { text: "Online Check-in prüfen, sobald verfügbar", priority: "hoch" },
-          { text: "Gepäck wiegen: max. 23 kg Aufgabegepäck, 8 kg Handgepäck", priority: "hoch" },
-          { text: "Mietwagen am Flughafen final buchen oder Buchung bestätigen", priority: "hoch" },
-          { text: "Führerschein, Kreditkarte und Mietwagen-Kaution prüfen", priority: "hoch" },
-          { text: "Wettervorhersage prüfen und Packliste finalisieren", priority: "mittel" },
-          { text: "Wohnung: Pflanzen, Müll, Kühlschrank, Post, Schlüssel klären", priority: "mittel" }
+          { id: "before-1", text: "Online Check-in prüfen, sobald verfügbar", done: false, priority: "hoch" },
+          { id: "before-2", text: "Gepäck wiegen: max. 23 kg Aufgabegepäck, 8 kg Handgepäck", done: false, priority: "hoch" },
+          { id: "before-3", text: "Mietwagen am Flughafen final buchen oder Buchung bestätigen", done: false, priority: "hoch" },
+          { id: "before-4", text: "Führerschein, Kreditkarte und Mietwagen-Kaution prüfen", done: false, priority: "hoch" },
+          { id: "before-5", text: "Wettervorhersage prüfen und Packliste finalisieren", done: false, priority: "mittel" },
+          { id: "before-6", text: "Wohnung: Pflanzen, Müll, Kühlschrank, Post, Schlüssel klären", done: false, priority: "mittel" }
         ]
       },
       {
@@ -1432,12 +1294,12 @@
         title: "Ausflüge & Erlebnisse",
         icon: "📍",
         items: [
-          { text: "Le Morne Brabant / Aussichtspunkt planen", priority: "mittel" },
-          { text: "Chamarel: Seven Coloured Earths & Wasserfall einplanen", priority: "mittel" },
-          { text: "Katamaran- oder Bootstour prüfen", priority: "mittel" },
-          { text: "Schnorchelspot / Delfin- oder Lagunentour recherchieren", priority: "niedrig" },
-          { text: "Port Louis / Central Market als Tagesausflug überlegen", priority: "niedrig" },
-          { text: "Black River Gorges National Park für Natur/Wandern prüfen", priority: "niedrig" }
+          { id: "trip-1", text: "Le Morne Brabant / Aussichtspunkt planen", done: false, priority: "mittel" },
+          { id: "trip-2", text: "Chamarel: Seven Coloured Earths & Wasserfall einplanen", done: false, priority: "mittel" },
+          { id: "trip-3", text: "Katamaran- oder Bootstour prüfen", done: false, priority: "mittel" },
+          { id: "trip-4", text: "Schnorchelspot / Delfin- oder Lagunentour recherchieren", done: false, priority: "niedrig" },
+          { id: "trip-5", text: "Port Louis / Central Market als Tagesausflug überlegen", done: false, priority: "niedrig" },
+          { id: "trip-6", text: "Black River Gorges National Park für Natur/Wandern prüfen", done: false, priority: "niedrig" }
         ]
       },
       {
@@ -1445,88 +1307,131 @@
         title: "Notfallkontakte",
         icon: "☎️",
         items: [
-          { text: "Hotelkontakt speichern: La Pirogue +230 403 3900", priority: "hoch" },
-          { text: "ERGO Notfallnummer / Polizzennummer in Handy und Wallet speichern", priority: "hoch" },
-          { text: "DERTOUR Buchungsnummer und Servicekontakt speichern", priority: "hoch" },
-          { text: "Mauritius Notruf speichern: Polizei 999/112, Ambulanz 114, Feuerwehr 115", priority: "hoch" },
-          { text: "Österreichische Konsularhilfe speichern", priority: "mittel" }
+          { id: "em-1", text: "Hotelkontakt speichern: La Pirogue +230 403 3900", done: false, priority: "hoch" },
+          { id: "em-2", text: "ERGO Notfallnummer / Polizzennummer in Handy und Wallet speichern", done: false, priority: "hoch" },
+          { id: "em-3", text: "DERTOUR Buchungsnummer und Servicekontakt speichern", done: false, priority: "hoch" },
+          { id: "em-4", text: "Mauritius Notruf speichern: Polizei 999/112, Ambulanz 114, Feuerwehr 115", done: false, priority: "hoch" },
+          { id: "em-5", text: "Österreichische Konsularhilfe: Honorarkonsulat Port Louis / Botschaft Pretoria und BMEIA Notfallkontakt speichern", done: false, priority: "mittel" }
         ]
       }
     ];
 
-    let data = loadData();
+    let sections = loadSections();
+    let trip = loadTrip();
+    let budget = loadBudget();
+    let activeFilter = "all";
     let editingTrip = false;
-    let editingDay = null;
 
-    function loadData() {
+    function clone(value) {
+      return JSON.parse(JSON.stringify(value));
+    }
+
+    function loadSections() {
       try {
-        const stored = localStorage.getItem(STORAGE_KEY);
-        return stored ? JSON.parse(stored) : initializeData();
+        const raw = localStorage.getItem(STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : null;
+        return Array.isArray(parsed) && parsed.length ? parsed : clone(defaultSections);
       } catch {
-        return initializeData();
+        return clone(defaultSections);
       }
     }
 
-    function initializeData() {
+    function loadTrip() {
+      try {
+        const raw = localStorage.getItem(TRIP_STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : null;
+        return parsed && typeof parsed === "object" ? { ...initialTrip, ...parsed } : { ...initialTrip };
+      } catch {
+        return { ...initialTrip };
+      }
+    }
+
+    function loadBudget() {
+      try {
+        const raw = localStorage.getItem(BUDGET_STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : null;
+        return parsed && typeof parsed === "object" ? { ...initialBudget, ...parsed } : { ...initialBudget };
+      } catch {
+        return { ...initialBudget };
+      }
+    }
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(sections));
+      localStorage.setItem(TRIP_STORAGE_KEY, JSON.stringify(trip));
+      localStorage.setItem(BUDGET_STORAGE_KEY, JSON.stringify(budget));
+    }
+
+    function daysUntil(dateString, now = new Date()) {
+      const target = new Date(dateString + "T00:00:00");
+      const today = new Date(now);
+      target.setHours(0, 0, 0, 0);
+      today.setHours(0, 0, 0, 0);
+      return Math.ceil((target - today) / (1000 * 60 * 60 * 24));
+    }
+
+    function calculateStats(list) {
+      const all = list.flatMap(section => section.items);
+      const done = all.filter(item => item.done).length;
       return {
-        trip: { ...initialTrip },
-        sections: defaultSections.map(s => ({
-          ...s,
-          items: s.items.map(item => ({ ...item, done: false }))
-        })),
-        days: generateDays(),
-        budget: [ ...defaultBudget ],
-        darkMode: false
+        total: all.length,
+        done,
+        percent: all.length ? Math.round((done / all.length) * 100) : 0
       };
     }
 
-    function generateDays() {
-      const start = new Date("2026-09-11");
-      const end = new Date("2026-09-21");
-      const days = [];
-      for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-        days.push({
-          date: new Date(d).toISOString().split('T')[0],
-          notes: "",
-          budget: 200
-        });
-      }
-      return days;
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
     }
 
-    function saveData() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      if (data.darkMode) {
-        document.body.classList.add('dark-mode');
-        document.documentElement.classList.add('dark-mode');
-      } else {
-        document.body.classList.remove('dark-mode');
-        document.documentElement.classList.remove('dark-mode');
-      }
+    function priorityClass(priority) {
+      if (priority === "hoch") return "high";
+      if (priority === "mittel") return "medium";
+      return "low";
     }
 
     function renderTripInfo() {
       const root = document.getElementById("tripInfo");
       const fields = [
-        { key: "period", icon: "📅", label: "Zeitraum", editable: true },
-        { key: "hotel", icon: "🏨", label: "Hotel / Unterkunft", editable: true },
-        { key: "travelers", icon: "👥", label: "Reisende", editable: false },
-        { key: "organizer", icon: "🧾", label: "Veranstalter", editable: false },
-        { key: "insurance", icon: "🛡️", label: "Reiseschutz", editable: false },
-        { key: "carRental", icon: "🚗", label: "Mietwagen", editable: true },
-        { key: "hotelContact", icon: "☎️", label: "Hotelkontakt", editable: false },
-        { key: "note", icon: "✨", label: "Hinweis", editable: true }
+        { key: "period", icon: "📅", label: "Zeitraum", value: trip.period, editable: true },
+        { key: "hotel", icon: "🏨", label: "Hotel / Unterkunft", value: `${trip.hotel} · ${trip.accommodation} · ${trip.board}`, editable: true, helper: "Im Bearbeitungsmodus hier nur den Hotelnamen eingeben, Rest folgt nach." },
+        { key: "travelers", icon: "👥", label: "Reisende", value: trip.travelers, editable: false },
+        { key: "organizer", icon: "🧾", label: "Veranstalter", value: trip.organizer, editable: false },
+        { key: "insurance", icon: "🛡️", label: "Reiseschutz", value: trip.insurance, editable: false },
+        { key: "carRental", icon: "🚗", label: "Mietwagen", value: trip.carRental, editable: true },
+        { key: "hotelContact", icon: "☎️", label: "Hotelkontakt", value: trip.hotelContact, editable: false },
+        { key: "note", icon: "✨", label: "Hinweis", value: trip.note, editable: true }
       ];
 
-      root.innerHTML = fields.map(field => `
-        <div class="info-card">
-          <span class="icon-box">${field.icon}</span>
-          <div style="min-width: 0; flex: 1;">
-            <div class="tiny-label">${field.label}</div>
-            <div class="info-value">${data.trip[field.key]}</div>
+      root.innerHTML = fields.map(field => {
+        const value = escapeHtml(field.value);
+        const input = editingTrip && field.editable
+          ? `<input class="edit-input" data-trip-key="${field.key}" value="${value}" />${field.helper ? `<p class="muted">${escapeHtml(field.helper)}</p>` : ""}`
+          : `<div class="info-value">${value}</div>`;
+
+        return `
+          <div class="info-card">
+            <span class="icon-box">${field.icon}</span>
+            <div style="min-width: 0; flex: 1;">
+              <div class="tiny-label">${escapeHtml(field.label)}</div>
+              ${input}
+            </div>
           </div>
-        </div>
-      `).join("");
+        `;
+      }).join("");
+
+      root.querySelectorAll("[data-trip-key]").forEach(input => {
+        input.addEventListener("input", event => {
+          const key = event.target.getAttribute("data-trip-key");
+          trip[key] = event.target.value;
+          saveState();
+        });
+      });
     }
 
     function renderFlights() {
@@ -1534,302 +1439,325 @@
       root.innerHTML = flights.map(flight => `
         <div class="flight-card">
           <div class="flight-head">
-            <div class="icon-box">✈️</div>
+            <span class="icon-box">✈️</span>
             <div>
               <div class="flight-label">${flight.type}</div>
-              <h3>${flight.route}</h3>
+              <h3>${flight.date}</h3>
             </div>
           </div>
-          <div class="mini-grid">
-            <div>
-              <div class="tiny-label">Datum</div>
-              <div class="info-value">${flight.date}</div>
+          <div class="flight-grid">
+            <div class="flight-item">
+              <strong>Route</strong>
+              ${flight.route}
             </div>
-            <div>
-              <div class="tiny-label">Zeit</div>
-              <div class="info-value">${flight.time}</div>
+            <div class="flight-item">
+              <strong>Zeit</strong>
+              ${flight.time}
             </div>
-            <div>
-              <div class="tiny-label">Airline</div>
-              <div class="info-value">${flight.airline}</div>
+            <div class="flight-item">
+              <strong>Airline & Flug</strong>
+              ${flight.airline} · ${flight.flightNos}
             </div>
-            <div>
-              <div class="tiny-label">Flüge</div>
-              <div class="info-value">${flight.flightNos}</div>
+            <div class="flight-item">
+              <strong>Sitzplätze</strong>
+              ${flight.seats}
+            </div>
+            <div class="flight-item" style="grid-column: 1 / -1;">
+              <strong>Gepäck</strong>
+              ${flight.baggage}
             </div>
           </div>
-          <div class="baggage-note">🧳 ${flight.baggage}</div>
         </div>
       `).join("");
     }
 
     function renderBudget() {
       const root = document.getElementById("budgetGrid");
-      const daysBudgetTotal = data.days.reduce((sum, d) => sum + (d.budget || 0), 0);
-      
-      root.innerHTML = [
-        ...data.budget,
-        { name: "Tages­budgets", value: `${daysBudgetTotal}€ (insgesamt)` }
-      ].map(item => `
-        <div class="budget-item">
-          <div style="font-weight: 700; color: var(--cyan-700); word-break: break-word;">${typeof item.value === 'number' ? item.value + '€' : item.value}</div>
-          <div style="font-size: 12px; color: var(--slate-500); margin-top: 4px;">${item.name}</div>
-        </div>
-      `).join("");
-    }
+      const labels = {
+        carRental: { label: "Mietwagen", icon: "🚗" },
+        excursions: { label: "Ausflüge", icon: "🎯" },
+        foodDrinks: { label: "Essen & Getränke", icon: "🍽️" },
+        reserve: { label: "Reserve", icon: "💾" }
+      };
 
-    function renderDays() {
-      const root = document.getElementById("daysGrid");
-      root.innerHTML = data.days.map((day, idx) => {
-        const dayDate = new Date(day.date);
-        const dayNum = idx + 1;
+      root.innerHTML = Object.keys(labels).map(key => {
+        const label = labels[key];
         return `
-          <div class="day-card" onclick="openDayModal(${idx})">
-            <div class="day-number">Tag ${dayNum}</div>
-            <div class="day-label">${dayDate.toLocaleDateString('de-DE', { month: 'short', day: 'numeric' })}</div>
-            <div class="day-budget">~${day.budget || 200}€</div>
-            ${day.notes ? `<div class="day-label" style="margin-top: 4px; color: var(--emerald-600);">✓ Plan</div>` : ''}
+          <div class="budget-item" data-budget-key="${key}">
+            <div class="budget-label">${label.icon} ${label.label}</div>
+            <div class="budget-value" data-budget-display="${key}">${escapeHtml(budget[key])}</div>
+            <input class="budget-input" data-budget-key="${key}" value="${escapeHtml(budget[key])}" style="display: none;" />
           </div>
         `;
       }).join("");
+
+      root.querySelectorAll(".budget-item").forEach(item => {
+        item.addEventListener("click", (e) => {
+          if (e.target.classList.contains("budget-input")) return;
+          const key = item.getAttribute("data-budget-key");
+          const input = item.querySelector(".budget-input");
+          const display = item.querySelector(".budget-value");
+          
+          item.classList.add("editing");
+          input.style.display = "block";
+          display.style.display = "none";
+          input.focus();
+
+          function saveEdit() {
+            budget[key] = input.value || "";
+            display.textContent = escapeHtml(budget[key]);
+            display.style.display = "block";
+            input.style.display = "none";
+            item.classList.remove("editing");
+            saveState();
+          }
+
+          input.addEventListener("blur", saveEdit);
+          input.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") saveEdit();
+          });
+        });
+      });
     }
 
-    function openDayModal(idx) {
-      editingDay = idx;
-      document.getElementById('dayNotes').value = data.days[idx].notes;
-      document.getElementById('dayBudgetInput').value = data.days[idx].budget;
-      document.getElementById('dayModal').classList.add('active');
-    }
+    async function renderWeather() {
+      const root = document.getElementById("weatherGrid");
+      const status = document.getElementById("weatherStatus");
+      
+      try {
+        // Using Open-Meteo API (no API key required)
+        const response = await fetch(
+          'https://api.open-meteo.com/v1/forecast?latitude=-20.3484&longitude=57.5522&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Africa/Mauritius&forecast_days=5'
+        );
+        
+        if (!response.ok) throw new Error('Wetter konnte nicht geladen werden');
+        
+        const data = await response.json();
+        const daily = data.daily;
 
-    function saveDayData() {
-      if (editingDay !== null) {
-        data.days[editingDay].notes = document.getElementById('dayNotes').value;
-        data.days[editingDay].budget = parseFloat(document.getElementById('dayBudgetInput').value) || 200;
-        saveData();
-        renderDays();
-        renderBudget();
-        closeModal('dayModal');
+        const weatherCodes = {
+          0: { icon: '☀️', desc: 'Sonnig' },
+          1: { icon: '⛅', desc: 'Teils bewölkt' },
+          2: { icon: '☁️', desc: 'Bewölkt' },
+          3: { icon: '☁️', desc: 'Bedeckt' },
+          45: { icon: '🌫️', desc: 'Neblig' },
+          48: { icon: '🌫️', desc: 'Neblig' },
+          51: { icon: '🌧️', desc: 'Leichter Regen' },
+          53: { icon: '🌧️', desc: 'Moderater Regen' },
+          55: { icon: '🌧️', desc: 'Starker Regen' },
+          61: { icon: '🌧️', desc: 'Regen' },
+          63: { icon: '🌧️', desc: 'Regen' },
+          65: { icon: '⛈️', desc: 'Starker Regen' },
+          80: { icon: '🌧️', desc: 'Regen' },
+          81: { icon: '⛈️', desc: 'Gewitter' },
+          82: { icon: '⛈️', desc: 'Gewitter' },
+          95: { icon: '⛈️', desc: 'Gewitter' },
+          96: { icon: '⛈️', desc: 'Gewitter mit Hagel' },
+          99: { icon: '⛈️', desc: 'Gewitter mit Hagel' }
+        };
+
+        const dayNames = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+        const today = new Date();
+
+        status.innerHTML = '✅ Echte Wetterdaten von Open-Meteo (täglich aktualisiert)';
+        
+        root.innerHTML = daily.time.map((date, idx) => {
+          const d = new Date(date);
+          const dayName = dayNames[d.getDay()];
+          const code = daily.weather_code[idx];
+          const weather = weatherCodes[code] || { icon: '❓', desc: 'Unbekannt' };
+          const maxTemp = daily.temperature_2m_max[idx];
+          const minTemp = daily.temperature_2m_min[idx];
+
+          return `
+            <div class="weather-day">
+              <div class="weather-day-name">${dayName}</div>
+              <div class="weather-icon">${weather.icon}</div>
+              <div class="weather-temp">${Math.round(maxTemp)}°C</div>
+              <div class="weather-desc">${minTemp ? Math.round(minTemp) + '°' : ''}</div>
+              <div class="weather-desc" style="font-size: 10px;">${weather.desc}</div>
+            </div>
+          `;
+        }).join("");
+      } catch (error) {
+        status.innerHTML = '⚠️ Wetter temporär nicht verfügbar. ' + error.message;
+        root.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 20px; color: var(--slate-500);">Bitte später erneut versuchen.</div>';
       }
     }
 
     function renderChecklists() {
       const root = document.getElementById("checklists");
-      root.innerHTML = data.sections.map(section => {
-        const completed = section.items.filter(i => i.done).length;
-        const total = section.items.length;
-        const percent = total ? Math.round((completed / total) * 100) : 0;
+      const filtered = activeFilter === "all" 
+        ? sections 
+        : sections.filter(s => s.id === activeFilter);
+
+      root.innerHTML = filtered.map(section => {
+        const stats = calculateStats([section]);
+        const items = section.items.filter(item => {
+          if (activeFilter === "all") return true;
+          return item.done === (activeFilter === "done");
+        });
 
         return `
           <div class="section-card">
             <div class="section-head">
               <div class="section-name">
-                <div class="icon-box">${section.icon}</div>
-                <h3>${section.title}</h3>
+                <span class="icon-box">${section.icon}</span>
+                <div>
+                  <h3>${escapeHtml(section.title)}</h3>
+                  <div style="font-size: 12px; color: var(--slate-500); margin-top: 2px;">${section.items.length} Aufgaben</div>
+                </div>
               </div>
-              <div class="section-percent">${percent}%</div>
+              <div class="section-percent">${stats.percent}%</div>
             </div>
             <div class="section-progress">
               <div class="progress-track">
-                <div class="progress-bar" style="width: ${percent}%"></div>
+                <div class="progress-bar" style="width: ${stats.percent}%"></div>
               </div>
             </div>
             <div class="item-list">
-              ${section.items.map((item, itemIdx) => `
-                <div class="item ${item.done ? 'done' : ''}">
-                  <button class="check-btn" onclick="toggleItem('${section.id}', ${itemIdx})">
-                    ${item.done ? '✓' : '○'}
+              ${items.map(item => `
+                <div class="item ${item.done ? "done" : ""}">
+                  <button class="check-btn" data-item-id="${item.id}" data-section-id="${section.id}">
+                    ${item.done ? "✓" : "○"}
                   </button>
-                  <div class="item-text">${item.text}</div>
+                  <span class="item-text">${escapeHtml(item.text)}</span>
                   <div class="item-controls">
-                    <button class="priority-circle ${item.priority}" onclick="cyclePriority('${section.id}', ${itemIdx})" title="Priorität: ${item.priority}">
-                      ${item.priority === 'hoch' ? '🔴' : item.priority === 'mittel' ? '🟡' : '🟢'}
+                    <button class="priority-circle ${priorityClass(item.priority)}" data-item-id="${item.id}" data-section-id="${section.id}" title="Priorität: ${item.priority}">
+                      ${item.priority === "hoch" ? "!" : item.priority === "mittel" ? "–" : "o"}
                     </button>
-                    <button class="delete-btn" onclick="deleteItem('${section.id}', ${itemIdx})">✕</button>
+                    <button class="delete-btn" data-item-id="${item.id}" data-section-id="${section.id}">×</button>
                   </div>
                 </div>
-              `).join('')}
+              `).join("")}
             </div>
           </div>
         `;
       }).join("");
-    }
 
-    function toggleItem(sectionId, itemIdx) {
-      const section = data.sections.find(s => s.id === sectionId);
-      if (section) {
-        section.items[itemIdx].done = !section.items[itemIdx].done;
-        saveData();
-        renderChecklists();
-        updateProgress();
-      }
-    }
+      // Event listeners
+      root.querySelectorAll(".check-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const itemId = btn.getAttribute("data-item-id");
+          const sectionId = btn.getAttribute("data-section-id");
+          const section = sections.find(s => s.id === sectionId);
+          const item = section.items.find(i => i.id === itemId);
+          item.done = !item.done;
+          saveState();
+          render();
+        });
+      });
 
-    function cyclePriority(sectionId, itemIdx) {
-      const section = data.sections.find(s => s.id === sectionId);
-      if (section) {
-        const priorities = ['hoch', 'mittel', 'niedrig'];
-        const current = section.items[itemIdx].priority;
-        const nextIdx = (priorities.indexOf(current) + 1) % priorities.length;
-        section.items[itemIdx].priority = priorities[nextIdx];
-        saveData();
-        renderChecklists();
-      }
-    }
+      root.querySelectorAll(".delete-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const itemId = btn.getAttribute("data-item-id");
+          const sectionId = btn.getAttribute("data-section-id");
+          const section = sections.find(s => s.id === sectionId);
+          section.items = section.items.filter(i => i.id !== itemId);
+          saveState();
+          render();
+        });
+      });
 
-    function deleteItem(sectionId, itemIdx) {
-      if (confirm('Wirklich löschen?')) {
-        const section = data.sections.find(s => s.id === sectionId);
-        if (section) {
-          section.items.splice(itemIdx, 1);
-          saveData();
-          renderChecklists();
-          updateProgress();
-        }
-      }
-    }
-
-    function updateProgress() {
-      const allItems = data.sections.flatMap(s => s.items);
-      const completed = allItems.filter(i => i.done).length;
-      const total = allItems.length;
-      const percent = total ? Math.round((completed / total) * 100) : 0;
-      
-      const start = new Date("2026-09-11");
-      const today = new Date();
-      const daysUntil = Math.ceil((start - today) / (1000 * 60 * 60 * 24));
-
-      document.getElementById('countdown').textContent = Math.max(0, daysUntil);
-      document.getElementById('overallProgress').style.width = percent + '%';
-      document.getElementById('overallText').textContent = `${completed} von ${total} Aufgaben erledigt · ${percent}%`;
-    }
-
-    function updateWeightCalculator() {
-      const weights = {
-        shirt: 0.2,
-        pants: 0.3,
-        jacket: 0.4,
-        underwear: 0.05,
-        socks: 0.03,
-        shoes: 0.4
-      };
-
-      const total = 
-        parseInt(document.getElementById('shirtCount').value || 0) * weights.shirt +
-        parseInt(document.getElementById('pantsCount').value || 0) * weights.pants +
-        parseInt(document.getElementById('jacketCount').value || 0) * weights.jacket +
-        parseInt(document.getElementById('underwearCount').value || 0) * weights.underwear +
-        parseInt(document.getElementById('socksCount').value || 0) * weights.socks +
-        parseInt(document.getElementById('shoeCount').value || 0) * weights.shoes + 2;
-
-      const percent = Math.min(100, (total / 23) * 100);
-      const fill = document.getElementById('weightFill');
-      fill.style.width = percent + '%';
-      fill.className = 'weight-fill' + (total > 23 ? ' danger' : total > 20 ? ' warning' : '');
-      document.getElementById('weightText').textContent = total.toFixed(1) + ' / 23 kg';
+      root.querySelectorAll(".priority-circle").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const itemId = btn.getAttribute("data-item-id");
+          const sectionId = btn.getAttribute("data-section-id");
+          const section = sections.find(s => s.id === sectionId);
+          const item = section.items.find(i => i.id === itemId);
+          const priorities = ["hoch", "mittel", "niedrig"];
+          const idx = priorities.indexOf(item.priority);
+          item.priority = priorities[(idx + 1) % priorities.length];
+          saveState();
+          render();
+        });
+      });
     }
 
     function renderFilters() {
       const root = document.getElementById("filters");
-      const sections = ['alle', ...data.sections.map(s => s.id)];
-      root.innerHTML = sections.map(id => {
-        const label = id === 'alle' ? 'Alle' : data.sections.find(s => s.id === id)?.title || '';
-        return `<button class="filter-button ${id === 'alle' ? 'active' : ''}" onclick="filterSection('${id}')">${label}</button>`;
-      }).join("");
-    }
-
-    function filterSection(sectionId) {
-      // Implement if needed
-    }
-
-    document.getElementById('editTripBtn')?.addEventListener('click', () => {
-      editingTrip = true;
-      const root = document.getElementById('tripModalBody');
-      const fields = [
-        { key: "period", label: "Zeitraum", placeholder: "11.09.2026 – 21.09.2026" },
-        { key: "hotel", label: "Hotel / Unterkunft", placeholder: "La Pirogue, Flic en Flac" },
-        { key: "carRental", label: "Mietwagen", placeholder: "Mietwagen am Flughafen..." },
-        { key: "note", label: "Hinweis", placeholder: "..." }
+      const filters = [
+        { id: "all", label: "Alle Aufgaben" },
+        ...sections.map(s => ({ id: s.id, label: s.title }))
       ];
 
-      root.innerHTML = fields.map(f => `
-        <label style="display: block; margin-bottom: 12px;">
-          <div class="tiny-label">${f.label}</div>
-          <input type="text" class="modal-input" data-key="${f.key}" value="${data.trip[f.key]}" placeholder="${f.placeholder}" />
-        </label>
+      root.innerHTML = filters.map(f => `
+        <button class="filter-button ${activeFilter === f.id ? "active" : ""}" data-filter="${f.id}">
+          ${escapeHtml(f.label)}
+        </button>
       `).join("");
 
-      document.getElementById('tripModal').classList.add('active');
-    });
-
-    window.saveTripData = () => {
-      document.querySelectorAll('[data-key]').forEach(input => {
-        const key = input.getAttribute('data-key');
-        data.trip[key] = input.value;
+      root.querySelectorAll(".filter-button").forEach(btn => {
+        btn.addEventListener("click", () => {
+          activeFilter = btn.getAttribute("data-filter");
+          render();
+        });
       });
-      saveData();
+    }
+
+    function render() {
       renderTripInfo();
-      closeModal('tripModal');
-    };
+      renderFlights();
+      renderBudget();
+      renderChecklists();
+      renderFilters();
+      updateCountdown();
+      renderWeather();
+    }
 
-    window.closeModal = (id) => {
-      document.getElementById(id).classList.remove('active');
-    };
+    function updateCountdown() {
+      const days = daysUntil("2026-09-11");
+      document.getElementById("countdown").textContent = Math.max(0, days);
+      const stats = calculateStats(sections);
+      document.getElementById("overallText").textContent = `${stats.done} von ${stats.total} Aufgaben erledigt · ${stats.percent}%`;
+      document.getElementById("overallProgress").style.width = `${stats.percent}%`;
+    }
 
-    document.getElementById('darkModeToggle')?.addEventListener('click', () => {
-      data.darkMode = !data.darkMode;
-      saveData();
+    // Event listeners
+    document.getElementById("editTripBtn").addEventListener("click", () => {
+      editingTrip = !editingTrip;
+      renderTripInfo();
+      document.getElementById("editTripBtn").textContent = editingTrip ? "💾 Speichern" : "✏️ Bearbeiten";
+      if (!editingTrip) saveState();
     });
 
-    document.getElementById('printBtn')?.addEventListener('click', () => {
-      window.print();
+    document.getElementById("addTaskBtn").addEventListener("click", () => {
+      const text = document.getElementById("newTaskInput").value.trim();
+      const sectionId = document.getElementById("newTaskSection").value;
+      if (!text) return;
+
+      const section = sections.find(s => s.id === sectionId);
+      if (!section) return;
+
+      section.items.push({
+        id: `custom-${Date.now()}`,
+        text,
+        done: false,
+        priority: "mittel"
+      });
+
+      document.getElementById("newTaskInput").value = "";
+      saveState();
+      render();
     });
-
-    ['shirtCount', 'pantsCount', 'jacketCount', 'underwearCount', 'socksCount', 'shoeCount'].forEach(id => {
-      document.getElementById(id)?.addEventListener('input', updateWeightCalculator);
-    });
-
-    document.getElementById('resetBtn')?.addEventListener('click', () => {
-      if (confirm('Standardliste wiederherstellen?')) {
-        data.sections = initializeData().sections;
-        saveData();
-        renderChecklists();
-        updateProgress();
-      }
-    });
-
-    document.getElementById('addTaskBtn')?.addEventListener('click', () => {
-      const text = document.getElementById('newTaskInput').value.trim();
-      const sectionId = document.getElementById('newTaskSection').value;
-      if (text && sectionId) {
-        const section = data.sections.find(s => s.id === sectionId);
-        if (section) {
-          section.items.push({ text, done: false, priority: 'mittel' });
-          saveData();
-          renderChecklists();
-          document.getElementById('newTaskInput').value = '';
-          updateProgress();
-        }
-      }
-    });
-
-    document.getElementById('newTaskSection')?.addEventListener('change', () => {});
-
-    // Initialize
-    saveData();
-    renderTripInfo();
-    renderFlights();
-    renderBudget();
-    renderDays();
-    renderChecklists();
-    renderFilters();
-    updateProgress();
-    updateWeightCalculator();
 
     // Populate section select
-    const selectRoot = document.getElementById('newTaskSection');
-    if (selectRoot) {
-      selectRoot.innerHTML = data.sections.map(s => `<option value="${s.id}">${s.title}</option>`).join("");
-    }
+    const sectionSelect = document.getElementById("newTaskSection");
+    sectionSelect.innerHTML = sections.map(s => `<option value="${s.id}">${escapeHtml(s.title)}</option>`).join("");
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      if (confirm("Alle Aufgaben zurücksetzen?")) {
+        sections = clone(defaultSections);
+        saveState();
+        render();
+      }
+    });
+
+    // Initial render
+    render();
   </script>
 </body>
 </html>
