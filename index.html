@@ -35,6 +35,18 @@
       --radius-2xl: 32px;
     }
 
+    :root.dark-mode {
+      --slate-950: #ffffff;
+      --slate-900: #f1f5f9;
+      --slate-800: #e2e8f0;
+      --slate-600: #94a3b8;
+      --slate-500: #64748b;
+      --slate-400: #475569;
+      --slate-200: #1e293b;
+      --slate-100: #0f172a;
+      --slate-50: #020617;
+    }
+
     * {
       box-sizing: border-box;
     }
@@ -48,6 +60,15 @@
         radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.22), transparent 35%),
         linear-gradient(135deg, #ecfeff 0%, #ffffff 45%, #ecfdf5 100%);
       min-height: 100vh;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark-mode {
+      background:
+        radial-gradient(circle at top left, rgba(15, 23, 42, 0.8), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(30, 41, 59, 0.8), transparent 35%),
+        linear-gradient(135deg, #0f172a 0%, #1e293b 45%, #020617 100%);
+      color: var(--slate-900);
     }
 
     button, input, select, textarea {
@@ -71,6 +92,12 @@
       background: rgba(255, 255, 255, 0.82);
       box-shadow: var(--shadow);
       backdrop-filter: blur(14px);
+      transition: background 0.3s ease;
+    }
+
+    body.dark-mode .app-shell {
+      background: rgba(15, 23, 42, 0.82);
+      border-color: rgba(30, 41, 59, 0.3);
     }
 
     .hero {
@@ -79,6 +106,9 @@
       color: white;
       padding: 38px;
       background: linear-gradient(115deg, var(--cyan-800), var(--teal-600), var(--emerald-500));
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
     }
 
     .hero::before,
@@ -111,6 +141,32 @@
       grid-template-columns: 1.35fr 0.65fr;
       gap: 28px;
       align-items: end;
+      flex: 1;
+    }
+
+    .hero-controls {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .hero-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      border-color: rgba(255, 255, 255, 0.5);
     }
 
     .badge {
@@ -190,6 +246,12 @@
       border-radius: var(--radius-xl);
       background: white;
       box-shadow: var(--shadow-soft);
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    body.dark-mode .card {
+      background: var(--slate-100);
+      border-color: var(--slate-200);
     }
 
     .card-pad {
@@ -232,6 +294,12 @@
       border-radius: 18px;
       background: var(--slate-50);
       padding: 16px;
+      transition: background 0.3s ease;
+    }
+
+    body.dark-mode .info-card,
+    body.dark-mode .mini {
+      background: var(--slate-200);
     }
 
     .info-card {
@@ -252,6 +320,11 @@
       box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
       color: var(--cyan-700);
       font-size: 22px;
+      transition: background 0.3s ease;
+    }
+
+    body.dark-mode .icon-box {
+      background: var(--slate-100);
     }
 
     .tiny-label {
@@ -279,6 +352,14 @@
       margin-top: 8px;
       color: var(--slate-900);
       outline: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    body.dark-mode .edit-input,
+    body.dark-mode .edit-textarea {
+      background: var(--slate-100);
+      border-color: var(--slate-200);
+      color: var(--slate-900);
     }
 
     .edit-textarea {
@@ -344,6 +425,12 @@
       border-radius: var(--radius-xl);
       background: linear-gradient(115deg, #ecfdf5, #ecfeff);
       padding: 22px;
+      transition: background 0.3s ease;
+    }
+
+    body.dark-mode .budget {
+      background: linear-gradient(115deg, rgba(5, 150, 105, 0.2), rgba(15, 23, 42, 0.5));
+      border-color: rgba(5, 150, 105, 0.3);
     }
 
     .budget-head {
@@ -368,9 +455,17 @@
       border: 2px solid transparent;
     }
 
+    body.dark-mode .budget-item {
+      background: var(--slate-200);
+    }
+
     .budget-item:hover {
       background: white;
       border-color: var(--cyan-700);
+    }
+
+    body.dark-mode .budget-item:hover {
+      background: var(--slate-100);
     }
 
     .budget-item.editing {
@@ -388,6 +483,11 @@
       color: var(--slate-900);
       outline: none;
       font-size: 13px;
+      transition: background 0.2s ease;
+    }
+
+    body.dark-mode .budget-input {
+      background: var(--slate-100);
     }
 
     .budget-input:focus {
@@ -416,8 +516,18 @@
       transition: 0.18s ease;
     }
 
+    body.dark-mode .filter-button {
+      background: var(--slate-200);
+      color: var(--slate-500);
+      border-color: var(--slate-200);
+    }
+
     .filter-button:hover {
       background: var(--slate-50);
+    }
+
+    body.dark-mode .filter-button:hover {
+      background: var(--slate-100);
     }
 
     .filter-button.active {
@@ -436,6 +546,12 @@
       background: rgba(236, 254, 255, 0.68);
       padding: 16px;
       margin-bottom: 24px;
+      transition: background 0.3s ease;
+    }
+
+    body.dark-mode .add-row {
+      background: rgba(15, 23, 42, 0.5);
+      border-color: rgba(14, 116, 144, 0.15);
     }
 
     .add-input,
@@ -446,6 +562,12 @@
       background: white;
       padding: 13px 14px;
       outline: none;
+      transition: background 0.2s ease;
+    }
+
+    body.dark-mode .add-input,
+    body.dark-mode .add-select {
+      background: var(--slate-100);
     }
 
     .primary-btn,
@@ -477,10 +599,19 @@
       color: white;
       padding: 10px 16px;
       font-size: 14px;
+      transition: background 0.2s ease;
+    }
+
+    body.dark-mode .dark-btn {
+      background: var(--slate-800);
     }
 
     .dark-btn:hover {
       background: var(--slate-800);
+    }
+
+    body.dark-mode .dark-btn:hover {
+      background: var(--slate-700);
     }
 
     .soft-btn {
@@ -489,10 +620,20 @@
       color: var(--slate-800);
       padding: 10px 16px;
       font-size: 14px;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    body.dark-mode .soft-btn {
+      background: var(--slate-200);
+      border-color: var(--slate-200);
     }
 
     .soft-btn:hover {
       background: var(--slate-50);
+    }
+
+    body.dark-mode .soft-btn:hover {
+      background: var(--slate-100);
     }
 
     .checklist-grid {
@@ -507,6 +648,12 @@
       background: white;
       box-shadow: var(--shadow-soft);
       padding: 20px;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    body.dark-mode .section-card {
+      background: var(--slate-100);
+      border-color: var(--slate-200);
     }
 
     .section-head {
@@ -540,6 +687,10 @@
       margin: 0 0 14px;
     }
 
+    body.dark-mode .section-progress .progress-track {
+      background: var(--slate-200);
+    }
+
     .section-progress .progress-bar {
       background: var(--emerald-500);
     }
@@ -560,13 +711,26 @@
       transition: 0.18s ease;
     }
 
+    body.dark-mode .item {
+      background: var(--slate-200);
+      border-color: var(--slate-200);
+    }
+
     .item:hover {
       background: white;
+    }
+
+    body.dark-mode .item:hover {
+      background: var(--slate-100);
     }
 
     .item.done {
       border-color: rgba(16, 185, 129, 0.18);
       background: rgba(236, 253, 245, 0.76);
+    }
+
+    body.dark-mode .item.done {
+      background: rgba(5, 150, 105, 0.2);
     }
 
     .check-btn {
@@ -602,68 +766,38 @@
       gap: 6px;
     }
 
-    .priority-selector {
-      display: flex;
-      gap: 4px;
-    }
-
-    .priority-btn {
-      width: 28px;
-      height: 28px;
-      border: 2px solid var(--slate-200);
-      border-radius: 6px;
-      background: white;
-      padding: 0;
-      font-size: 12px;
-      font-weight: 700;
+    .priority-circle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
       cursor: pointer;
-      transition: 0.15s ease;
+      border: none;
+      padding: 0;
+      transition: 0.2s ease;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .priority-btn.high {
-      background: var(--rose-50);
-      color: var(--rose-700);
-      border-color: var(--rose-700);
+    .priority-circle.high {
+      background: #be123c;
+      color: white;
     }
 
-    .priority-btn.medium {
-      background: var(--amber-50);
-      color: var(--amber-700);
-      border-color: var(--amber-700);
+    .priority-circle.medium {
+      background: #b45309;
+      color: white;
     }
 
-    .priority-btn.low {
-      background: var(--slate-100);
-      color: var(--slate-500);
-      border-color: var(--slate-400);
+    .priority-circle.low {
+      background: #64748b;
+      color: white;
     }
 
-    .priority-btn.active {
-      border-color: currentColor;
+    .priority-circle:hover {
+      transform: scale(1.15);
       box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
-    }
-
-    .priority {
-      border-radius: 999px;
-      padding: 6px 9px;
-      font-size: 11px;
-      font-weight: 950;
-      white-space: nowrap;
-    }
-
-    .priority.high {
-      background: var(--rose-50);
-      color: var(--rose-700);
-    }
-
-    .priority.medium {
-      background: var(--amber-50);
-      color: var(--amber-700);
-    }
-
-    .priority.low {
-      background: var(--slate-100);
-      color: var(--slate-500);
     }
 
     .delete-btn {
@@ -683,6 +817,10 @@
       color: var(--rose-700);
     }
 
+    body.dark-mode .delete-btn:hover {
+      background: rgba(190, 18, 60, 0.2);
+    }
+
     .tools-section {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -696,6 +834,12 @@
       background: white;
       box-shadow: var(--shadow-soft);
       padding: 20px;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    body.dark-mode .tool-card {
+      background: var(--slate-100);
+      border-color: var(--slate-200);
     }
 
     .tool-head {
@@ -732,6 +876,12 @@
       color: var(--slate-900);
       outline: none;
       font-size: 13px;
+      transition: background 0.2s ease;
+    }
+
+    body.dark-mode .weight-input {
+      background: var(--slate-200);
+      border-color: var(--slate-200);
     }
 
     .weight-input:focus {
@@ -746,39 +896,101 @@
       font-weight: 700;
     }
 
-    .packing-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .packing-item {
+    .weight-indicator {
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 10px;
-      background: var(--slate-50);
+      gap: 12px;
+      margin-top: 16px;
+      padding: 12px;
       border-radius: 12px;
-      font-size: 13px;
+      background: var(--slate-50);
     }
 
-    .packing-check {
-      width: 18px;
-      height: 18px;
-      border: 2px solid var(--slate-300);
+    body.dark-mode .weight-indicator {
+      background: var(--slate-200);
+    }
+
+    .weight-bar {
+      flex: 1;
+      height: 8px;
+      background: var(--slate-100);
       border-radius: 4px;
-      background: white;
-      cursor: pointer;
-      display: grid;
-      place-items: center;
-      font-size: 12px;
-      color: var(--emerald-600);
+      overflow: hidden;
     }
 
-    .packing-item.packed .packing-check {
-      background: var(--emerald-600);
-      border-color: var(--emerald-600);
-      color: white;
+    body.dark-mode .weight-bar {
+      background: var(--slate-200);
+    }
+
+    .weight-fill {
+      height: 100%;
+      background: #10b981;
+      border-radius: 4px;
+      transition: width 0.3s ease, background 0.3s ease;
+    }
+
+    .weight-fill.warning {
+      background: #f59e0b;
+    }
+
+    .weight-fill.danger {
+      background: #ef4444;
+    }
+
+    .weight-text {
+      font-weight: 700;
+      font-size: 13px;
+      min-width: 60px;
+    }
+
+    .days-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .day-card {
+      border: 1px solid var(--slate-100);
+      border-radius: 12px;
+      background: white;
+      padding: 14px;
+      text-align: center;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    body.dark-mode .day-card {
+      background: var(--slate-200);
+      border-color: var(--slate-200);
+    }
+
+    .day-card:hover {
+      background: var(--slate-50);
+      border-color: var(--cyan-700);
+    }
+
+    body.dark-mode .day-card:hover {
+      background: var(--slate-100);
+    }
+
+    .day-number {
+      font-weight: 900;
+      font-size: 18px;
+      color: var(--cyan-700);
+    }
+
+    .day-label {
+      font-size: 12px;
+      color: var(--slate-500);
+      margin-top: 4px;
+    }
+
+    .day-budget {
+      font-size: 11px;
+      color: var(--emerald-600);
+      margin-top: 6px;
+      font-weight: 700;
     }
 
     .footer-note {
@@ -811,6 +1023,11 @@
       max-width: 500px;
       width: 90%;
       box-shadow: var(--shadow);
+      transition: background 0.3s ease;
+    }
+
+    body.dark-mode .modal-content {
+      background: var(--slate-100);
     }
 
     .modal-head {
@@ -834,6 +1051,11 @@
       color: var(--slate-900);
       outline: none;
       font-size: 14px;
+      transition: background 0.2s ease;
+    }
+
+    body.dark-mode .modal-input {
+      background: var(--slate-200);
     }
 
     .modal-input:focus {
@@ -853,7 +1075,8 @@
       .checklist-grid,
       .budget-grid,
       .add-row,
-      .tools-section {
+      .tools-section,
+      .days-grid {
         grid-template-columns: 1fr;
       }
 
@@ -863,11 +1086,18 @@
 
       .hero {
         padding: 28px;
+        flex-direction: column;
+        gap: 20px;
       }
 
       .main-grid,
       .checklist-area {
         padding: 18px;
+      }
+
+      .hero-controls {
+        width: 100%;
+        justify-content: flex-end;
       }
     }
 
@@ -899,16 +1129,16 @@
         align-items: flex-start;
       }
 
-      .priority {
-        display: none;
-      }
-
       .budget-grid {
         grid-template-columns: 1fr;
       }
 
       .weight-grid {
         grid-template-columns: 1fr;
+      }
+
+      .days-grid {
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
       }
     }
 
@@ -927,8 +1157,7 @@
       .dark-btn,
       .soft-btn,
       .tools-section,
-      .priority-selector,
-      .priority-btn {
+      .hero-controls {
         display: none !important;
       }
     }
@@ -953,6 +1182,10 @@
             </div>
             <div style="margin-top: 9px; color: #ecfeff; font-size: 14px;" id="overallText">0 von 0 Aufgaben erledigt · 0%</div>
           </aside>
+        </div>
+        <div class="hero-controls">
+          <button class="hero-btn" id="darkModeToggle" title="Dark Mode">🌙</button>
+          <button class="hero-btn" id="printBtn" title="PDF exportieren">🖨️</button>
         </div>
       </section>
 
@@ -985,706 +1218,456 @@
 
         <section class="tool-card">
           <div class="tool-head">
+            <span class="icon-box">📅</span>
+            <div class="tool-title">Tagespläne</div>
+          </div>
+          <div class="tool-content">
+            <p>Verwalte dein Budget für jeden Tag. Klick auf einen Tag für Details.</p>
+            <div class="days-grid" id="daysGrid"></div>
+          </div>
+        </section>
+
+        <section class="tool-card">
+          <div class="tool-head">
             <span class="icon-box">⚖️</span>
             <div class="tool-title">Gepäck-Kalkulator</div>
           </div>
           <div class="tool-content">
-            <p>Berechne dein Gepäckgewicht. Maximal 23 kg Aufgabegepäck pro Person!</p>
+            <p>Berechne dein Gepäckgewicht basierend auf Stückzahlen. Maximal 23 kg!</p>
             <div class="weight-grid">
               <div>
-                <div class="weight-label">Kleidung (kg)</div>
-                <input type="number" id="weightClothing" class="weight-input" value="4" min="0" />
+                <div class="weight-label">T-Shirts</div>
+                <input type="number" id="shirtCount" class="weight-input" value="3" min="0" />
               </div>
               <div>
-                <div class="weight-label">Schuhe (kg)</div>
-                <input type="number" id="weightShoes" class="weight-input" value="2" min="0" />
+                <div class="weight-label">Hosen</div>
+                <input type="number" id="pantsCount" class="weight-input" value="2" min="0" />
               </div>
               <div>
-                <div class="weight-label">Elektronik (kg)</div>
-                <input type="number" id="weightElectronics" class="weight-input" value="2" min="0" />
+                <div class="weight-label">Jacken</div>
+                <input type="number" id="jacketCount" class="weight-input" value="1" min="0" />
+              </div>
+              <div>
+                <div class="weight-label">Unterwäsche</div>
+                <input type="number" id="underwearCount" class="weight-input" value="7" min="0" />
+              </div>
+              <div>
+                <div class="weight-label">Socken</div>
+                <input type="number" id="socksCount" class="weight-input" value="7" min="0" />
+              </div>
+              <div>
+                <div class="weight-label">Schuhe</div>
+                <input type="number" id="shoeCount" class="weight-input" value="2" min="0" />
               </div>
             </div>
-            <div style="margin-top: 12px; padding: 12px; background: var(--slate-50); border-radius: 12px; text-align: center;">
-              <div style="font-size: 12px; color: var(--slate-500); margin-bottom: 4px;">GESAMTGEWICHT</div>
-              <div id="totalWeight" style="font-size: 24px; font-weight: 950; color: var(--slate-900);">8 kg</div>
-              <div id="weightStatus" style="font-size: 12px; color: var(--emerald-600); margin-top: 4px;">✓ Im Limit</div>
+            <div class="weight-indicator">
+              <div class="weight-bar">
+                <div class="weight-fill" id="weightFill" style="width: 30%"></div>
+              </div>
+              <div class="weight-text" id="weightText">0 / 23 kg</div>
             </div>
           </div>
         </section>
 
-        <section class="tool-card">
-          <div class="tool-head">
-            <span class="icon-box">🌡️</span>
-            <div class="tool-title">Wetter & Temperatur</div>
-          </div>
-          <div class="tool-content">
-            <p><strong>September auf Mauritius:</strong></p>
-            <p style="margin-top: 8px;">🌞 Temperatur: 23-28°C<br/>💧 Luftfeuchtigkeit: 75-80%<br/>🌊 Wasser: ~24°C<br/>☀️ UV-Index: Sehr hoch (SPF 50+)</p>
-            <p style="margin-top: 12px; padding: 10px; background: var(--amber-50); border-radius: 12px; color: var(--amber-900); font-size: 13px;">⚠️ <strong>Trockenzeit:</strong> Beste Jahreszeit mit weniger Regen. Kurze Schauer möglich. Windiger als andere Jahreszeiten.</p>
-          </div>
-        </section>
-
-        <section class="tool-card">
-          <div class="tool-head">
-            <span class="icon-box">🧥</span>
-            <div class="tool-title">Packlisten-Assistent</div>
-          </div>
-          <div class="tool-content">
-            <p>Wichtigste Items für Mauritius:</p>
-            <div class="packing-list" id="packingList"></div>
-          </div>
-        </section>
-
-        <section class="tool-card">
-          <div class="tool-head">
-            <span class="icon-box">💱</span>
-            <div class="tool-title">Währungs-Tipp</div>
-          </div>
-          <div class="tool-content">
-            <p><strong>Mauritius-Rupie (MUR)</strong></p>
-            <p style="margin-top: 8px; font-size: 13px;">1 EUR ≈ 45-47 MUR (ungefähr)</p>
-            <p style="margin-top: 12px; padding: 10px; background: var(--emerald-50); border-radius: 12px; color: var(--emerald-700); font-size: 13px;">💡 <strong>Tipp:</strong> Geldautomaten sind weit verbreitet. Kreditkarten werden überall akzeptiert. Etwas Bargeld zum Wechseln mitbringen!</p>
-          </div>
-        </section>
-
-        <div class="section-title-row">
-          <div>
-            <h2>Interaktive Checklisten</h2>
-            <p class="muted">Aufgaben abhaken, Priorität ändern, eigene Punkte ergänzen oder löschen.</p>
-          </div>
-          <button class="soft-btn" id="resetBtn">↩️ Standardliste wiederherstellen</button>
-        </div>
-
-        <div class="filter-row" id="filters"></div>
-
-        <div class="add-row">
-          <input id="newTaskInput" class="add-input" placeholder="Neue Aufgabe hinzufügen, z. B. Mietwagen-Buchung bestätigen" />
-          <select id="newTaskSection" class="add-select"></select>
-          <select id="newTaskPriority" class="add-select">
-            <option value="hoch">🔴 Hoch</option>
-            <option value="mittel" selected>🟡 Mittel</option>
-            <option value="niedrig">🟢 Niedrig</option>
-          </select>
-          <button class="primary-btn" id="addTaskBtn">＋ Hinzufügen</button>
-        </div>
-
-        <div class="checklist-grid" id="checklists"></div>
-
-        <p class="footer-note">
-          Hinweis: Diese private Reise-Checkliste ersetzt keine offizielle Reiseberatung. Prüfe kurz vor Abflug nochmals BMEIA, Airline, DERTOUR, Hotel, Mietwagenanbieter und Versicherung.
-        </p>
+        <section class="checklist-grid" id="checklistSections"></section>
       </section>
+
+      <div id="tripModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-head">Reisedaten bearbeiten</div>
+          <div class="modal-body">
+            <input type="text" class="modal-input" id="tripDestination" placeholder="Ziel" />
+            <input type="date" class="modal-input" id="tripDepartDate" />
+            <input type="date" class="modal-input" id="tripReturnDate" />
+            <input type="text" class="modal-input" id="tripHotel" placeholder="Hotel" />
+            <input type="text" class="modal-input" id="tripRentCar" placeholder="Mietwagen Buchung" />
+          </div>
+          <div class="modal-buttons">
+            <button class="soft-btn" onclick="closeModal('tripModal')">Abbrechen</button>
+            <button class="primary-btn" onclick="saveTripData()">Speichern</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="budgetModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-head">Budget bearbeiten</div>
+          <div class="modal-body">
+            <input type="text" class="modal-input" id="budgetName" placeholder="Name" />
+            <input type="number" class="modal-input" id="budgetAmount" placeholder="Betrag (EUR)" />
+          </div>
+          <div class="modal-buttons">
+            <button class="soft-btn" onclick="closeModal('budgetModal')">Abbrechen</button>
+            <button class="primary-btn" onclick="saveBudgetItem()">Speichern</button>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 
-  <div class="modal" id="budgetModal">
-    <div class="modal-content">
-      <div class="modal-head" id="budgetModalTitle">Budget bearbeiten</div>
-      <div class="modal-body">
-        <input type="text" id="budgetModalLabel" class="modal-input" placeholder="z.B. Mietwagen" />
-        <input type="text" id="budgetModalValue" class="modal-input" placeholder="z.B. Buchung + Kaution ergänzen" />
-      </div>
-      <div class="modal-buttons">
-        <button class="soft-btn" id="budgetModalCancel">Abbrechen</button>
-        <button class="primary-btn" id="budgetModalSave">Speichern</button>
-      </div>
-    </div>
-  </div>
-
   <script>
-    const STORAGE_KEY = "mauritius-trip-checklist-html-v1";
-    const TRIP_STORAGE_KEY = "mauritius-trip-data-html-v1";
-    const BUDGET_STORAGE_KEY = "mauritius-budget-html-v1";
-
-    const initialTrip = {
-      period: "11.09.2026 – 21.09.2026",
-      hotel: "La Pirogue, Flic en Flac",
-      accommodation: "Premium Garden Bungalow",
-      board: "Halbpension",
-      travelers: "Michael Gurtner (28.08.2000) · Valerie Gruber-Wutzl (23.05.1999)",
-      organizer: "DERTOUR",
-      insurance: "ERGO Reiseversicherung – RundumSorglos-Jahresschutz-Spezial mit Selbstbeteiligung (209,00 €)",
-      carRental: "Mietwagen am Flughafen Mauritius geplant – Anbieter, Buchungsnummer und Führerschein/Kreditkarte noch ergänzen.",
-      hotelContact: "La Pirogue, Wolmar / Flic en Flac, Mauritius · Tel. +230 403 3900",
-      note: "Gemeinsame Reise-Checkliste für Michael & Valerie. Vor Abflug offizielle Seiten und Reiseunterlagen nochmals prüfen."
+    const defaultTripData = {
+      destination: 'Mauritius',
+      departDate: '2026-09-15',
+      returnDate: '2026-09-29',
+      hotel: 'Zu buchen',
+      rentCar: 'Zu buchen'
     };
 
-    const initialBudget = [
-      { label: "Mietwagen", value: "Buchung + Kaution ergänzen" },
-      { label: "Ausflüge", value: "Katamaran, Chamarel, Le Morne" },
-      { label: "Essen & Getränke", value: "Trotz Halbpension einplanen" },
-      { label: "Reserve", value: "Notfall-/Pufferbudget" }
+    const defaultBudget = [
+      { name: 'Aktivitäten', amount: 500 },
+      { name: 'Essen & Trinken', amount: 400 },
+      { name: 'Einkaufen', amount: 300 },
+      { name: 'Notfallfonds', amount: 200 }
     ];
 
-    const flights = [
+    const defaultChecklists = [
       {
-        type: "Hinflug",
-        date: "Fr, 11.09.2026 → Sa, 12.09.2026",
-        route: "Wien → Istanbul International → Mauritius",
-        time: "10:50 – 06:05 +1",
-        airline: "Turkish Airlines",
-        flightNos: "TK1884, TK1176",
-        baggage: "23 kg Aufgabegepäck p. P. + 8 kg Handgepäck (max. 40 × 55 × 23 cm)"
+        name: 'Dokumente',
+        icon: '📄',
+        items: ['Reisepass', 'Flugtickets', 'Hotelbestätigung', 'Krankenversicherung', 'Kreditkarten']
       },
       {
-        type: "Rückflug",
-        date: "So, 20.09.2026 → Mo, 21.09.2026",
-        route: "Mauritius → Istanbul International → Wien",
-        time: "20:15 – 09:10 +1",
-        airline: "Turkish Airlines",
-        flightNos: "TK177, TK1883",
-        baggage: "23 kg Aufgabegepäck p. P. + 8 kg Handgepäck (max. 40 × 55 × 23 cm)"
-      }
-    ];
-
-    const defaultSections = [
-      {
-        id: "documents",
-        title: "Dokumente & Einreise",
-        icon: "🛂",
-        items: [
-          { id: "doc-1", text: "Reisepässe prüfen: länger gültig als Aufenthaltsdauer", done: false, priority: "hoch" },
-          { id: "doc-2", text: "Reiseregistrierung / Mauritius All-in-One Travel Form kurz vor Abreise ausfüllen", done: false, priority: "hoch" },
-          { id: "doc-3", text: "Reiseunterlagen DERTOUR offline speichern und ausdrucken", done: false, priority: "hoch" },
-          { id: "doc-4", text: "Hotelvoucher / Buchungsbestätigung speichern", done: false, priority: "hoch" },
-          { id: "doc-5", text: "Rückflug-/Weiterreise-Nachweis griffbereit halten", done: false, priority: "mittel" },
-          { id: "doc-6", text: "Kopie von Reisepass, Versicherung und Tickets in Cloud ablegen", done: false, priority: "mittel" }
-        ]
+        name: 'Gesundheit',
+        icon: '💊',
+        items: ['Zahnbürste', 'Zahnpasta', 'Sonnencreme', 'Medikamente', 'Insektenschutz']
       },
       {
-        id: "health",
-        title: "Gesundheit & Impfungen",
-        icon: "💉",
-        items: [
-          { id: "health-1", text: "Impfpass prüfen: Tetanus/Diphtherie/Pertussis, Polio, MMR aktuell?", done: false, priority: "hoch" },
-          { id: "health-2", text: "Hepatitis-A-Impfung mit Arzt/Reisemedizin besprechen", done: false, priority: "hoch" },
-          { id: "health-3", text: "Typhus-Impfung je nach Reise-/Essverhalten besprechen", done: false, priority: "mittel" },
-          { id: "health-4", text: "Gelbfieber nur relevant bei Einreise/Transit aus Risikogebiet prüfen", done: false, priority: "mittel" },
-          { id: "health-5", text: "Reiseapotheke packen: Schmerzmittel, Durchfallmittel, Elektrolyte, Pflaster, Desinfektion", done: false, priority: "mittel" },
-          { id: "health-6", text: "Mückenschutz, After-Bite und Sonnencreme SPF 50 einpacken", done: false, priority: "hoch" }
-        ]
+        name: 'Elektronik',
+        icon: '📱',
+        items: ['Handy', 'Ladekabel', 'Kopfhörer', 'Kamera', 'Powerbank']
       },
       {
-        id: "packing",
-        title: "Packliste",
-        icon: "🧳",
-        items: [
-          { id: "pack-1", text: "Badebekleidung, Strandtücher, Flip-Flops/Badeschuhe", done: false, priority: "hoch" },
-          { id: "pack-2", text: "Leichte Sommerkleidung + etwas Schickeres fürs Abendessen", done: false, priority: "mittel" },
-          { id: "pack-3", text: "Regenjacke / dünne Jacke für Wind und kurze Schauer", done: false, priority: "niedrig" },
-          { id: "pack-4", text: "Sonnenbrille, Kappe/Hut, After-Sun", done: false, priority: "hoch" },
-          { id: "pack-5", text: "Ladegeräte, Powerbank, Reiseadapter Typ C/G prüfen", done: false, priority: "mittel" },
-          { id: "pack-6", text: "Schnorchel-/Strandausrüstung falls gewünscht", done: false, priority: "niedrig" }
-        ]
+        name: 'Ausflüge',
+        icon: '🏝️',
+        items: ['Black River Gorges', 'Chamarel Waterfall', 'Île aux Cerfs', 'Snorkeling', 'Dodo Museum']
       },
       {
-        id: "money",
-        title: "Geld, Versicherung & Technik",
-        icon: "🛡️",
-        items: [
-          { id: "money-1", text: "Kreditkartenlimit und Auslandseinsatz prüfen", done: false, priority: "mittel" },
-          { id: "money-2", text: "Etwas Bargeld / Mauritius-Rupien oder Wechselmöglichkeit planen", done: false, priority: "niedrig" },
-          { id: "money-3", text: "ERGO Versicherungsnummer und Notfallkontakt speichern", done: false, priority: "hoch" },
-          { id: "money-4", text: "Roaming/eSIM für Mauritius prüfen", done: false, priority: "mittel" },
-          { id: "money-5", text: "Offline-Karten und Übersetzungs-App herunterladen", done: false, priority: "niedrig" }
-        ]
+        name: 'Notfallkontakte',
+        icon: '🆘',
+        items: ['Deutsche Botschaft', 'Reiseversicherer', 'Kreditkartenanbieter', 'Fluggesellschaft']
       },
       {
-        id: "before",
-        title: "Kurz vor Abreise",
-        icon: "📅",
-        items: [
-          { id: "before-1", text: "Online Check-in prüfen, sobald verfügbar", done: false, priority: "hoch" },
-          { id: "before-2", text: "Gepäck wiegen: max. 23 kg Aufgabegepäck, 8 kg Handgepäck", done: false, priority: "hoch" },
-          { id: "before-3", text: "Mietwagen am Flughafen final buchen oder Buchung bestätigen", done: false, priority: "hoch" },
-          { id: "before-4", text: "Führerschein, Kreditkarte und Mietwagen-Kaution prüfen", done: false, priority: "hoch" },
-          { id: "before-5", text: "Wettervorhersage prüfen und Packliste finalisieren", done: false, priority: "mittel" },
-          { id: "before-6", text: "Wohnung: Pflanzen, Müll, Kühlschrank, Post, Schlüssel klären", done: false, priority: "mittel" }
-        ]
-      },
-      {
-        id: "excursions",
-        title: "Ausflüge & Erlebnisse",
-        icon: "📍",
-        items: [
-          { id: "trip-1", text: "Le Morne Brabant / Aussichtspunkt planen", done: false, priority: "mittel" },
-          { id: "trip-2", text: "Chamarel: Seven Coloured Earths & Wasserfall einplanen", done: false, priority: "mittel" },
-          { id: "trip-3", text: "Katamaran- oder Bootstour prüfen", done: false, priority: "mittel" },
-          { id: "trip-4", text: "Schnorchelspot / Delfin- oder Lagunentour recherchieren", done: false, priority: "niedrig" },
-          { id: "trip-5", text: "Port Louis / Central Market als Tagesausflug überlegen", done: false, priority: "niedrig" },
-          { id: "trip-6", text: "Black River Gorges National Park für Natur/Wandern prüfen", done: false, priority: "niedrig" }
-        ]
-      },
-      {
-        id: "emergency",
-        title: "Notfallkontakte",
-        icon: "☎️",
-        items: [
-          { id: "em-1", text: "Hotelkontakt speichern: La Pirogue +230 403 3900", done: false, priority: "hoch" },
-          { id: "em-2", text: "ERGO Notfallnummer / Polizzennummer in Handy und Wallet speichern", done: false, priority: "hoch" },
-          { id: "em-3", text: "DERTOUR Buchungsnummer und Servicekontakt speichern", done: false, priority: "hoch" },
-          { id: "em-4", text: "Mauritius Notruf speichern: Polizei 999/112, Ambulanz 114, Feuerwehr 115", done: false, priority: "hoch" },
-          { id: "em-5", text: "Österreichische Konsularhilfe: Honorarkonsulat Port Louis / Botschaft Pretoria und BMEIA Notfallkontakt speichern", done: false, priority: "mittel" }
-        ]
+        name: 'Flug',
+        icon: '✈️',
+        items: ['Online Check-in', 'Koffer wiegen', 'Ankunft am Flughafen', 'Ausweiskontrolle']
       }
     ];
 
-    const packingItems = [
-      { icon: "☀️", text: "Sonnencreme SPF 50+" },
-      { icon: "👕", text: "Leichte Sommerkleidung" },
-      { icon: "🩱", text: "Badebekleidung (2-3x)" },
-      { icon: "🕶️", text: "Sonnenbrille" },
-      { icon: "🧢", text: "Kappe / Hut" },
-      { icon: "🧴", text: "Mückenschutz" },
-      { icon: "💊", text: "Reiseapotheke" },
-      { icon: "📱", text: "Ladegeräte & Powerbank" }
-    ];
-
-    let sections = loadSections();
-    let trip = loadTrip();
-    let budget = loadBudget();
-    let activeFilter = "all";
-    let editingTrip = false;
-    let editingBudgetIndex = -1;
-
-    function clone(value) {
-      return JSON.parse(JSON.stringify(value));
-    }
-
-    function loadSections() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        const parsed = raw ? JSON.parse(raw) : null;
-        return Array.isArray(parsed) && parsed.length ? parsed : clone(defaultSections);
-      } catch {
-        return clone(defaultSections);
+    function loadData() {
+      const tripData = JSON.parse(localStorage.getItem('tripData')) || defaultTripData;
+      const budgetData = JSON.parse(localStorage.getItem('budgetData')) || defaultBudget;
+      const checklistData = JSON.parse(localStorage.getItem('checklistData')) || defaultChecklists;
+      const darkMode = localStorage.getItem('darkMode') === 'true';
+      
+      if (darkMode) {
+        document.body.classList.add('dark-mode');
+        document.documentElement.classList.add('dark-mode');
       }
+
+      renderTripInfo(tripData);
+      renderBudget(budgetData);
+      renderChecklists(checklistData);
+      renderDays();
+      updateWeightCalculator();
+      updateProgress();
     }
 
-    function loadTrip() {
-      try {
-        const raw = localStorage.getItem(TRIP_STORAGE_KEY);
-        const parsed = raw ? JSON.parse(raw) : null;
-        return parsed && typeof parsed === "object" ? { ...initialTrip, ...parsed } : { ...initialTrip };
-      } catch {
-        return { ...initialTrip };
-      }
-    }
-
-    function loadBudget() {
-      try {
-        const raw = localStorage.getItem(BUDGET_STORAGE_KEY);
-        const parsed = raw ? JSON.parse(raw) : null;
-        return Array.isArray(parsed) && parsed.length ? parsed : clone(initialBudget);
-      } catch {
-        return clone(initialBudget);
-      }
-    }
-
-    function saveState() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(sections));
-      localStorage.setItem(TRIP_STORAGE_KEY, JSON.stringify(trip));
-      localStorage.setItem(BUDGET_STORAGE_KEY, JSON.stringify(budget));
-    }
-
-    function daysUntil(dateString, now = new Date()) {
-      const target = new Date(dateString + "T00:00:00");
-      const today = new Date(now);
-      target.setHours(0, 0, 0, 0);
-      today.setHours(0, 0, 0, 0);
-      return Math.ceil((target - today) / (1000 * 60 * 60 * 24));
-    }
-
-    function calculateStats(list) {
-      const all = list.flatMap(section => section.items);
-      const done = all.filter(item => item.done).length;
-      return {
-        total: all.length,
-        done,
-        percent: all.length ? Math.round((done / all.length) * 100) : 0
+    function saveData() {
+      const tripData = {
+        destination: document.getElementById('tripDestination')?.value || defaultTripData.destination,
+        departDate: document.getElementById('tripDepartDate')?.value || defaultTripData.departDate,
+        returnDate: document.getElementById('tripReturnDate')?.value || defaultTripData.returnDate,
+        hotel: document.getElementById('tripHotel')?.value || defaultTripData.hotel,
+        rentCar: document.getElementById('tripRentCar')?.value || defaultTripData.rentCar
       };
+      localStorage.setItem('tripData', JSON.stringify(tripData));
+      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
     }
 
-    function escapeHtml(value) {
-      return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+    function renderTripInfo(data) {
+      const tripInfo = document.getElementById('tripInfo');
+      const daysUntil = Math.ceil((new Date(data.departDate) - new Date()) / (1000 * 60 * 60 * 24));
+      
+      tripInfo.innerHTML = `
+        <div class="info-card">
+          <div class="icon-box">🌍</div>
+          <div>
+            <div class="tiny-label">Ziel</div>
+            <div class="info-value">${data.destination}</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="icon-box">📅</div>
+          <div>
+            <div class="tiny-label">Hinflug</div>
+            <div class="info-value">${new Date(data.departDate).toLocaleDateString('de-DE')}</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="icon-box">📅</div>
+          <div>
+            <div class="tiny-label">Rückflug</div>
+            <div class="info-value">${new Date(data.returnDate).toLocaleDateString('de-DE')}</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="icon-box">🏨</div>
+          <div>
+            <div class="tiny-label">Hotel</div>
+            <div class="info-value">${data.hotel}</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="icon-box">🚗</div>
+          <div>
+            <div class="tiny-label">Mietwagen</div>
+            <div class="info-value">${data.rentCar}</div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('countdown').textContent = Math.max(0, daysUntil);
     }
 
-    function priorityClass(priority) {
-      if (priority === "hoch") return "high";
-      if (priority === "mittel") return "medium";
-      return "low";
+    function renderBudget(data) {
+      const budgetGrid = document.getElementById('budgetGrid');
+      budgetGrid.innerHTML = data.map((item, idx) => `
+        <div class="budget-item" onclick="editBudgetItem(${idx})">
+          <div style="font-weight: 700; color: var(--cyan-700);">${item.amount}€</div>
+          <div style="font-size: 12px; color: var(--slate-500); margin-top: 4px;">${item.name}</div>
+        </div>
+      `).join('');
     }
 
-    function priorityEmoji(priority) {
-      if (priority === "hoch") return "🔴";
-      if (priority === "mittel") return "🟡";
-      return "🟢";
+    function editBudgetItem(idx) {
+      const budgetData = JSON.parse(localStorage.getItem('budgetData')) || defaultBudget;
+      const item = budgetData[idx];
+      document.getElementById('budgetName').value = item.name;
+      document.getElementById('budgetAmount').value = item.amount;
+      window.currentBudgetIdx = idx;
+      document.getElementById('budgetModal').classList.add('active');
     }
 
-    function renderTripInfo() {
-      const root = document.getElementById("tripInfo");
-      const fields = [
-        { key: "period", icon: "📅", label: "Zeitraum", value: trip.period, editable: true },
-        { key: "hotel", icon: "🏨", label: "Hotel / Unterkunft", value: `${trip.hotel} · ${trip.accommodation} · ${trip.board}`, editable: true, helper: "Im Bearbeitungsmodus hier nur den Hotelnamen eintragen." },
-        { key: "travelers", icon: "👥", label: "Reisende", value: trip.travelers, editable: false },
-        { key: "organizer", icon: "🧾", label: "Veranstalter", value: trip.organizer, editable: false },
-        { key: "insurance", icon: "🛡️", label: "Reiseschutz", value: trip.insurance, editable: false },
-        { key: "carRental", icon: "🚗", label: "Mietwagen", value: trip.carRental, editable: true },
-        { key: "hotelContact", icon: "☎️", label: "Hotelkontakt", value: trip.hotelContact, editable: false },
-        { key: "note", icon: "✨", label: "Hinweis", value: trip.note, editable: true }
-      ];
+    function saveBudgetItem() {
+      const budgetData = JSON.parse(localStorage.getItem('budgetData')) || defaultBudget;
+      budgetData[window.currentBudgetIdx] = {
+        name: document.getElementById('budgetName').value,
+        amount: parseFloat(document.getElementById('budgetAmount').value)
+      };
+      localStorage.setItem('budgetData', JSON.stringify(budgetData));
+      closeModal('budgetModal');
+      renderBudget(budgetData);
+    }
 
-      root.innerHTML = fields.map(field => {
-        const value = escapeHtml(field.value);
-        const input = editingTrip && field.editable
-          ? `<textarea class="edit-textarea" data-trip-key="${field.key}">${value}</textarea>${field.helper ? `<p class="muted">${escapeHtml(field.helper)}</p>` : ""}`
-          : `<div class="info-value">${value}</div>`;
+    function renderChecklists(data) {
+      const container = document.getElementById('checklistSections');
+      container.innerHTML = data.map(section => {
+        const items = section.items || [];
+        const completed = items.filter(item => {
+          const saved = JSON.parse(localStorage.getItem('itemStatus') || '{}');
+          return saved[`${section.name}-${item}`];
+        }).length;
+        const percent = items.length ? Math.round((completed / items.length) * 100) : 0;
 
         return `
-          <div class="info-card">
-            <span class="icon-box">${field.icon}</span>
-            <div style="min-width: 0; flex: 1;">
-              <div class="tiny-label">${escapeHtml(field.label)}</div>
-              ${input}
-            </div>
-          </div>
-        `;
-      }).join("");
-
-      root.querySelectorAll("[data-trip-key]").forEach(input => {
-        input.addEventListener("input", event => {
-          const key = event.target.getAttribute("data-trip-key");
-          trip[key] = event.target.value;
-          saveState();
-        });
-      });
-    }
-
-    function renderFlights() {
-      const root = document.getElementById("flightCards");
-      root.innerHTML = flights.map(flight => `
-        <article class="card card-pad">
-          <div class="flight-head">
-            <span class="icon-box" style="background: var(--cyan-50);">✈️</span>
-            <div>
-              <div class="flight-label">${escapeHtml(flight.type)}</div>
-              <h3>${escapeHtml(flight.route)}</h3>
-            </div>
-          </div>
-          <div class="mini-grid">
-            <div class="mini"><div class="tiny-label">Datum</div><div class="mini-value">${escapeHtml(flight.date)}</div></div>
-            <div class="mini"><div class="tiny-label">Zeit</div><div class="mini-value">${escapeHtml(flight.time)}</div></div>
-            <div class="mini"><div class="tiny-label">Airline</div><div class="mini-value">${escapeHtml(flight.airline)}</div></div>
-            <div class="mini"><div class="tiny-label">Flüge</div><div class="mini-value">${escapeHtml(flight.flightNos)}</div></div>
-          </div>
-          <div class="baggage-note">🧳 ${escapeHtml(flight.baggage)}</div>
-        </article>
-      `).join("");
-    }
-
-    function renderBudget() {
-      const root = document.getElementById("budgetGrid");
-      root.innerHTML = budget.map((item, idx) => `
-        <div class="budget-item" data-budget-index="${idx}">
-          <div class="tiny-label">${escapeHtml(item.label)}</div>
-          <div class="mini-value">${escapeHtml(item.value)}</div>
-        </div>
-      `).join("");
-
-      root.querySelectorAll(".budget-item").forEach(item => {
-        item.addEventListener("click", () => {
-          const idx = parseInt(item.getAttribute("data-budget-index"));
-          openBudgetEditor(idx);
-        });
-      });
-    }
-
-    function openBudgetEditor(idx) {
-      editingBudgetIndex = idx;
-      document.getElementById("budgetModalLabel").value = budget[idx].label;
-      document.getElementById("budgetModalValue").value = budget[idx].value;
-      document.getElementById("budgetModal").classList.add("active");
-      document.getElementById("budgetModalLabel").focus();
-    }
-
-    function closeBudgetEditor() {
-      editingBudgetIndex = -1;
-      document.getElementById("budgetModal").classList.remove("active");
-    }
-
-    function saveBudgetEdit() {
-      if (editingBudgetIndex >= 0) {
-        budget[editingBudgetIndex].label = document.getElementById("budgetModalLabel").value.trim();
-        budget[editingBudgetIndex].value = document.getElementById("budgetModalValue").value.trim();
-        saveState();
-        renderBudget();
-        closeBudgetEditor();
-      }
-    }
-
-    function renderFilters() {
-      const root = document.getElementById("filters");
-      const buttons = [
-        { id: "all", title: "Alle" },
-        ...sections.map(section => ({ id: section.id, title: section.title }))
-      ];
-
-      root.innerHTML = buttons.map(button => `
-        <button class="filter-button ${activeFilter === button.id ? "active" : ""}" data-filter="${button.id}">
-          ${escapeHtml(button.title)}
-        </button>
-      `).join("");
-
-      root.querySelectorAll("[data-filter]").forEach(button => {
-        button.addEventListener("click", () => {
-          activeFilter = button.getAttribute("data-filter");
-          render();
-        });
-      });
-    }
-
-    function renderAddSectionOptions() {
-      const select = document.getElementById("newTaskSection");
-      const currentValue = select.value || "documents";
-      select.innerHTML = sections.map(section => `
-        <option value="${section.id}">${escapeHtml(section.title)}</option>
-      `).join("");
-      select.value = sections.some(section => section.id === currentValue) ? currentValue : "documents";
-    }
-
-    function renderPackingList() {
-      const root = document.getElementById("packingList");
-      root.innerHTML = packingItems.map((item, idx) => `
-        <div class="packing-item" data-packing-idx="${idx}">
-          <div class="packing-check" data-packing-idx="${idx}">✓</div>
-          <span>${escapeHtml(item.text)}</span>
-        </div>
-      `).join("");
-
-      root.querySelectorAll(".packing-check").forEach(check => {
-        check.addEventListener("click", () => {
-          const parent = check.closest(".packing-item");
-          parent.classList.toggle("packed");
-        });
-      });
-    }
-
-    function updateWeightCalculator() {
-      const clothing = parseFloat(document.getElementById("weightClothing").value) || 0;
-      const shoes = parseFloat(document.getElementById("weightShoes").value) || 0;
-      const electronics = parseFloat(document.getElementById("weightElectronics").value) || 0;
-      const total = clothing + shoes + electronics;
-
-      document.getElementById("totalWeight").textContent = total.toFixed(1) + " kg";
-      const status = document.getElementById("weightStatus");
-      if (total > 23) {
-        status.textContent = "⚠️ Zu schwer! Max. 23 kg";
-        status.style.color = "var(--rose-700)";
-      } else if (total > 20) {
-        status.textContent = "⚡ Nah am Limit";
-        status.style.color = "var(--amber-700)";
-      } else {
-        status.textContent = "✓ Im Limit";
-        status.style.color = "var(--emerald-600)";
-      }
-    }
-
-    function renderStats() {
-      const stats = calculateStats(sections);
-      const countdown = Math.max(0, daysUntil("2026-09-11"));
-      document.getElementById("countdown").textContent = countdown;
-      document.getElementById("overallProgress").style.width = stats.percent + "%";
-      document.getElementById("overallText").textContent = `${stats.done} von ${stats.total} Aufgaben erledigt · ${stats.percent}%`;
-    }
-
-    function renderChecklists() {
-      const root = document.getElementById("checklists");
-      const visibleSections = activeFilter === "all"
-        ? sections
-        : sections.filter(section => section.id === activeFilter);
-
-      root.innerHTML = visibleSections.map(section => {
-        const stats = calculateStats([section]);
-        const items = section.items.map(item => `
-          <div class="item ${item.done ? "done" : ""}">
-            <button class="check-btn" data-action="toggle" data-section="${section.id}" data-item="${item.id}" aria-label="Aufgabe abhaken">
-              ${item.done ? "✓" : "○"}
-            </button>
-            <div class="item-text">${escapeHtml(item.text)}</div>
-            <div class="item-controls">
-              <div class="priority-selector">
-                <button class="priority-btn ${item.priority === "hoch" ? "high active" : "high"}" data-action="setPriority" data-section="${section.id}" data-item="${item.id}" data-priority="hoch" title="Hoch">🔴</button>
-                <button class="priority-btn ${item.priority === "mittel" ? "medium active" : "medium"}" data-action="setPriority" data-section="${section.id}" data-item="${item.id}" data-priority="mittel" title="Mittel">🟡</button>
-                <button class="priority-btn ${item.priority === "niedrig" ? "low active" : "low"}" data-action="setPriority" data-section="${section.id}" data-item="${item.id}" data-priority="niedrig" title="Niedrig">🟢</button>
-              </div>
-              <button class="delete-btn" data-action="delete" data-section="${section.id}" data-item="${item.id}" aria-label="Aufgabe löschen">×</button>
-            </div>
-          </div>
-        `).join("");
-
-        return `
-          <article class="section-card">
+          <div class="section-card">
             <div class="section-head">
               <div class="section-name">
-                <span class="icon-box">${section.icon}</span>
-                <div>
-                  <h3>${escapeHtml(section.title)}</h3>
-                  <p class="muted">${stats.done}/${stats.total} erledigt</p>
-                </div>
+                <div class="icon-box">${section.icon}</div>
+                <h3>${section.name}</h3>
               </div>
-              <div class="section-percent">${stats.percent}%</div>
+              <div class="section-percent">${percent}%</div>
             </div>
             <div class="section-progress">
               <div class="progress-track">
-                <div class="progress-bar" style="width: ${stats.percent}%"></div>
+                <div class="progress-bar" style="width: ${percent}%"></div>
               </div>
             </div>
-            <div class="item-list">${items}</div>
-          </article>
+            <div class="item-list">
+              ${items.map(item => {
+                const saved = JSON.parse(localStorage.getItem('itemStatus') || '{}');
+                const isDone = saved[`${section.name}-${item}`];
+                const priority = JSON.parse(localStorage.getItem('itemPriority') || '{}')[`${section.name}-${item}`] || 'low';
+                return `
+                  <div class="item ${isDone ? 'done' : ''}">
+                    <button class="check-btn" onclick="toggleItem('${section.name}', '${item}')">${isDone ? '✓' : '○'}</button>
+                    <div class="item-text">${item}</div>
+                    <div class="item-controls">
+                      <button class="priority-circle ${priority}" onclick="cyclePriority('${section.name}', '${item}', '${priority}')" title="Priorität ändern">
+                        ${priority === 'high' ? '🔴' : priority === 'medium' ? '🟡' : '🟢'}
+                      </button>
+                      <button class="delete-btn" onclick="deleteItem('${section.name}', '${item}')">✕</button>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
         `;
-      }).join("");
-
-      root.querySelectorAll("[data-action='toggle']").forEach(button => {
-        button.addEventListener("click", () => {
-          toggleItem(button.dataset.section, button.dataset.item);
-        });
-      });
-
-      root.querySelectorAll("[data-action='delete']").forEach(button => {
-        button.addEventListener("click", () => {
-          deleteItem(button.dataset.section, button.dataset.item);
-        });
-      });
-
-      root.querySelectorAll("[data-action='setPriority']").forEach(button => {
-        button.addEventListener("click", () => {
-          setPriority(button.dataset.section, button.dataset.item, button.dataset.priority);
-        });
-      });
+      }).join('');
     }
 
-    function toggleItem(sectionId, itemId) {
-      sections = sections.map(section => {
-        if (section.id !== sectionId) return section;
-        return {
-          ...section,
-          items: section.items.map(item => item.id === itemId ? { ...item, done: !item.done } : item)
-        };
-      });
-      saveState();
-      render();
+    function toggleItem(section, item) {
+      const saved = JSON.parse(localStorage.getItem('itemStatus') || '{}');
+      const key = `${section}-${item}`;
+      saved[key] = !saved[key];
+      localStorage.setItem('itemStatus', JSON.stringify(saved));
+      const checklistData = JSON.parse(localStorage.getItem('checklistData')) || defaultChecklists;
+      renderChecklists(checklistData);
+      updateProgress();
     }
 
-    function setPriority(sectionId, itemId, priority) {
-      sections = sections.map(section => {
-        if (section.id !== sectionId) return section;
-        return {
-          ...section,
-          items: section.items.map(item => item.id === itemId ? { ...item, priority } : item)
-        };
-      });
-      saveState();
-      render();
-    }
-
-    function deleteItem(sectionId, itemId) {
-      sections = sections.map(section => {
-        if (section.id !== sectionId) return section;
-        return { ...section, items: section.items.filter(item => item.id !== itemId) };
-      });
-      saveState();
-      render();
-    }
-
-    function addItem() {
-      const input = document.getElementById("newTaskInput");
-      const select = document.getElementById("newTaskSection");
-      const priority = document.getElementById("newTaskPriority").value;
-      const text = input.value.trim();
-      if (!text) return;
-
-      sections = sections.map(section => {
-        if (section.id !== select.value) return section;
-        return {
-          ...section,
-          items: [
-            ...section.items,
-            { id: `${section.id}-${Date.now()}`, text, done: false, priority }
-          ]
-        };
-      });
-
-      input.value = "";
-      saveState();
-      render();
-    }
-
-    function resetChecklist() {
-      if (!confirm("Möchtest du die Checkliste wirklich auf die Standardliste zurücksetzen? Deine Änderungen an Aufgaben gehen verloren.")) {
-        return;
+    function deleteItem(section, item) {
+      if (confirm('Wirklich löschen?')) {
+        const checklistData = JSON.parse(localStorage.getItem('checklistData')) || defaultChecklists;
+        const sectionIdx = checklistData.findIndex(s => s.name === section);
+        if (sectionIdx >= 0) {
+          checklistData[sectionIdx].items = checklistData[sectionIdx].items.filter(i => i !== item);
+          localStorage.setItem('checklistData', JSON.stringify(checklistData));
+          renderChecklists(checklistData);
+        }
       }
-      sections = clone(defaultSections);
-      activeFilter = "all";
-      saveState();
-      render();
     }
 
-    function render() {
-      renderStats();
-      renderTripInfo();
-      renderFlights();
-      renderBudget();
-      renderFilters();
-      renderAddSectionOptions();
-      renderPackingList();
-      renderChecklists();
+    function cyclePriority(section, item, current) {
+      const priorities = ['low', 'medium', 'high'];
+      const idx = priorities.indexOf(current);
+      const next = priorities[(idx + 1) % priorities.length];
+      const saved = JSON.parse(localStorage.getItem('itemPriority') || '{}');
+      saved[`${section}-${item}`] = next;
+      localStorage.setItem('itemPriority', JSON.stringify(saved));
+      const checklistData = JSON.parse(localStorage.getItem('checklistData')) || defaultChecklists;
+      renderChecklists(checklistData);
     }
 
-    document.getElementById("editTripBtn").addEventListener("click", () => {
-      editingTrip = !editingTrip;
-      document.getElementById("editTripBtn").textContent = editingTrip ? "💾 Speichern" : "✏️ Bearbeiten";
-      saveState();
-      renderTripInfo();
-    });
-
-    document.getElementById("addTaskBtn").addEventListener("click", addItem);
-    document.getElementById("newTaskInput").addEventListener("keydown", event => {
-      if (event.key === "Enter") addItem();
-    });
-    document.getElementById("resetBtn").addEventListener("click", resetChecklist);
-
-    document.getElementById("budgetModalSave").addEventListener("click", saveBudgetEdit);
-    document.getElementById("budgetModalCancel").addEventListener("click", closeBudgetEditor);
-    document.getElementById("budgetModal").addEventListener("click", event => {
-      if (event.target === document.getElementById("budgetModal")) {
-        closeBudgetEditor();
+    function renderDays() {
+      const tripData = JSON.parse(localStorage.getItem('tripData')) || defaultTripData;
+      const startDate = new Date(tripData.departDate);
+      const endDate = new Date(tripData.returnDate);
+      const days = [];
+      
+      for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+        days.push(new Date(d));
       }
-    });
 
-    document.getElementById("weightClothing").addEventListener("input", updateWeightCalculator);
-    document.getElementById("weightShoes").addEventListener("input", updateWeightCalculator);
-    document.getElementById("weightElectronics").addEventListener("input", updateWeightCalculator);
-
-    function runSmokeTests() {
-      const testSections = [
-        { id: "x", title: "X", icon: "✓", items: [
-          { id: "a", text: "A", done: true, priority: "hoch" },
-          { id: "b", text: "B", done: false, priority: "mittel" }
-        ] }
-      ];
-      console.assert(daysUntil("2026-09-11", new Date("2026-09-10T12:00:00")) === 1, "daysUntil should count one day before departure");
-      console.assert(calculateStats(testSections).percent === 50, "calculateStats should return 50%");
-      console.assert(defaultSections.some(section => section.id === "documents"), "defaultSections should include documents");
-      console.assert(typeof escapeHtml("<x>") === "string" && escapeHtml("<x>").includes("&lt;"), "escapeHtml should escape HTML");
+      const daysGrid = document.getElementById('daysGrid');
+      const dailyBudget = 200; // EUR pro Tag
+      
+      daysGrid.innerHTML = days.map((day, idx) => `
+        <div class="day-card">
+          <div class="day-number">Tag ${idx + 1}</div>
+          <div class="day-label">${day.toLocaleDateString('de-DE', { month: 'short', day: 'numeric' })}</div>
+          <div class="day-budget">~${dailyBudget}€</div>
+        </div>
+      `).join('');
     }
 
-    runSmokeTests();
-    render();
+    function updateWeightCalculator() {
+      const weights = {
+        shirt: 0.2,
+        pants: 0.3,
+        jacket: 0.4,
+        underwear: 0.05,
+        socks: 0.03,
+        shoes: 0.4
+      };
+
+      const shirtCount = parseInt(document.getElementById('shirtCount')?.value || 0);
+      const pantsCount = parseInt(document.getElementById('pantsCount')?.value || 0);
+      const jacketCount = parseInt(document.getElementById('jacketCount')?.value || 0);
+      const underwearCount = parseInt(document.getElementById('underwearCount')?.value || 0);
+      const socksCount = parseInt(document.getElementById('socksCount')?.value || 0);
+      const shoeCount = parseInt(document.getElementById('shoeCount')?.value || 0);
+
+      const totalWeight = 
+        shirtCount * weights.shirt +
+        pantsCount * weights.pants +
+        jacketCount * weights.jacket +
+        underwearCount * weights.underwear +
+        socksCount * weights.socks +
+        shoeCount * weights.shoes + 2; // +2kg für sonstiges
+
+      const maxWeight = 23;
+      const percent = Math.min(100, (totalWeight / maxWeight) * 100);
+      
+      const fill = document.getElementById('weightFill');
+      const text = document.getElementById('weightText');
+      
+      if (fill) {
+        fill.style.width = percent + '%';
+        fill.className = 'weight-fill' + (totalWeight > maxWeight ? ' danger' : totalWeight > 20 ? ' warning' : '');
+      }
+      
+      if (text) {
+        text.textContent = totalWeight.toFixed(1) + ' / 23 kg';
+      }
+    }
+
+    function updateProgress() {
+      const checklistData = JSON.parse(localStorage.getItem('checklistData')) || defaultChecklists;
+      const itemStatus = JSON.parse(localStorage.getItem('itemStatus') || '{}');
+      
+      let totalItems = 0;
+      let completedItems = 0;
+      
+      checklistData.forEach(section => {
+        section.items?.forEach(item => {
+          totalItems++;
+          if (itemStatus[`${section.name}-${item}`]) {
+            completedItems++;
+          }
+        });
+      });
+
+      const percent = totalItems ? Math.round((completedItems / totalItems) * 100) : 0;
+      const progressBar = document.getElementById('overallProgress');
+      const progressText = document.getElementById('overallText');
+      
+      if (progressBar) progressBar.style.width = percent + '%';
+      if (progressText) progressText.textContent = `${completedItems} von ${totalItems} Aufgaben erledigt · ${percent}%`;
+    }
+
+    document.getElementById('editTripBtn')?.addEventListener('click', () => {
+      const tripData = JSON.parse(localStorage.getItem('tripData')) || defaultTripData;
+      document.getElementById('tripDestination').value = tripData.destination;
+      document.getElementById('tripDepartDate').value = tripData.departDate;
+      document.getElementById('tripReturnDate').value = tripData.returnDate;
+      document.getElementById('tripHotel').value = tripData.hotel;
+      document.getElementById('tripRentCar').value = tripData.rentCar;
+      document.getElementById('tripModal').classList.add('active');
+    });
+
+    document.getElementById('darkModeToggle')?.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      document.documentElement.classList.toggle('dark-mode');
+      saveData();
+    });
+
+    document.getElementById('printBtn')?.addEventListener('click', () => {
+      window.print();
+    });
+
+    document.getElementById('shirtCount')?.addEventListener('input', updateWeightCalculator);
+    document.getElementById('pantsCount')?.addEventListener('input', updateWeightCalculator);
+    document.getElementById('jacketCount')?.addEventListener('input', updateWeightCalculator);
+    document.getElementById('underwearCount')?.addEventListener('input', updateWeightCalculator);
+    document.getElementById('socksCount')?.addEventListener('input', updateWeightCalculator);
+    document.getElementById('shoeCount')?.addEventListener('input', updateWeightCalculator);
+
+    function saveTripData() {
+      saveData();
+      const tripData = JSON.parse(localStorage.getItem('tripData')) || defaultTripData;
+      renderTripInfo(tripData);
+      renderDays();
+      closeModal('tripModal');
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+    }
+
+    loadData();
   </script>
 </body>
 </html>
