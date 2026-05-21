@@ -998,101 +998,106 @@
       line-height: 1.55;
     }
 
-    @media (max-width: 950px) {
-      .hero-grid,
-      .main-grid,
-      .checklist-grid,
-      .budget-grid,
-      .add-row,
-      .weather-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        flex-direction: column;
-        padding: 28px;
-      }
-
-      .main-grid,
-      .checklist-area {
-        padding: 18px;
-      }
-
-      .weather-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
+    .daily-plans-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
     }
 
-    @media (max-width: 560px) {
-      .container {
-        width: min(100% - 16px, 1220px);
-        padding: 8px 0;
-      }
-
-      .app-shell,
-      .hero,
-      .card,
-      .budget,
-      .section-card,
-      .tool-card,
-      .weather-card {
-        border-radius: 22px;
-      }
-
-      .section-title-row {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .mini-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .item {
-        align-items: flex-start;
-      }
-
-      .budget-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .weight-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .weather-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .flight-grid {
-        grid-template-columns: 1fr;
-      }
+    .daily-plan-card {
+      border: 1px solid var(--slate-100);
+      border-radius: var(--radius-xl);
+      background: white;
+      box-shadow: var(--shadow-soft);
+      padding: 16px;
+      transition: background 0.3s ease;
     }
 
-    @media print {
-      body {
-        background: white;
-      }
+    body.dark-mode .daily-plan-card {
+      background: var(--slate-100);
+      border-color: var(--slate-200);
+    }
 
-      .app-shell {
-        box-shadow: none;
-      }
+    .daily-plan-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
 
-      .add-row,
-      .filter-row,
-      .delete-btn,
-      .dark-btn,
-      .soft-btn,
-      .tool-card,
-      .weather-card,
-      .hero-controls {
-        display: none !important;
-      }
+    .daily-plan-date {
+      font-size: 14px;
+      font-weight: 950;
+      color: var(--cyan-700);
+    }
+
+    .daily-plan-budget {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--emerald-600);
+    }
+
+    .daily-plan-textarea {
+      width: 100%;
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      background: white;
+      padding: 10px;
+      color: var(--slate-900);
+      outline: none;
+      font-size: 13px;
+      resize: vertical;
+      min-height: 80px;
+      transition: background 0.2s ease;
+    }
+
+    body.dark-mode .daily-plan-textarea {
+      background: var(--slate-200);
+      border-color: var(--slate-200);
+    }
+
+    .daily-plan-textarea:focus {
+      border-color: var(--cyan-700);
+      box-shadow: 0 0 0 3px rgba(103, 232, 249, 0.35);
+    }
+
+    .daily-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+      padding: 16px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(115deg, #ecfdf5, #ecfeff);
+    }
+
+    body.dark-mode .daily-summary {
+      background: linear-gradient(115deg, rgba(5, 150, 105, 0.2), rgba(15, 23, 42, 0.5));
+    }
+
+    .summary-item {
+      text-align: center;
+    }
+
+    .summary-label {
+      font-size: 11px;
+      color: var(--slate-500);
+      text-transform: uppercase;
+      font-weight: 950;
+      margin-bottom: 4px;
+    }
+
+    .summary-value {
+      font-size: 18px;
+      font-weight: 950;
+      color: var(--cyan-700);
     }
   </style>
 </head>
+
 <body>
-  <main class="container">
+  <div class="container">
     <div class="app-shell">
       <section class="hero">
         <div class="hero-grid">
@@ -1115,35 +1120,32 @@
 
       <section class="main-grid">
         <div class="card card-pad">
-          <div class="section-title-row">
-            <div>
-              <h2>Reisedaten</h2>
-              <p class="muted">Bearbeitbar, falls Hotelname oder Details ergänzt werden.</p>
-            </div>
-            <button class="dark-btn" id="editTripBtn">✏️ Bearbeiten</button>
-          </div>
           <div class="info-list" id="tripInfo"></div>
         </div>
 
-        <div class="flight-stack" id="flightCards"></div>
+        <div class="card">
+          <div class="flight-stack" id="flights"></div>
+          <div class="checklist-area">
+            <h3 style="margin-bottom: 14px;">Budget Übersicht</h3>
+            <div class="budget" id="budgetDisplay"></div>
+          </div>
+        </div>
       </section>
 
       <section class="checklist-area">
-        <section class="budget">
-          <div class="budget-head">
-            <span class="icon-box">💶</span>
-            <div>
-              <h2>Budget & Ausgaben vor Ort</h2>
-              <p class="muted">Klicke auf einen Punkt um ihn zu bearbeiten.</p>
-            </div>
+        <div class="tool-card">
+          <div class="tool-head">
+            <div class="tool-title">📍 Tagesplanung & Budget</div>
           </div>
-          <div class="budget-grid" id="budgetGrid"></div>
-        </section>
+          <div class="tool-content">
+            <div id="dailyPlansContainer" class="daily-plans-grid"></div>
+            <div id="dailySummary" class="daily-summary"></div>
+          </div>
+        </div>
 
         <div class="weather-card">
           <div class="tool-head">
-            <span class="icon-box">🌤️</span>
-            <div class="tool-title">Live Wetter Mauritius</div>
+            <div class="tool-title">🌞 Live Wetter Mauritius</div>
           </div>
           <div class="tool-content">
             <p id="weatherStatus">Lädt aktuelle Wetterdaten...</p>
@@ -1174,12 +1176,13 @@
         </p>
       </section>
     </div>
-  </main>
+  </div>
 
   <script>
     const STORAGE_KEY = "mauritius-trip-checklist-html-v1";
     const TRIP_STORAGE_KEY = "mauritius-trip-data-html-v1";
     const BUDGET_STORAGE_KEY = "mauritius-budget-data-html-v1";
+    const DAILY_PLANS_KEY = "mauritius-daily-plans-html-v1";
 
     const initialTrip = {
       period: "11.09.2026 – 21.09.2026",
@@ -1254,13 +1257,13 @@
       {
         id: "packing",
         title: "Packliste",
-        icon: "🧳",
+        icon: "🎒",
         items: [
-          { id: "pack-1", text: "Badebekleidung, Strandtücher, Flip-Flops/Badeschuhe", done: false, priority: "mittel" },
-          { id: "pack-2", text: "Leichte Sommerkleidung + etwas Schickeres fürs Abendessen", done: false, priority: "mittel" },
-          { id: "pack-3", text: "Regenjacke / dünne Jacke für Wind und kurze Schauer", done: false, priority: "niedrig" },
-          { id: "pack-4", text: "Sonnenbrille, Kappe/Hut, After-Sun", done: false, priority: "hoch" },
-          { id: "pack-5", text: "Ladegeräte, Powerbank, Reiseadapter Typ C/G prüfen", done: false, priority: "mittel" },
+          { id: "pack-1", text: "Kleidung: lockere, leichte Stoffe, Schwimmkleidung, Sonnenhut/Kappe, bequeme Schuhe", done: false, priority: "hoch" },
+          { id: "pack-2", text: "Hygiene: Zahnbürste, Zahnpasta, Duschgel, Shampoo, Deodorant, weibliche Hygieneartikel", done: false, priority: "hoch" },
+          { id: "pack-3", text: "Schmuck, Uhren, Kamera und Wertsachen: Wertvollbestandteile versichern oder minimal auswählen", done: false, priority: "mittel" },
+          { id: "pack-4", text: "Ladegeräte für alle Geräte – Stecker-Adapter (230 V, Typ G UK/Mauritius)", done: false, priority: "hoch" },
+          { id: "pack-5", text: "Zahlungsmittel: Kreditkarten, kleiner Bargeldbetrag, Reisepass", done: false, priority: "hoch" },
           { id: "pack-6", text: "Schnorchel-/Strandausrüstung falls gewünscht", done: false, priority: "niedrig" }
         ]
       },
@@ -1316,30 +1319,27 @@
       }
     ];
 
-    let sections = loadSections();
+    const tripStartDate = new Date("2026-09-11T00:00:00Z");
+    const tripEndDate = new Date("2026-09-21T00:00:00Z");
+
+    let sections = loadState();
     let trip = loadTrip();
     let budget = loadBudget();
+    let dailyPlans = loadDailyPlans();
     let activeFilter = "all";
-    let editingTrip = false;
 
-    function clone(value) {
-      return JSON.parse(JSON.stringify(value));
-    }
-
-    function loadSections() {
+    function loadState() {
       try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        const parsed = raw ? JSON.parse(raw) : null;
-        return Array.isArray(parsed) && parsed.length ? parsed : clone(defaultSections);
+        const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        return parsed && Array.isArray(parsed) ? parsed : JSON.parse(JSON.stringify(defaultSections));
       } catch {
-        return clone(defaultSections);
+        return JSON.parse(JSON.stringify(defaultSections));
       }
     }
 
     function loadTrip() {
       try {
-        const raw = localStorage.getItem(TRIP_STORAGE_KEY);
-        const parsed = raw ? JSON.parse(raw) : null;
+        const parsed = JSON.parse(localStorage.getItem(TRIP_STORAGE_KEY));
         return parsed && typeof parsed === "object" ? { ...initialTrip, ...parsed } : { ...initialTrip };
       } catch {
         return { ...initialTrip };
@@ -1348,18 +1348,37 @@
 
     function loadBudget() {
       try {
-        const raw = localStorage.getItem(BUDGET_STORAGE_KEY);
-        const parsed = raw ? JSON.parse(raw) : null;
+        const parsed = JSON.parse(localStorage.getItem(BUDGET_STORAGE_KEY));
         return parsed && typeof parsed === "object" ? { ...initialBudget, ...parsed } : { ...initialBudget };
       } catch {
         return { ...initialBudget };
       }
     }
 
+    function loadDailyPlans() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(DAILY_PLANS_KEY));
+        if (parsed && typeof parsed === "object") return parsed;
+      } catch {}
+      return generateDefaultDailyPlans();
+    }
+
+    function generateDefaultDailyPlans() {
+      const plans = {};
+      const currentDate = new Date(tripStartDate);
+      while (currentDate <= tripEndDate) {
+        const dateStr = currentDate.toISOString().split("T")[0];
+        plans[dateStr] = { plans: "", budget: "" };
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+      return plans;
+    }
+
     function saveState() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(sections));
       localStorage.setItem(TRIP_STORAGE_KEY, JSON.stringify(trip));
       localStorage.setItem(BUDGET_STORAGE_KEY, JSON.stringify(budget));
+      localStorage.setItem(DAILY_PLANS_KEY, JSON.stringify(dailyPlans));
     }
 
     function daysUntil(dateString, now = new Date()) {
@@ -1376,124 +1395,97 @@
       return {
         total: all.length,
         done,
-        percent: all.length ? Math.round((done / all.length) * 100) : 0
+        percent: all.length > 0 ? Math.round((done / all.length) * 100) : 0
       };
     }
 
-    function escapeHtml(value) {
-      return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+    function escapeHtml(unsafe) {
+      return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
     }
 
-    function priorityClass(priority) {
-      if (priority === "hoch") return "high";
-      if (priority === "mittel") return "medium";
-      return "low";
-    }
-
-    function renderTripInfo() {
+    function renderTrip() {
       const root = document.getElementById("tripInfo");
-      const fields = [
-        { key: "period", icon: "📅", label: "Zeitraum", value: trip.period, editable: true },
-        { key: "hotel", icon: "🏨", label: "Hotel / Unterkunft", value: `${trip.hotel} · ${trip.accommodation} · ${trip.board}`, editable: true, helper: "Im Bearbeitungsmodus hier nur den Hotelnamen eingeben, Rest folgt nach." },
-        { key: "travelers", icon: "👥", label: "Reisende", value: trip.travelers, editable: false },
-        { key: "organizer", icon: "🧾", label: "Veranstalter", value: trip.organizer, editable: false },
-        { key: "insurance", icon: "🛡️", label: "Reiseschutz", value: trip.insurance, editable: false },
-        { key: "carRental", icon: "🚗", label: "Mietwagen", value: trip.carRental, editable: true },
-        { key: "hotelContact", icon: "☎️", label: "Hotelkontakt", value: trip.hotelContact, editable: false },
-        { key: "note", icon: "✨", label: "Hinweis", value: trip.note, editable: true }
-      ];
-
-      root.innerHTML = fields.map(field => {
-        const value = escapeHtml(field.value);
-        const input = editingTrip && field.editable
-          ? `<input class="edit-input" data-trip-key="${field.key}" value="${value}" />${field.helper ? `<p class="muted">${escapeHtml(field.helper)}</p>` : ""}`
-          : `<div class="info-value">${value}</div>`;
-
+      root.innerHTML = Object.entries(trip).map(([key, value]) => {
+        const titles = {
+          period: "🗓️ Zeitraum",
+          hotel: "🏨 Hotel",
+          accommodation: "🛏️ Unterkunft",
+          board: "🍽️ Verpflegung",
+          travelers: "👥 Reisende",
+          organizer: "🏢 Organisator",
+          insurance: "📋 Versicherung",
+          carRental: "🚗 Mietwagen",
+          hotelContact: "📞 Hotelkontakt",
+          note: "📝 Notiz"
+        };
         return `
           <div class="info-card">
-            <span class="icon-box">${field.icon}</span>
-            <div style="min-width: 0; flex: 1;">
-              <div class="tiny-label">${escapeHtml(field.label)}</div>
-              ${input}
+            <div class="icon-box">${value}</div>
+            <div>
+              <div class="tiny-label">${titles[key] || key}</div>
+              <div class="info-value">${escapeHtml(value)}</div>
             </div>
           </div>
         `;
       }).join("");
-
-      root.querySelectorAll("[data-trip-key]").forEach(input => {
-        input.addEventListener("input", event => {
-          const key = event.target.getAttribute("data-trip-key");
-          trip[key] = event.target.value;
-          saveState();
-        });
-      });
     }
 
     function renderFlights() {
-      const root = document.getElementById("flightCards");
-      root.innerHTML = flights.map(flight => `
-        <div class="flight-card">
-          <div class="flight-head">
-            <span class="icon-box">✈️</span>
-            <div>
-              <div class="flight-label">${flight.type}</div>
-              <h3>${flight.date}</h3>
-            </div>
-          </div>
-          <div class="flight-grid">
-            <div class="flight-item">
-              <strong>Route</strong>
-              ${flight.route}
-            </div>
-            <div class="flight-item">
-              <strong>Zeit</strong>
-              ${flight.time}
-            </div>
-            <div class="flight-item">
-              <strong>Airline & Flug</strong>
-              ${flight.airline} · ${flight.flightNos}
-            </div>
-            <div class="flight-item">
-              <strong>Sitzplätze</strong>
-              ${flight.seats}
-            </div>
-            <div class="flight-item" style="grid-column: 1 / -1;">
-              <strong>Gepäck</strong>
-              ${flight.baggage}
-            </div>
-          </div>
-        </div>
-      `).join("");
-    }
+      const root = document.getElementById("flights");
+      root.innerHTML = flights.map(flight => {
+        const details = [
+          { label: "Datum", value: flight.date },
+          { label: "Strecke", value: flight.route },
+          { label: "Uhrzeit", value: flight.time },
+          { label: "Airline", value: flight.airline },
+          { label: "Flugnummern", value: flight.flightNos },
+          { label: "Gepäck", value: flight.baggage },
+          { label: "Sitzplätze", value: flight.seats }
+        ];
 
-    function renderBudget() {
-      const root = document.getElementById("budgetGrid");
-      const labels = {
-        carRental: { label: "Mietwagen", icon: "🚗" },
-        excursions: { label: "Ausflüge", icon: "🎯" },
-        foodDrinks: { label: "Essen & Getränke", icon: "🍽️" },
-        reserve: { label: "Reserve", icon: "💾" }
-      };
-
-      root.innerHTML = Object.keys(labels).map(key => {
-        const label = labels[key];
         return `
-          <div class="budget-item" data-budget-key="${key}">
-            <div class="budget-label">${label.icon} ${label.label}</div>
-            <div class="budget-value" data-budget-display="${key}">${escapeHtml(budget[key])}</div>
-            <input class="budget-input" data-budget-key="${key}" value="${escapeHtml(budget[key])}" style="display: none;" />
+          <div class="flight-card">
+            <div class="flight-head">
+              <div>
+                <div class="flight-label">${flight.type}</div>
+              </div>
+            </div>
+            <div class="flight-grid">
+              ${details.map(d => `
+                <div class="flight-item">
+                  <strong>${d.label}</strong>
+                  ${escapeHtml(d.value)}
+                </div>
+              `).join("")}
+            </div>
           </div>
         `;
       }).join("");
+    }
 
-      root.querySelectorAll(".budget-item").forEach(item => {
-        item.addEventListener("click", (e) => {
-          if (e.target.classList.contains("budget-input")) return;
+    function renderBudget() {
+      const root = document.getElementById("budgetDisplay");
+      root.innerHTML = `
+        <div class="budget-grid">
+          ${Object.entries(budget).map(([key, value]) => {
+            return `
+              <div class="budget-item" data-budget-key="${key}">
+                <span class="budget-label">${key}</span>
+                <span class="budget-value">${escapeHtml(value)}</span>
+                <input type="text" class="budget-input" style="display:none;" value="${escapeHtml(value)}" />
+              </div>
+            `;
+          }).join("")}
+        </div>
+      `;
+
+      document.querySelectorAll(".budget-item").forEach(item => {
+        item.addEventListener("click", () => {
           const key = item.getAttribute("data-budget-key");
           const input = item.querySelector(".budget-input");
           const display = item.querySelector(".budget-value");
@@ -1520,17 +1512,81 @@
       });
     }
 
+    function renderDailyPlans() {
+      const container = document.getElementById("dailyPlansContainer");
+      const dates = Object.keys(dailyPlans).sort();
+
+      container.innerHTML = dates.map(dateStr => {
+        const date = new Date(dateStr + "T00:00:00Z");
+        const dayNames = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
+        const dayName = dayNames[date.getUTCDay()];
+        const displayDate = date.toLocaleDateString("de-DE", { month: "numeric", day: "numeric" });
+        const data = dailyPlans[dateStr] || { plans: "", budget: "" };
+
+        return `
+          <div class="daily-plan-card">
+            <div class="daily-plan-header">
+              <div class="daily-plan-date">${dayName}, ${displayDate}</div>
+              <div class="daily-plan-budget">💰 ${data.budget || "–"}</div>
+            </div>
+            <textarea class="daily-plan-textarea" data-date="${dateStr}" data-field="plans" placeholder="Pläne, Ausflüge, Aktivitäten für diesen Tag...">${escapeHtml(data.plans)}</textarea>
+          </div>
+        `;
+      }).join("");
+
+      document.querySelectorAll(".daily-plan-textarea").forEach(textarea => {
+        textarea.addEventListener("blur", saveDailyPlanEdit);
+      });
+
+      updateDailySummary();
+    }
+
+    function saveDailyPlanEdit(e) {
+      const dateStr = e.target.getAttribute("data-date");
+      const field = e.target.getAttribute("data-field");
+      dailyPlans[dateStr] = dailyPlans[dateStr] || { plans: "", budget: "" };
+      dailyPlans[dateStr][field] = e.target.value;
+      saveState();
+      updateDailySummary();
+    }
+
+    function updateDailySummary() {
+      const summary = document.getElementById("dailySummary");
+      const dates = Object.keys(dailyPlans).sort();
+      const totalDays = dates.length;
+      const daysWithPlans = dates.filter(d => dailyPlans[d].plans.trim()).length;
+      const totalBudget = dates.reduce((sum, d) => {
+        const budgetStr = dailyPlans[d].budget || "";
+        const num = parseFloat(budgetStr);
+        return sum + (isNaN(num) ? 0 : num);
+      }, 0);
+
+      summary.innerHTML = `
+        <div class="summary-item">
+          <div class="summary-label">Reisedauer</div>
+          <div class="summary-value">${totalDays} Tage</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-label">Tage geplant</div>
+          <div class="summary-value">${daysWithPlans}/${totalDays}</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-label">Tages-Budget</div>
+          <div class="summary-value">${totalBudget > 0 ? totalBudget.toFixed(0) + " €" : "–"}</div>
+        </div>
+      `;
+    }
+
     async function renderWeather() {
       const root = document.getElementById("weatherGrid");
       const status = document.getElementById("weatherStatus");
       
       try {
-        // Using Open-Meteo API (no API key required)
         const response = await fetch(
           'https://api.open-meteo.com/v1/forecast?latitude=-20.3484&longitude=57.5522&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Africa/Mauritius&forecast_days=5'
         );
         
-        if (!response.ok) throw new Error('Wetter konnte nicht geladen werden');
+        if (!response.ok) throw new Error('API Fehler');
         
         const data = await response.json();
         const daily = data.daily;
@@ -1557,13 +1613,12 @@
         };
 
         const dayNames = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
-        const today = new Date();
-
+        
         status.innerHTML = '✅ Echte Wetterdaten von Open-Meteo (täglich aktualisiert)';
         
         root.innerHTML = daily.time.map((date, idx) => {
-          const d = new Date(date);
-          const dayName = dayNames[d.getDay()];
+          const d = new Date(date + 'T00:00:00Z');
+          const dayName = dayNames[d.getUTCDay()];
           const code = daily.weather_code[idx];
           const weather = weatherCodes[code] || { icon: '❓', desc: 'Unbekannt' };
           const maxTemp = daily.temperature_2m_max[idx];
@@ -1580,8 +1635,25 @@
           `;
         }).join("");
       } catch (error) {
-        status.innerHTML = '⚠️ Wetter temporär nicht verfügbar. ' + error.message;
-        root.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 20px; color: var(--slate-500);">Bitte später erneut versuchen.</div>';
+        status.innerHTML = '⚠️ Wetter temporär nicht verfügbar. Zeige Beispielwetter.';
+        
+        const exampleForecasts = [
+          { day: 'Samstag', icon: '⛅', max: 28, min: 22, desc: 'Teils bewölkt' },
+          { day: 'Sonntag', icon: '☀️', max: 29, min: 23, desc: 'Sonnig' },
+          { day: 'Montag', icon: '🌧️', max: 26, min: 21, desc: 'Leichter Regen' },
+          { day: 'Dienstag', icon: '⛅', max: 28, min: 22, desc: 'Teils bewölkt' },
+          { day: 'Mittwoch', icon: '☀️', max: 30, min: 24, desc: 'Sonnig' }
+        ];
+
+        root.innerHTML = exampleForecasts.map(f => `
+          <div class="weather-day">
+            <div class="weather-day-name">${f.day}</div>
+            <div class="weather-icon">${f.icon}</div>
+            <div class="weather-temp">${f.max}°C</div>
+            <div class="weather-desc">${f.min}°</div>
+            <div class="weather-desc" style="font-size: 10px;">${f.desc}</div>
+          </div>
+        `).join("");
       }
     }
 
@@ -1602,10 +1674,9 @@
           <div class="section-card">
             <div class="section-head">
               <div class="section-name">
-                <span class="icon-box">${section.icon}</span>
+                <div class="icon-box">${section.icon}</div>
                 <div>
-                  <h3>${escapeHtml(section.title)}</h3>
-                  <div style="font-size: 12px; color: var(--slate-500); margin-top: 2px;">${section.items.length} Aufgaben</div>
+                  <h3>${section.title}</h3>
                 </div>
               </div>
               <div class="section-percent">${stats.percent}%</div>
@@ -1617,16 +1688,16 @@
             </div>
             <div class="item-list">
               ${items.map(item => `
-                <div class="item ${item.done ? "done" : ""}">
+                <div class="item ${item.done ? 'done' : ''}">
                   <button class="check-btn" data-item-id="${item.id}" data-section-id="${section.id}">
-                    ${item.done ? "✓" : "○"}
+                    ${item.done ? '✓' : '○'}
                   </button>
-                  <span class="item-text">${escapeHtml(item.text)}</span>
+                  <div class="item-text">${escapeHtml(item.text)}</div>
                   <div class="item-controls">
-                    <button class="priority-circle ${priorityClass(item.priority)}" data-item-id="${item.id}" data-section-id="${section.id}" title="Priorität: ${item.priority}">
-                      ${item.priority === "hoch" ? "!" : item.priority === "mittel" ? "–" : "o"}
+                    <button class="priority-circle ${item.priority}" data-item-id="${item.id}" data-section-id="${section.id}" title="Priorität: ${item.priority}">
+                      ${item.priority === 'hoch' ? '!' : item.priority === 'mittel' ? '•' : '○'}
                     </button>
-                    <button class="delete-btn" data-item-id="${item.id}" data-section-id="${section.id}">×</button>
+                    <button class="delete-btn" data-item-id="${item.id}" data-section-id="${section.id}">✕</button>
                   </div>
                 </div>
               `).join("")}
@@ -1635,129 +1706,143 @@
         `;
       }).join("");
 
-      // Event listeners
-      root.querySelectorAll(".check-btn").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          const itemId = btn.getAttribute("data-item-id");
-          const sectionId = btn.getAttribute("data-section-id");
-          const section = sections.find(s => s.id === sectionId);
-          const item = section.items.find(i => i.id === itemId);
+      attachEventListeners();
+      updateCountdown();
+    }
+
+    function attachEventListeners() {
+      document.querySelectorAll(".check-btn").forEach(btn => {
+        btn.addEventListener("click", toggleTask);
+      });
+
+      document.querySelectorAll(".delete-btn").forEach(btn => {
+        btn.addEventListener("click", deleteTask);
+      });
+
+      document.querySelectorAll(".priority-circle").forEach(btn => {
+        btn.addEventListener("click", cyclePriority);
+      });
+    }
+
+    function toggleTask(e) {
+      const itemId = e.currentTarget.getAttribute("data-item-id");
+      const sectionId = e.currentTarget.getAttribute("data-section-id");
+      const section = sections.find(s => s.id === sectionId);
+      if (section) {
+        const item = section.items.find(i => i.id === itemId);
+        if (item) {
           item.done = !item.done;
           saveState();
-          render();
-        });
-      });
+          renderChecklists();
+        }
+      }
+    }
 
-      root.querySelectorAll(".delete-btn").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          const itemId = btn.getAttribute("data-item-id");
-          const sectionId = btn.getAttribute("data-section-id");
-          const section = sections.find(s => s.id === sectionId);
-          section.items = section.items.filter(i => i.id !== itemId);
-          saveState();
-          render();
-        });
-      });
+    function deleteTask(e) {
+      const itemId = e.currentTarget.getAttribute("data-item-id");
+      const sectionId = e.currentTarget.getAttribute("data-section-id");
+      const section = sections.find(s => s.id === sectionId);
+      if (section) {
+        section.items = section.items.filter(i => i.id !== itemId);
+        saveState();
+        renderChecklists();
+      }
+    }
 
-      root.querySelectorAll(".priority-circle").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          const itemId = btn.getAttribute("data-item-id");
-          const sectionId = btn.getAttribute("data-section-id");
-          const section = sections.find(s => s.id === sectionId);
-          const item = section.items.find(i => i.id === itemId);
-          const priorities = ["hoch", "mittel", "niedrig"];
+    function cyclePriority(e) {
+      const itemId = e.currentTarget.getAttribute("data-item-id");
+      const sectionId = e.currentTarget.getAttribute("data-section-id");
+      const priorities = ["hoch", "mittel", "niedrig"];
+      const section = sections.find(s => s.id === sectionId);
+      if (section) {
+        const item = section.items.find(i => i.id === itemId);
+        if (item) {
           const idx = priorities.indexOf(item.priority);
           item.priority = priorities[(idx + 1) % priorities.length];
           saveState();
-          render();
-        });
-      });
+          renderChecklists();
+        }
+      }
+    }
+
+    function updateCountdown() {
+      const countdown = document.getElementById("countdown");
+      const progress = document.getElementById("overallProgress");
+      const text = document.getElementById("overallText");
+
+      const days = daysUntil("2026-09-11");
+      countdown.textContent = Math.max(0, days);
+
+      const stats = calculateStats(sections);
+      const percent = stats.percent;
+      progress.style.width = percent + "%";
+      text.textContent = `${stats.done} von ${stats.total} Aufgaben erledigt · ${percent}%`;
     }
 
     function renderFilters() {
       const root = document.getElementById("filters");
-      const filters = [
-        { id: "all", label: "Alle Aufgaben" },
+      const sectionIds = [
+        { id: "all", label: "Alle" },
         ...sections.map(s => ({ id: s.id, label: s.title }))
       ];
 
-      root.innerHTML = filters.map(f => `
-        <button class="filter-button ${activeFilter === f.id ? "active" : ""}" data-filter="${f.id}">
-          ${escapeHtml(f.label)}
-        </button>
-      `).join("");
+      root.innerHTML = sectionIds.map(item => {
+        return `<button class="filter-button ${activeFilter === item.id ? 'active' : ''}" data-filter="${item.id}">${item.label}</button>`;
+      }).join("");
 
-      root.querySelectorAll(".filter-button").forEach(btn => {
+      document.querySelectorAll(".filter-button").forEach(btn => {
         btn.addEventListener("click", () => {
           activeFilter = btn.getAttribute("data-filter");
-          render();
+          renderFilters();
+          renderChecklists();
         });
       });
     }
 
-    function render() {
-      renderTripInfo();
-      renderFlights();
-      renderBudget();
-      renderChecklists();
-      renderFilters();
-      updateCountdown();
-      renderWeather();
-    }
-
-    function updateCountdown() {
-      const days = daysUntil("2026-09-11");
-      document.getElementById("countdown").textContent = Math.max(0, days);
-      const stats = calculateStats(sections);
-      document.getElementById("overallText").textContent = `${stats.done} von ${stats.total} Aufgaben erledigt · ${stats.percent}%`;
-      document.getElementById("overallProgress").style.width = `${stats.percent}%`;
-    }
-
-    // Event listeners
-    document.getElementById("editTripBtn").addEventListener("click", () => {
-      editingTrip = !editingTrip;
-      renderTripInfo();
-      document.getElementById("editTripBtn").textContent = editingTrip ? "💾 Speichern" : "✏️ Bearbeiten";
-      if (!editingTrip) saveState();
-    });
-
     document.getElementById("addTaskBtn").addEventListener("click", () => {
-      const text = document.getElementById("newTaskInput").value.trim();
-      const sectionId = document.getElementById("newTaskSection").value;
-      if (!text) return;
+      const input = document.getElementById("newTaskInput");
+      const select = document.getElementById("newTaskSection");
+      const sectionId = select.value;
+      const text = input.value.trim();
 
-      const section = sections.find(s => s.id === sectionId);
-      if (!section) return;
-
-      section.items.push({
-        id: `custom-${Date.now()}`,
-        text,
-        done: false,
-        priority: "mittel"
-      });
-
-      document.getElementById("newTaskInput").value = "";
-      saveState();
-      render();
-    });
-
-    // Populate section select
-    const sectionSelect = document.getElementById("newTaskSection");
-    sectionSelect.innerHTML = sections.map(s => `<option value="${s.id}">${escapeHtml(s.title)}</option>`).join("");
-
-    document.getElementById("resetBtn").addEventListener("click", () => {
-      if (confirm("Alle Aufgaben zurücksetzen?")) {
-        sections = clone(defaultSections);
-        saveState();
-        render();
+      if (text && sectionId) {
+        const section = sections.find(s => s.id === sectionId);
+        if (section) {
+          const newItem = {
+            id: `custom-${Date.now()}`,
+            text,
+            done: false,
+            priority: "mittel"
+          };
+          section.items.push(newItem);
+          saveState();
+          input.value = "";
+          renderChecklists();
+        }
       }
     });
 
-    // Initial render
-    render();
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      if (confirm("Standardliste wirklich wiederherstellen?")) {
+        sections = JSON.parse(JSON.stringify(defaultSections));
+        saveState();
+        renderChecklists();
+      }
+    });
+
+    const select = document.getElementById("newTaskSection");
+    select.innerHTML = sections.map(s => `<option value="${s.id}">${s.title}</option>`).join("");
+
+    renderTrip();
+    renderFlights();
+    renderBudget();
+    renderDailyPlans();
+    renderFilters();
+    renderChecklists();
+    renderWeather();
+
+    setInterval(renderWeather, 3600000);
   </script>
 </body>
+
 </html>
