@@ -244,6 +244,8 @@
 
     .card-pad {
       padding: 24px;
+      overflow-y: auto;
+      max-height: 600px;
     }
 
     .section-title-row {
@@ -252,6 +254,7 @@
       justify-content: space-between;
       gap: 14px;
       margin-bottom: 18px;
+      flex-wrap: wrap;
     }
 
     h2 {
@@ -264,6 +267,7 @@
       margin: 0;
       font-size: 23px;
       letter-spacing: -0.03em;
+      word-break: break-word;
     }
 
     .muted {
@@ -294,6 +298,7 @@
       display: flex;
       align-items: flex-start;
       gap: 13px;
+      overflow: hidden;
     }
 
     .icon-box {
@@ -329,11 +334,20 @@
       font-size: 14px;
       font-weight: 750;
       line-height: 1.45;
+      word-break: break-word;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 6px;
+      transition: background 0.2s ease;
+    }
+
+    .info-value:hover {
+      background: rgba(14, 116, 144, 0.1);
     }
 
     .edit-input, .edit-textarea {
       width: 100%;
-      border: 1px solid var(--slate-200);
+      border: 2px solid var(--cyan-700);
       border-radius: 14px;
       background: white;
       padding: 10px 12px;
@@ -346,7 +360,7 @@
     body.dark-mode .edit-input,
     body.dark-mode .edit-textarea {
       background: var(--slate-100);
-      border-color: var(--slate-200);
+      border-color: var(--cyan-700);
     }
 
     .edit-input:focus,
@@ -360,6 +374,8 @@
     .flight-stack {
       display: grid;
       gap: 16px;
+      max-height: 600px;
+      overflow-y: auto;
     }
 
     .flight-card {
@@ -405,6 +421,7 @@
       border-radius: 12px;
       font-size: 13px;
       border: 1px solid var(--slate-100);
+      word-break: break-word;
     }
 
     body.dark-mode .flight-item {
@@ -463,7 +480,7 @@
 
     .budget-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 12px;
     }
 
@@ -514,11 +531,12 @@
       font-size: 14px;
       font-weight: 750;
       line-height: 1.45;
+      word-break: break-word;
     }
 
     .budget-input {
       width: 100%;
-      border: 1px solid var(--slate-200);
+      border: 2px solid var(--cyan-700);
       border-radius: 12px;
       background: white;
       padding: 8px 10px;
@@ -530,7 +548,7 @@
 
     body.dark-mode .budget-input {
       background: var(--slate-100);
-      border-color: var(--slate-200);
+      border-color: var(--cyan-700);
     }
 
     .budget-input:focus {
@@ -540,7 +558,7 @@
 
     .filter-row {
       display: flex;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
       gap: 9px;
       overflow-x: auto;
       padding-bottom: 4px;
@@ -557,6 +575,7 @@
       font-size: 14px;
       font-weight: 850;
       transition: 0.18s ease;
+      white-space: nowrap;
     }
 
     body.dark-mode .filter-button {
@@ -681,7 +700,7 @@
 
     .checklist-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
       gap: 18px;
     }
 
@@ -705,6 +724,7 @@
       align-items: center;
       gap: 12px;
       margin-bottom: 14px;
+      flex-wrap: wrap;
     }
 
     .section-name {
@@ -716,6 +736,7 @@
     .section-name .icon-box {
       background: var(--emerald-50);
       color: var(--emerald-600);
+      flex-shrink: 0;
     }
 
     .section-percent {
@@ -744,7 +765,8 @@
     }
 
     .item {
-      display: flex;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
       align-items: center;
       gap: 11px;
       border: 1px solid var(--slate-100);
@@ -791,11 +813,38 @@
     }
 
     .item-text {
-      flex: 1 1 auto;
       color: var(--slate-800);
       font-size: 14px;
       line-height: 1.4;
       font-weight: 700;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: background 0.2s ease;
+      word-break: break-word;
+      overflow: hidden;
+    }
+
+    .item-text:hover {
+      background: rgba(14, 116, 144, 0.1);
+    }
+
+    .item-text.editing {
+      display: none;
+    }
+
+    .item-text-input {
+      display: none;
+      width: 100%;
+      border: 2px solid var(--cyan-700);
+      border-radius: 8px;
+      padding: 6px 8px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .item-text-input.active {
+      display: block;
     }
 
     .item.done .item-text {
@@ -807,40 +856,50 @@
       display: flex;
       align-items: center;
       gap: 6px;
+      flex-shrink: 0;
     }
 
-    .priority-circle {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      cursor: pointer;
-      border: none;
-      padding: 0;
-      transition: 0.2s ease;
-      font-size: 12px;
-      display: flex;
+    .priority-badge {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 4px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 950;
+      cursor: pointer;
+      transition: 0.2s ease;
+      border: none;
+      color: white;
+      white-space: nowrap;
     }
 
-    .priority-circle.high {
+    .priority-badge.high {
       background: #be123c;
-      color: white;
     }
 
-    .priority-circle.medium {
+    .priority-badge.high:hover {
+      background: #a00b31;
+      transform: scale(1.05);
+    }
+
+    .priority-badge.medium {
       background: #b45309;
-      color: white;
     }
 
-    .priority-circle.low {
+    .priority-badge.medium:hover {
+      background: #9c3f00;
+      transform: scale(1.05);
+    }
+
+    .priority-badge.low {
       background: #64748b;
-      color: white;
     }
 
-    .priority-circle:hover {
-      transform: scale(1.15);
-      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    .priority-badge.low:hover {
+      background: #475569;
+      transform: scale(1.05);
     }
 
     .delete-btn {
@@ -915,7 +974,7 @@
 
     .weather-grid {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
       gap: 12px;
       margin-top: 12px;
     }
@@ -927,6 +986,7 @@
       background: var(--slate-50);
       border: 1px solid var(--slate-100);
       font-size: 12px;
+      word-break: break-word;
     }
 
     body.dark-mode .weather-day {
@@ -956,142 +1016,11 @@
       font-size: 11px;
     }
 
-    .weight-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 12px;
-    }
-
-    .weight-input {
-      border: 1px solid var(--slate-200);
-      border-radius: 12px;
-      background: white;
-      padding: 8px 10px;
-      color: var(--slate-900);
-      outline: none;
-      font-size: 13px;
-      transition: background 0.2s ease;
-    }
-
-    body.dark-mode .weight-input {
-      background: var(--slate-200);
-      border-color: var(--slate-200);
-    }
-
-    .weight-input:focus {
-      border-color: var(--cyan-700);
-      box-shadow: 0 0 0 3px rgba(103, 232, 249, 0.35);
-    }
-
-    .weight-label {
-      font-size: 11px;
-      color: var(--slate-500);
-      margin-bottom: 4px;
-      font-weight: 700;
-    }
-
     .footer-note {
       margin-top: 24px;
       color: var(--slate-500);
       font-size: 13px;
       line-height: 1.55;
-    }
-
-    .daily-plans-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .daily-plan-card {
-      border: 1px solid var(--slate-100);
-      border-radius: var(--radius-xl);
-      background: white;
-      box-shadow: var(--shadow-soft);
-      padding: 16px;
-      transition: background 0.3s ease;
-    }
-
-    body.dark-mode .daily-plan-card {
-      background: var(--slate-100);
-      border-color: var(--slate-200);
-    }
-
-    .daily-plan-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-
-    .daily-plan-date {
-      font-size: 14px;
-      font-weight: 950;
-      color: var(--cyan-700);
-    }
-
-    .daily-plan-budget {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--emerald-600);
-    }
-
-    .daily-plan-textarea {
-      width: 100%;
-      border: 1px solid var(--slate-200);
-      border-radius: 12px;
-      background: white;
-      padding: 10px;
-      color: var(--slate-900);
-      outline: none;
-      font-size: 13px;
-      resize: vertical;
-      min-height: 80px;
-      transition: background 0.2s ease;
-    }
-
-    body.dark-mode .daily-plan-textarea {
-      background: var(--slate-200);
-      border-color: var(--slate-200);
-    }
-
-    .daily-plan-textarea:focus {
-      border-color: var(--cyan-700);
-      box-shadow: 0 0 0 3px rgba(103, 232, 249, 0.35);
-    }
-
-    .daily-summary {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 24px;
-      padding: 16px;
-      border-radius: var(--radius-xl);
-      background: linear-gradient(115deg, #ecfdf5, #ecfeff);
-    }
-
-    body.dark-mode .daily-summary {
-      background: linear-gradient(115deg, rgba(5, 150, 105, 0.2), rgba(15, 23, 42, 0.5));
-    }
-
-    .summary-item {
-      text-align: center;
-    }
-
-    .summary-label {
-      font-size: 11px;
-      color: var(--slate-500);
-      text-transform: uppercase;
-      font-weight: 950;
-      margin-bottom: 4px;
-    }
-
-    .summary-value {
-      font-size: 18px;
-      font-weight: 950;
-      color: var(--cyan-700);
     }
   </style>
 </head>
@@ -1133,16 +1062,6 @@
       </section>
 
       <section class="checklist-area">
-        <div class="tool-card">
-          <div class="tool-head">
-            <div class="tool-title">📍 Tagesplanung & Budget</div>
-          </div>
-          <div class="tool-content">
-            <div id="dailyPlansContainer" class="daily-plans-grid"></div>
-            <div id="dailySummary" class="daily-summary"></div>
-          </div>
-        </div>
-
         <div class="weather-card">
           <div class="tool-head">
             <div class="tool-title">🌞 Live Wetter Mauritius</div>
@@ -1156,7 +1075,7 @@
         <div class="section-title-row">
           <div>
             <h2>Interaktive Checklisten</h2>
-            <p class="muted">Aufgaben abhaken, eigene Punkte ergänzen oder nicht relevante Punkte löschen.</p>
+            <p class="muted">Klick auf Text zum Bearbeiten · Priorität anpassen · Aufgaben löschen</p>
           </div>
           <button class="soft-btn" id="resetBtn">↩️ Standardliste wiederherstellen</button>
         </div>
@@ -1164,7 +1083,7 @@
         <div class="filter-row" id="filters"></div>
 
         <div class="add-row">
-          <input id="newTaskInput" class="add-input" placeholder="Neue Aufgabe hinzufügen, z. B. Mietwagen-Buchung bestätigen" />
+          <input id="newTaskInput" class="add-input" placeholder="Neue Aufgabe hinzufügen" />
           <select id="newTaskSection" class="add-select"></select>
           <button class="primary-btn" id="addTaskBtn">＋ Hinzufügen</button>
         </div>
@@ -1172,7 +1091,7 @@
         <div class="checklist-grid" id="checklists"></div>
 
         <p class="footer-note">
-          Hinweis: Diese private Reise-Checkliste ersetzt keine offizielle Reiseberatung. Prüfe kurz vor Abflug nochmals BMEIA, Airline, DERTOUR, Hotel, Mietwagenanbieter und Versicherung.
+          Hinweis: Diese private Reise-Checkliste ersetzt keine offizielle Reiseberatung.
         </p>
       </section>
     </div>
@@ -1182,7 +1101,6 @@
     const STORAGE_KEY = "mauritius-trip-checklist-html-v1";
     const TRIP_STORAGE_KEY = "mauritius-trip-data-html-v1";
     const BUDGET_STORAGE_KEY = "mauritius-budget-data-html-v1";
-    const DAILY_PLANS_KEY = "mauritius-daily-plans-html-v1";
 
     const initialTrip = {
       period: "11.09.2026 – 21.09.2026",
@@ -1191,16 +1109,16 @@
       board: "Halbpension",
       travelers: "Michael Gurtner (28.08.2000) · Valerie Gruber-Wutzl (23.05.1999)",
       organizer: "DERTOUR",
-      insurance: "ERGO Reiseversicherung – RundumSorglos-Jahresschutz-Spezial mit Selbstbeteiligung (209,00 €)",
-      carRental: "Mietwagen am Flughafen Mauritius geplant – Anbieter, Buchungsnummer und Führerschein/Kreditkarte noch ergänzen.",
-      hotelContact: "La Pirogue, Wolmar / Flic en Flac, Mauritius · Tel. +230 403 3900",
-      note: "Gemeinsame Reise-Checkliste für Michael & Valerie. Vor Abflug offizielle Seiten und Reiseunterlagen nochmals prüfen."
+      insurance: "ERGO Reiseversicherung – RundumSorglos-Jahresschutz-Spezial (209,00 €)",
+      carRental: "Mietwagen am Flughafen geplant",
+      hotelContact: "La Pirogue, Wolmar / Flic en Flac · Tel. +230 403 3900",
+      note: "Gemeinsame Reise-Checkliste für Michael & Valerie"
     };
 
     const initialBudget = {
-      carRental: "Buchung + Kaution ergänzen",
+      carRental: "Buchung + Kaution",
       excursions: "Katamaran, Chamarel, Le Morne",
-      foodDrinks: "Trotz Halbpension einplanen",
+      foodDrinks: "Trotz Halbpension",
       reserve: "Notfall-/Pufferbudget"
     };
 
@@ -1208,21 +1126,21 @@
       {
         type: "Hinflug",
         date: "Fr, 11.09.2026 → Sa, 12.09.2026",
-        route: "Wien → Istanbul International → Mauritius",
+        route: "Wien → Istanbul → Mauritius",
         time: "10:50 – 06:05 +1",
         airline: "Turkish Airlines",
         flightNos: "TK1884, TK1176",
-        baggage: "23 kg Aufgabegepäck p. P. + 8 kg Handgepäck (max. 40 × 55 × 23 cm)",
+        baggage: "23 kg + 8 kg Handgepäck",
         seats: "Platzreservierung ausstehend"
       },
       {
         type: "Rückflug",
         date: "So, 20.09.2026 → Mo, 21.09.2026",
-        route: "Mauritius → Istanbul International → Wien",
+        route: "Mauritius → Istanbul → Wien",
         time: "20:15 – 09:10 +1",
         airline: "Turkish Airlines",
         flightNos: "TK177, TK1883",
-        baggage: "23 kg Aufgabegepäck p. P. + 8 kg Handgepäck (max. 40 × 55 × 23 cm)",
+        baggage: "23 kg + 8 kg Handgepäck",
         seats: "Platzreservierung ausstehend"
       }
     ];
@@ -1233,12 +1151,12 @@
         title: "Dokumente & Einreise",
         icon: "🛂",
         items: [
-          { id: "doc-1", text: "Reisepässe prüfen: länger gültig als Aufenthaltsdauer", done: false, priority: "hoch" },
-          { id: "doc-2", text: "Reiseregistrierung / Mauritius All-in-One Travel Form kurz vor Abreise ausfüllen", done: false, priority: "hoch" },
-          { id: "doc-3", text: "Reiseunterlagen DERTOUR offline speichern und ausdrucken", done: false, priority: "hoch" },
-          { id: "doc-4", text: "Hotelvoucher / Buchungsbestätigung speichern", done: false, priority: "hoch" },
-          { id: "doc-5", text: "Rückflug-/Weiterreise-Nachweis griffbereit halten", done: false, priority: "mittel" },
-          { id: "doc-6", text: "Kopie von Reisepass, Versicherung und Tickets in Cloud ablegen", done: false, priority: "mittel" }
+          { id: "doc-1", text: "Reisepässe prüfen", done: false, priority: "hoch" },
+          { id: "doc-2", text: "Mauritius All-in-One Travel Form ausfüllen", done: false, priority: "hoch" },
+          { id: "doc-3", text: "Reiseunterlagen DERTOUR offline speichern", done: false, priority: "hoch" },
+          { id: "doc-4", text: "Hotelvoucher speichern", done: false, priority: "hoch" },
+          { id: "doc-5", text: "Rückflug-Nachweis griffbereit", done: false, priority: "mittel" },
+          { id: "doc-6", text: "Kopie in Cloud ablegen", done: false, priority: "mittel" }
         ]
       },
       {
@@ -1246,12 +1164,11 @@
         title: "Gesundheit & Impfungen",
         icon: "💉",
         items: [
-          { id: "health-1", text: "Impfpass prüfen: Tetanus/Diphtherie/Pertussis, Polio, MMR aktuell?", done: false, priority: "hoch" },
-          { id: "health-2", text: "Hepatitis-A-Impfung mit Arzt/Reisemedizin besprechen", done: false, priority: "hoch" },
-          { id: "health-3", text: "Typhus-Impfung je nach Reise-/Essverhalten besprechen", done: false, priority: "mittel" },
-          { id: "health-4", text: "Gelbfieber nur relevant bei Einreise/Transit aus Risikogebiet prüfen", done: false, priority: "mittel" },
-          { id: "health-5", text: "Reiseapotheke packen: Schmerzmittel, Durchfallmittel, Elektrolyte, Pflaster, Desinfektion", done: false, priority: "mittel" },
-          { id: "health-6", text: "Mückenschutz, After-Bite und Sonnencreme SPF 50 einpacken", done: false, priority: "hoch" }
+          { id: "health-1", text: "Impfpass prüfen", done: false, priority: "hoch" },
+          { id: "health-2", text: "Hepatitis-A-Impfung besprechen", done: false, priority: "hoch" },
+          { id: "health-3", text: "Typhus-Impfung besprechen", done: false, priority: "mittel" },
+          { id: "health-5", text: "Reiseapotheke packen", done: false, priority: "mittel" },
+          { id: "health-6", text: "Mückenschutz & Sonnencreme", done: false, priority: "hoch" }
         ]
       },
       {
@@ -1259,12 +1176,11 @@
         title: "Packliste",
         icon: "🎒",
         items: [
-          { id: "pack-1", text: "Kleidung: lockere, leichte Stoffe, Schwimmkleidung, Sonnenhut/Kappe, bequeme Schuhe", done: false, priority: "hoch" },
-          { id: "pack-2", text: "Hygiene: Zahnbürste, Zahnpasta, Duschgel, Shampoo, Deodorant, weibliche Hygieneartikel", done: false, priority: "hoch" },
-          { id: "pack-3", text: "Schmuck, Uhren, Kamera und Wertsachen: Wertvollbestandteile versichern oder minimal auswählen", done: false, priority: "mittel" },
-          { id: "pack-4", text: "Ladegeräte für alle Geräte – Stecker-Adapter (230 V, Typ G UK/Mauritius)", done: false, priority: "hoch" },
-          { id: "pack-5", text: "Zahlungsmittel: Kreditkarten, kleiner Bargeldbetrag, Reisepass", done: false, priority: "hoch" },
-          { id: "pack-6", text: "Schnorchel-/Strandausrüstung falls gewünscht", done: false, priority: "niedrig" }
+          { id: "pack-1", text: "Leichte Kleidung & Badekleidung", done: false, priority: "hoch" },
+          { id: "pack-2", text: "Zahnbürste, Duschgel, Shampoo", done: false, priority: "hoch" },
+          { id: "pack-4", text: "Ladegeräte & Stecker-Adapter", done: false, priority: "hoch" },
+          { id: "pack-5", text: "Kreditkarten & Bargeld", done: false, priority: "hoch" },
+          { id: "pack-6", text: "Schnorchel-Ausrüstung", done: false, priority: "niedrig" }
         ]
       },
       {
@@ -1272,11 +1188,11 @@
         title: "Geld, Versicherung & Technik",
         icon: "🛡️",
         items: [
-          { id: "money-1", text: "Kreditkartenlimit und Auslandseinsatz prüfen", done: false, priority: "mittel" },
-          { id: "money-2", text: "Etwas Bargeld / Mauritius-Rupien oder Wechselmöglichkeit planen", done: false, priority: "niedrig" },
-          { id: "money-3", text: "ERGO Versicherungsnummer und Notfallkontakt speichern", done: false, priority: "hoch" },
-          { id: "money-4", text: "Roaming/eSIM für Mauritius prüfen", done: false, priority: "mittel" },
-          { id: "money-5", text: "Offline-Karten und Übersetzungs-App herunterladen", done: false, priority: "niedrig" }
+          { id: "money-1", text: "Kreditkartenlimit prüfen", done: false, priority: "mittel" },
+          { id: "money-2", text: "Mauritius-Rupien wechseln", done: false, priority: "niedrig" },
+          { id: "money-3", text: "ERGO Versicherungsnummer speichern", done: false, priority: "hoch" },
+          { id: "money-4", text: "Roaming/eSIM für Mauritius", done: false, priority: "mittel" },
+          { id: "money-5", text: "Offline-Karten herunterladen", done: false, priority: "niedrig" }
         ]
       },
       {
@@ -1284,12 +1200,11 @@
         title: "Kurz vor Abreise",
         icon: "📅",
         items: [
-          { id: "before-1", text: "Online Check-in prüfen, sobald verfügbar", done: false, priority: "hoch" },
-          { id: "before-2", text: "Gepäck wiegen: max. 23 kg Aufgabegepäck, 8 kg Handgepäck", done: false, priority: "hoch" },
-          { id: "before-3", text: "Mietwagen am Flughafen final buchen oder Buchung bestätigen", done: false, priority: "hoch" },
-          { id: "before-4", text: "Führerschein, Kreditkarte und Mietwagen-Kaution prüfen", done: false, priority: "hoch" },
-          { id: "before-5", text: "Wettervorhersage prüfen und Packliste finalisieren", done: false, priority: "mittel" },
-          { id: "before-6", text: "Wohnung: Pflanzen, Müll, Kühlschrank, Post, Schlüssel klären", done: false, priority: "mittel" }
+          { id: "before-1", text: "Online Check-in vorbereiten", done: false, priority: "hoch" },
+          { id: "before-2", text: "Gepäck wiegen", done: false, priority: "hoch" },
+          { id: "before-3", text: "Mietwagen final buchen", done: false, priority: "hoch" },
+          { id: "before-4", text: "Führerschein & Kreditkarte prüfen", done: false, priority: "hoch" },
+          { id: "before-5", text: "Wettervorhersage prüfen", done: false, priority: "mittel" }
         ]
       },
       {
@@ -1297,12 +1212,11 @@
         title: "Ausflüge & Erlebnisse",
         icon: "📍",
         items: [
-          { id: "trip-1", text: "Le Morne Brabant / Aussichtspunkt planen", done: false, priority: "mittel" },
-          { id: "trip-2", text: "Chamarel: Seven Coloured Earths & Wasserfall einplanen", done: false, priority: "mittel" },
-          { id: "trip-3", text: "Katamaran- oder Bootstour prüfen", done: false, priority: "mittel" },
-          { id: "trip-4", text: "Schnorchelspot / Delfin- oder Lagunentour recherchieren", done: false, priority: "niedrig" },
-          { id: "trip-5", text: "Port Louis / Central Market als Tagesausflug überlegen", done: false, priority: "niedrig" },
-          { id: "trip-6", text: "Black River Gorges National Park für Natur/Wandern prüfen", done: false, priority: "niedrig" }
+          { id: "trip-1", text: "Le Morne Brabant planen", done: false, priority: "mittel" },
+          { id: "trip-2", text: "Chamarel: Seven Coloured Earths", done: false, priority: "mittel" },
+          { id: "trip-3", text: "Katamaran- oder Bootstour", done: false, priority: "mittel" },
+          { id: "trip-4", text: "Schnorchelspots recherchieren", done: false, priority: "niedrig" },
+          { id: "trip-5", text: "Port Louis besuchen", done: false, priority: "niedrig" }
         ]
       },
       {
@@ -1310,22 +1224,18 @@
         title: "Notfallkontakte",
         icon: "☎️",
         items: [
-          { id: "em-1", text: "Hotelkontakt speichern: La Pirogue +230 403 3900", done: false, priority: "hoch" },
-          { id: "em-2", text: "ERGO Notfallnummer / Polizzennummer in Handy und Wallet speichern", done: false, priority: "hoch" },
-          { id: "em-3", text: "DERTOUR Buchungsnummer und Servicekontakt speichern", done: false, priority: "hoch" },
-          { id: "em-4", text: "Mauritius Notruf speichern: Polizei 999/112, Ambulanz 114, Feuerwehr 115", done: false, priority: "hoch" },
-          { id: "em-5", text: "Österreichische Konsularhilfe: Honorarkonsulat Port Louis / Botschaft Pretoria und BMEIA Notfallkontakt speichern", done: false, priority: "mittel" }
+          { id: "em-1", text: "La Pirogue +230 403 3900", done: false, priority: "hoch" },
+          { id: "em-2", text: "ERGO Notfallnummer speichern", done: false, priority: "hoch" },
+          { id: "em-3", text: "DERTOUR Servicekontakt", done: false, priority: "hoch" },
+          { id: "em-4", text: "Mauritius Notruf: 999/112", done: false, priority: "hoch" },
+          { id: "em-5", text: "Österreichische Botschaft Pretoria", done: false, priority: "mittel" }
         ]
       }
     ];
 
-    const tripStartDate = new Date("2026-09-11T00:00:00Z");
-    const tripEndDate = new Date("2026-09-21T00:00:00Z");
-
     let sections = loadState();
     let trip = loadTrip();
     let budget = loadBudget();
-    let dailyPlans = loadDailyPlans();
     let activeFilter = "all";
 
     function loadState() {
@@ -1355,84 +1265,64 @@
       }
     }
 
-    function loadDailyPlans() {
-      try {
-        const parsed = JSON.parse(localStorage.getItem(DAILY_PLANS_KEY));
-        if (parsed && typeof parsed === "object") return parsed;
-      } catch {}
-      return generateDefaultDailyPlans();
-    }
-
-    function generateDefaultDailyPlans() {
-      const plans = {};
-      const currentDate = new Date(tripStartDate);
-      while (currentDate <= tripEndDate) {
-        const dateStr = currentDate.toISOString().split("T")[0];
-        plans[dateStr] = { plans: "", budget: "" };
-        currentDate.setDate(currentDate.getDate() + 1);
-      }
-      return plans;
-    }
-
     function saveState() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(sections));
       localStorage.setItem(TRIP_STORAGE_KEY, JSON.stringify(trip));
       localStorage.setItem(BUDGET_STORAGE_KEY, JSON.stringify(budget));
-      localStorage.setItem(DAILY_PLANS_KEY, JSON.stringify(dailyPlans));
     }
 
-    function daysUntil(dateString, now = new Date()) {
-      const target = new Date(dateString + "T00:00:00");
-      const today = new Date(now);
-      target.setHours(0, 0, 0, 0);
-      today.setHours(0, 0, 0, 0);
-      return Math.ceil((target - today) / (1000 * 60 * 60 * 24));
+    function escapeHtml(unsafe) {
+      return unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
     }
 
     function calculateStats(list) {
       const all = list.flatMap(section => section.items);
       const done = all.filter(item => item.done).length;
-      return {
-        total: all.length,
-        done,
-        percent: all.length > 0 ? Math.round((done / all.length) * 100) : 0
-      };
-    }
-
-    function escapeHtml(unsafe) {
-      return unsafe
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+      return { total: all.length, done, percent: all.length > 0 ? Math.round((done / all.length) * 100) : 0 };
     }
 
     function renderTrip() {
       const root = document.getElementById("tripInfo");
-      root.innerHTML = Object.entries(trip).map(([key, value]) => {
-        const titles = {
-          period: "🗓️ Zeitraum",
-          hotel: "🏨 Hotel",
-          accommodation: "🛏️ Unterkunft",
-          board: "🍽️ Verpflegung",
-          travelers: "👥 Reisende",
-          organizer: "🏢 Organisator",
-          insurance: "📋 Versicherung",
-          carRental: "🚗 Mietwagen",
-          hotelContact: "📞 Hotelkontakt",
-          note: "📝 Notiz"
-        };
-        return `
-          <div class="info-card">
-            <div class="icon-box">${value}</div>
-            <div>
-              <div class="tiny-label">${titles[key] || key}</div>
-              <div class="info-value">${escapeHtml(value)}</div>
-            </div>
+      const titles = {
+        period: "🗓️ Zeitraum", hotel: "🏨 Hotel", accommodation: "🛏️ Unterkunft", board: "🍽️ Verpflegung",
+        travelers: "👥 Reisende", organizer: "🏢 Organisator", insurance: "📋 Versicherung",
+        carRental: "🚗 Mietwagen", hotelContact: "📞 Hotelkontakt", note: "📝 Notiz"
+      };
+      root.innerHTML = Object.entries(trip).map(([key, value]) => `
+        <div class="info-card">
+          <div class="icon-box">${value}</div>
+          <div>
+            <div class="tiny-label">${titles[key] || key}</div>
+            <div class="info-value" onclick="editTripField('${key}')">${escapeHtml(value)}</div>
+            <input type="text" class="edit-input" id="edit-${key}" style="display:none;" value="${escapeHtml(value)}" />
           </div>
-        `;
-      }).join("");
+        </div>
+      `).join("");
+
+      document.querySelectorAll(".info-value").forEach(el => {
+        el.addEventListener("click", () => {
+          const key = el.parentElement.parentElement.querySelector(".edit-input").id.replace("edit-", "");
+          editTripField(key);
+        });
+      });
+    }
+
+    function editTripField(key) {
+      const input = document.getElementById(`edit-${key}`);
+      const display = input.previousElementSibling;
+      if (input.style.display === "none") {
+        display.style.display = "none";
+        input.style.display = "block";
+        input.focus();
+        input.onblur = () => {
+          trip[key] = input.value;
+          saveState();
+          renderTrip();
+        };
+        input.onkeypress = (e) => {
+          if (e.key === "Enter") input.blur();
+        };
+      }
     }
 
     function renderFlights() {
@@ -1443,17 +1333,14 @@
           { label: "Strecke", value: flight.route },
           { label: "Uhrzeit", value: flight.time },
           { label: "Airline", value: flight.airline },
-          { label: "Flugnummern", value: flight.flightNos },
+          { label: "Flüge", value: flight.flightNos },
           { label: "Gepäck", value: flight.baggage },
           { label: "Sitzplätze", value: flight.seats }
         ];
-
         return `
           <div class="flight-card">
             <div class="flight-head">
-              <div>
-                <div class="flight-label">${flight.type}</div>
-              </div>
+              <div><div class="flight-label">${flight.type}</div></div>
             </div>
             <div class="flight-grid">
               ${details.map(d => `
@@ -1472,150 +1359,60 @@
       const root = document.getElementById("budgetDisplay");
       root.innerHTML = `
         <div class="budget-grid">
-          ${Object.entries(budget).map(([key, value]) => {
-            return `
-              <div class="budget-item" data-budget-key="${key}">
-                <span class="budget-label">${key}</span>
-                <span class="budget-value">${escapeHtml(value)}</span>
-                <input type="text" class="budget-input" style="display:none;" value="${escapeHtml(value)}" />
-              </div>
-            `;
-          }).join("")}
+          ${Object.entries(budget).map(([key, value]) => `
+            <div class="budget-item" data-key="${key}">
+              <span class="budget-label">${key}</span>
+              <span class="budget-value" onclick="editBudget('${key}')">${escapeHtml(value)}</span>
+              <input type="text" class="budget-input" id="budget-${key}" style="display:none;" value="${escapeHtml(value)}" />
+            </div>
+          `).join("")}
         </div>
       `;
 
-      document.querySelectorAll(".budget-item").forEach(item => {
-        item.addEventListener("click", () => {
-          const key = item.getAttribute("data-budget-key");
-          const input = item.querySelector(".budget-input");
-          const display = item.querySelector(".budget-value");
-          
-          item.classList.add("editing");
-          input.style.display = "block";
-          display.style.display = "none";
-          input.focus();
-
-          function saveEdit() {
-            budget[key] = input.value || "";
-            display.textContent = escapeHtml(budget[key]);
-            display.style.display = "block";
-            input.style.display = "none";
-            item.classList.remove("editing");
-            saveState();
-          }
-
-          input.addEventListener("blur", saveEdit);
-          input.addEventListener("keypress", (e) => {
-            if (e.key === "Enter") saveEdit();
-          });
+      document.querySelectorAll(".budget-value").forEach(el => {
+        el.addEventListener("click", () => {
+          const key = el.parentElement.getAttribute("data-key");
+          editBudget(key);
         });
       });
     }
 
-    function renderDailyPlans() {
-      const container = document.getElementById("dailyPlansContainer");
-      const dates = Object.keys(dailyPlans).sort();
-
-      container.innerHTML = dates.map(dateStr => {
-        const date = new Date(dateStr + "T00:00:00Z");
-        const dayNames = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
-        const dayName = dayNames[date.getUTCDay()];
-        const displayDate = date.toLocaleDateString("de-DE", { month: "numeric", day: "numeric" });
-        const data = dailyPlans[dateStr] || { plans: "", budget: "" };
-
-        return `
-          <div class="daily-plan-card">
-            <div class="daily-plan-header">
-              <div class="daily-plan-date">${dayName}, ${displayDate}</div>
-              <div class="daily-plan-budget">💰 ${data.budget || "–"}</div>
-            </div>
-            <textarea class="daily-plan-textarea" data-date="${dateStr}" data-field="plans" placeholder="Pläne, Ausflüge, Aktivitäten für diesen Tag...">${escapeHtml(data.plans)}</textarea>
-          </div>
-        `;
-      }).join("");
-
-      document.querySelectorAll(".daily-plan-textarea").forEach(textarea => {
-        textarea.addEventListener("blur", saveDailyPlanEdit);
-      });
-
-      updateDailySummary();
-    }
-
-    function saveDailyPlanEdit(e) {
-      const dateStr = e.target.getAttribute("data-date");
-      const field = e.target.getAttribute("data-field");
-      dailyPlans[dateStr] = dailyPlans[dateStr] || { plans: "", budget: "" };
-      dailyPlans[dateStr][field] = e.target.value;
-      saveState();
-      updateDailySummary();
-    }
-
-    function updateDailySummary() {
-      const summary = document.getElementById("dailySummary");
-      const dates = Object.keys(dailyPlans).sort();
-      const totalDays = dates.length;
-      const daysWithPlans = dates.filter(d => dailyPlans[d].plans.trim()).length;
-      const totalBudget = dates.reduce((sum, d) => {
-        const budgetStr = dailyPlans[d].budget || "";
-        const num = parseFloat(budgetStr);
-        return sum + (isNaN(num) ? 0 : num);
-      }, 0);
-
-      summary.innerHTML = `
-        <div class="summary-item">
-          <div class="summary-label">Reisedauer</div>
-          <div class="summary-value">${totalDays} Tage</div>
-        </div>
-        <div class="summary-item">
-          <div class="summary-label">Tage geplant</div>
-          <div class="summary-value">${daysWithPlans}/${totalDays}</div>
-        </div>
-        <div class="summary-item">
-          <div class="summary-label">Tages-Budget</div>
-          <div class="summary-value">${totalBudget > 0 ? totalBudget.toFixed(0) + " €" : "–"}</div>
-        </div>
-      `;
+    function editBudget(key) {
+      const input = document.getElementById(`budget-${key}`);
+      const display = input.previousElementSibling;
+      if (input.style.display === "none") {
+        display.style.display = "none";
+        input.style.display = "block";
+        input.focus();
+        input.onblur = () => {
+          budget[key] = input.value;
+          saveState();
+          renderBudget();
+        };
+        input.onkeypress = (e) => {
+          if (e.key === "Enter") input.blur();
+        };
+      }
     }
 
     async function renderWeather() {
       const root = document.getElementById("weatherGrid");
       const status = document.getElementById("weatherStatus");
-      
       try {
-        const response = await fetch(
-          'https://api.open-meteo.com/v1/forecast?latitude=-20.3484&longitude=57.5522&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Africa/Mauritius&forecast_days=5'
-        );
-        
-        if (!response.ok) throw new Error('API Fehler');
-        
+        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=-20.3484&longitude=57.5522&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Africa/Mauritius&forecast_days=5');
+        if (!response.ok) throw new Error('API Error');
         const data = await response.json();
         const daily = data.daily;
-
         const weatherCodes = {
-          0: { icon: '☀️', desc: 'Sonnig' },
-          1: { icon: '⛅', desc: 'Teils bewölkt' },
-          2: { icon: '☁️', desc: 'Bewölkt' },
-          3: { icon: '☁️', desc: 'Bedeckt' },
-          45: { icon: '🌫️', desc: 'Neblig' },
-          48: { icon: '🌫️', desc: 'Neblig' },
-          51: { icon: '🌧️', desc: 'Leichter Regen' },
-          53: { icon: '🌧️', desc: 'Moderater Regen' },
-          55: { icon: '🌧️', desc: 'Starker Regen' },
-          61: { icon: '🌧️', desc: 'Regen' },
-          63: { icon: '🌧️', desc: 'Regen' },
-          65: { icon: '⛈️', desc: 'Starker Regen' },
-          80: { icon: '🌧️', desc: 'Regen' },
-          81: { icon: '⛈️', desc: 'Gewitter' },
-          82: { icon: '⛈️', desc: 'Gewitter' },
-          95: { icon: '⛈️', desc: 'Gewitter' },
-          96: { icon: '⛈️', desc: 'Gewitter mit Hagel' },
-          99: { icon: '⛈️', desc: 'Gewitter mit Hagel' }
+          0: { icon: '☀️', desc: 'Sonnig' }, 1: { icon: '⛅', desc: 'Teils bewölkt' }, 2: { icon: '☁️', desc: 'Bewölkt' },
+          3: { icon: '☁️', desc: 'Bedeckt' }, 45: { icon: '🌫️', desc: 'Neblig' }, 48: { icon: '🌫️', desc: 'Neblig' },
+          51: { icon: '🌧️', desc: 'Leichter Regen' }, 53: { icon: '🌧️', desc: 'Moderater Regen' }, 55: { icon: '🌧️', desc: 'Starker Regen' },
+          61: { icon: '🌧️', desc: 'Regen' }, 63: { icon: '🌧️', desc: 'Regen' }, 65: { icon: '⛈️', desc: 'Starker Regen' },
+          80: { icon: '🌧️', desc: 'Regen' }, 81: { icon: '⛈️', desc: 'Gewitter' }, 82: { icon: '⛈️', desc: 'Gewitter' },
+          95: { icon: '⛈️', desc: 'Gewitter' }, 96: { icon: '⛈️', desc: 'Hagel' }, 99: { icon: '⛈️', desc: 'Hagel' }
         };
-
-        const dayNames = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
-        
-        status.innerHTML = '✅ Echte Wetterdaten von Open-Meteo (täglich aktualisiert)';
-        
+        const dayNames = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
+        status.innerHTML = '✅ Live-Daten von Open-Meteo';
         root.innerHTML = daily.time.map((date, idx) => {
           const d = new Date(date + 'T00:00:00Z');
           const dayName = dayNames[d.getUTCDay()];
@@ -1623,61 +1420,36 @@
           const weather = weatherCodes[code] || { icon: '❓', desc: 'Unbekannt' };
           const maxTemp = daily.temperature_2m_max[idx];
           const minTemp = daily.temperature_2m_min[idx];
-
           return `
             <div class="weather-day">
               <div class="weather-day-name">${dayName}</div>
               <div class="weather-icon">${weather.icon}</div>
-              <div class="weather-temp">${Math.round(maxTemp)}°C</div>
+              <div class="weather-temp">${Math.round(maxTemp)}°</div>
               <div class="weather-desc">${minTemp ? Math.round(minTemp) + '°' : ''}</div>
-              <div class="weather-desc" style="font-size: 10px;">${weather.desc}</div>
             </div>
           `;
         }).join("");
       } catch (error) {
-        status.innerHTML = '⚠️ Wetter temporär nicht verfügbar. Zeige Beispielwetter.';
-        
-        const exampleForecasts = [
-          { day: 'Samstag', icon: '⛅', max: 28, min: 22, desc: 'Teils bewölkt' },
-          { day: 'Sonntag', icon: '☀️', max: 29, min: 23, desc: 'Sonnig' },
-          { day: 'Montag', icon: '🌧️', max: 26, min: 21, desc: 'Leichter Regen' },
-          { day: 'Dienstag', icon: '⛅', max: 28, min: 22, desc: 'Teils bewölkt' },
-          { day: 'Mittwoch', icon: '☀️', max: 30, min: 24, desc: 'Sonnig' }
-        ];
-
-        root.innerHTML = exampleForecasts.map(f => `
-          <div class="weather-day">
-            <div class="weather-day-name">${f.day}</div>
-            <div class="weather-icon">${f.icon}</div>
-            <div class="weather-temp">${f.max}°C</div>
-            <div class="weather-desc">${f.min}°</div>
-            <div class="weather-desc" style="font-size: 10px;">${f.desc}</div>
-          </div>
-        `).join("");
+        status.innerHTML = '⚠️ Wetter nicht verfügbar';
+        root.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 20px;">Bitte später erneut versuchen</div>';
       }
     }
 
     function renderChecklists() {
       const root = document.getElementById("checklists");
-      const filtered = activeFilter === "all" 
-        ? sections 
-        : sections.filter(s => s.id === activeFilter);
-
+      const filtered = activeFilter === "all" ? sections : sections.filter(s => s.id === activeFilter);
       root.innerHTML = filtered.map(section => {
         const stats = calculateStats([section]);
         const items = section.items.filter(item => {
           if (activeFilter === "all") return true;
           return item.done === (activeFilter === "done");
         });
-
         return `
           <div class="section-card">
             <div class="section-head">
               <div class="section-name">
                 <div class="icon-box">${section.icon}</div>
-                <div>
-                  <h3>${section.title}</h3>
-                </div>
+                <div><h3>${section.title}</h3></div>
               </div>
               <div class="section-percent">${stats.percent}%</div>
             </div>
@@ -1689,15 +1461,16 @@
             <div class="item-list">
               ${items.map(item => `
                 <div class="item ${item.done ? 'done' : ''}">
-                  <button class="check-btn" data-item-id="${item.id}" data-section-id="${section.id}">
+                  <button class="check-btn" data-item="${item.id}" data-section="${section.id}">
                     ${item.done ? '✓' : '○'}
                   </button>
-                  <div class="item-text">${escapeHtml(item.text)}</div>
+                  <div class="item-text" data-item="${item.id}" data-section="${section.id}">${escapeHtml(item.text)}</div>
+                  <input type="text" class="item-text-input" data-item="${item.id}" data-section="${section.id}" value="${escapeHtml(item.text)}" />
                   <div class="item-controls">
-                    <button class="priority-circle ${item.priority}" data-item-id="${item.id}" data-section-id="${section.id}" title="Priorität: ${item.priority}">
-                      ${item.priority === 'hoch' ? '!' : item.priority === 'mittel' ? '•' : '○'}
+                    <button class="priority-badge ${item.priority}" data-item="${item.id}" data-section="${section.id}" title="Priorität: ${item.priority}">
+                      ${item.priority === 'hoch' ? '🔴 Wichtig' : item.priority === 'mittel' ? '🟡 Normal' : '🔵 Niedrig'}
                     </button>
-                    <button class="delete-btn" data-item-id="${item.id}" data-section-id="${section.id}">✕</button>
+                    <button class="delete-btn" data-item="${item.id}" data-section="${section.id}">✕</button>
                   </div>
                 </div>
               `).join("")}
@@ -1705,91 +1478,90 @@
           </div>
         `;
       }).join("");
-
       attachEventListeners();
       updateCountdown();
     }
 
     function attachEventListeners() {
       document.querySelectorAll(".check-btn").forEach(btn => {
-        btn.addEventListener("click", toggleTask);
+        btn.addEventListener("click", () => {
+          const itemId = btn.getAttribute("data-item");
+          const sectionId = btn.getAttribute("data-section");
+          const section = sections.find(s => s.id === sectionId);
+          const item = section?.items.find(i => i.id === itemId);
+          if (item) {
+            item.done = !item.done;
+            saveState();
+            renderChecklists();
+          }
+        });
+      });
+
+      document.querySelectorAll(".item-text").forEach(el => {
+        el.addEventListener("click", () => {
+          const itemId = el.getAttribute("data-item");
+          const sectionId = el.getAttribute("data-section");
+          const input = document.querySelector(`.item-text-input[data-item="${itemId}"][data-section="${sectionId}"]`);
+          el.style.display = "none";
+          input.classList.add("active");
+          input.focus();
+          input.onblur = () => {
+            const section = sections.find(s => s.id === sectionId);
+            const item = section?.items.find(i => i.id === itemId);
+            if (item) {
+              item.text = input.value;
+              saveState();
+              renderChecklists();
+            }
+          };
+          input.onkeypress = (e) => {
+            if (e.key === "Enter") input.blur();
+          };
+        });
+      });
+
+      document.querySelectorAll(".priority-badge").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const itemId = btn.getAttribute("data-item");
+          const sectionId = btn.getAttribute("data-section");
+          const priorities = ["hoch", "mittel", "niedrig"];
+          const section = sections.find(s => s.id === sectionId);
+          const item = section?.items.find(i => i.id === itemId);
+          if (item) {
+            const idx = priorities.indexOf(item.priority);
+            item.priority = priorities[(idx + 1) % priorities.length];
+            saveState();
+            renderChecklists();
+          }
+        });
       });
 
       document.querySelectorAll(".delete-btn").forEach(btn => {
-        btn.addEventListener("click", deleteTask);
+        btn.addEventListener("click", () => {
+          const itemId = btn.getAttribute("data-item");
+          const sectionId = btn.getAttribute("data-section");
+          const section = sections.find(s => s.id === sectionId);
+          if (section) {
+            section.items = section.items.filter(i => i.id !== itemId);
+            saveState();
+            renderChecklists();
+          }
+        });
       });
-
-      document.querySelectorAll(".priority-circle").forEach(btn => {
-        btn.addEventListener("click", cyclePriority);
-      });
-    }
-
-    function toggleTask(e) {
-      const itemId = e.currentTarget.getAttribute("data-item-id");
-      const sectionId = e.currentTarget.getAttribute("data-section-id");
-      const section = sections.find(s => s.id === sectionId);
-      if (section) {
-        const item = section.items.find(i => i.id === itemId);
-        if (item) {
-          item.done = !item.done;
-          saveState();
-          renderChecklists();
-        }
-      }
-    }
-
-    function deleteTask(e) {
-      const itemId = e.currentTarget.getAttribute("data-item-id");
-      const sectionId = e.currentTarget.getAttribute("data-section-id");
-      const section = sections.find(s => s.id === sectionId);
-      if (section) {
-        section.items = section.items.filter(i => i.id !== itemId);
-        saveState();
-        renderChecklists();
-      }
-    }
-
-    function cyclePriority(e) {
-      const itemId = e.currentTarget.getAttribute("data-item-id");
-      const sectionId = e.currentTarget.getAttribute("data-section-id");
-      const priorities = ["hoch", "mittel", "niedrig"];
-      const section = sections.find(s => s.id === sectionId);
-      if (section) {
-        const item = section.items.find(i => i.id === itemId);
-        if (item) {
-          const idx = priorities.indexOf(item.priority);
-          item.priority = priorities[(idx + 1) % priorities.length];
-          saveState();
-          renderChecklists();
-        }
-      }
     }
 
     function updateCountdown() {
-      const countdown = document.getElementById("countdown");
-      const progress = document.getElementById("overallProgress");
-      const text = document.getElementById("overallText");
-
-      const days = daysUntil("2026-09-11");
-      countdown.textContent = Math.max(0, days);
-
+      const days = Math.max(0, Math.ceil((new Date("2026-09-11") - new Date()) / (1000 * 60 * 60 * 24)));
+      document.getElementById("countdown").textContent = days;
       const stats = calculateStats(sections);
-      const percent = stats.percent;
-      progress.style.width = percent + "%";
-      text.textContent = `${stats.done} von ${stats.total} Aufgaben erledigt · ${percent}%`;
+      document.getElementById("overallProgress").style.width = stats.percent + "%";
+      document.getElementById("overallText").textContent = `${stats.done} von ${stats.total} Aufgaben erledigt · ${stats.percent}%`;
     }
 
     function renderFilters() {
       const root = document.getElementById("filters");
-      const sectionIds = [
-        { id: "all", label: "Alle" },
-        ...sections.map(s => ({ id: s.id, label: s.title }))
-      ];
-
-      root.innerHTML = sectionIds.map(item => {
-        return `<button class="filter-button ${activeFilter === item.id ? 'active' : ''}" data-filter="${item.id}">${item.label}</button>`;
-      }).join("");
-
+      const sectionIds = [{ id: "all", label: "Alle" }, ...sections.map(s => ({ id: s.id, label: s.title }))];
+      root.innerHTML = sectionIds.map(item => `<button class="filter-button ${activeFilter === item.id ? 'active' : ''}" data-filter="${item.id}">${item.label}</button>`).join("");
       document.querySelectorAll(".filter-button").forEach(btn => {
         btn.addEventListener("click", () => {
           activeFilter = btn.getAttribute("data-filter");
@@ -1804,17 +1576,10 @@
       const select = document.getElementById("newTaskSection");
       const sectionId = select.value;
       const text = input.value.trim();
-
       if (text && sectionId) {
         const section = sections.find(s => s.id === sectionId);
         if (section) {
-          const newItem = {
-            id: `custom-${Date.now()}`,
-            text,
-            done: false,
-            priority: "mittel"
-          };
-          section.items.push(newItem);
+          section.items.push({ id: `custom-${Date.now()}`, text, done: false, priority: "mittel" });
           saveState();
           input.value = "";
           renderChecklists();
@@ -1836,7 +1601,6 @@
     renderTrip();
     renderFlights();
     renderBudget();
-    renderDailyPlans();
     renderFilters();
     renderChecklists();
     renderWeather();
